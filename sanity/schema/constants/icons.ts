@@ -1,0 +1,18 @@
+export const ICONS = [
+    { value: 'crown', title: 'Crown' },
+    { value: 'flag', title: 'Flag' },
+    { value: 'grin-hearts', title: 'Grin Hearts' },
+    { value: 'hand-holding-usd', title: 'Hand Holding Usd' },
+    { value: 'hands-helping', title: 'Hands Helping' },
+    { value: 'heart', title: 'Heart' },
+    { value: 'shopping-cart', title: 'Shopping Cart' },
+    { value: 'smile', title: 'Smile' },
+    { value: 'ticket', title: 'Ticket' },
+    { value: 'user-friends', title: 'User Friends' },
+    { value: 'envelope', title: 'Envelope' },
+    { value: 'map', title: 'Map' },
+    { value: 'martini-glass', title: 'Martini Glass' },
+    { value: 'champagne-glasses', title: 'Champagne Glasses' },
+    { value: 'star', title: 'Star' },
+    { value: 'handshake', title: 'Handshake' },
+]

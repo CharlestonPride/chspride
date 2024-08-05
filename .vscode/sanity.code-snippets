@@ -1,0 +1,211 @@
+{
+    "Sanity Schema": {
+        "description": "Create a simple schema for the CMS (document, object or image)",
+        "prefix": "_schema",
+        "body": [
+            "import { defineField, defineType } from 'sanity'",
+            "",
+            "export default defineType({",
+            "\tname: '${2:$TM_FILENAME_BASE}',",
+            "\ttitle: '${3:${TM_FILENAME_BASE/(^.)|([A-Z](?=[a-z]))/${1:/upcase}${2:+ }${2:/downcase}/g}}',",
+            "\ttype: '${1|document,object,image|}',",
+            "\tfields: [",
+            "\t\t$0",
+            "\t],",
+            "})"
+        ]
+    },
+    "Sanity Field": {
+        "description": "Add a field to a sanity object / document",
+        "prefix": "_Fld",
+        "body": [
+            "defineField({",
+            "\tname: '${1:name}',",
+            "\ttitle: '${2:${1/(^.)|([A-Z](?=[a-z]))/${1:/upcase}${2:+ }${2:/downcase}/g}}',",
+            "\ttype: '${3|block,boolean,date,datetime,file,geopoint,image,number,slug,string,text,url,yourOwnType™|}',",
+            "}),"
+        ]
+    },
+    "Sanity Custom Description": {
+        "description": "Add a custom description to a field, document or object",
+        "prefix": "_Desc",
+        "body": [
+            "description: '${1:description}',"
+        ]
+    },
+    "Sanity Optional": {
+        "description": "Add a cue that a field is optional",
+        "prefix": "_Optional",
+        "body": [
+            "description: '${1:❓ Optional}${0}',"
+        ]
+    },
+    "Sanity Optional Encouraged": {
+        "description": "Add a cue that a field is optional, but encourage writing it",
+        "prefix": "_OptionalEncouraged",
+        "body": [
+            "description: '${1:⚡ Optional but highly encouraged}${0}',"
+        ]
+    },
+    "Sanity Tip description": {
+        "description": "Add a tip as a field's description",
+        "prefix": "_Tip",
+        "body": [
+            "description: '💡 ${1:tip here}',"
+        ]
+    },
+    "Sanity Fieldset": {
+        "description": "Add fieldsets to a sanity object / document",
+        "prefix": "_Fieldset",
+        "body": [
+            "fieldsets: [",
+            "\t{",
+            "\t\tname: '${1:name}',",
+            "\t\ttitle: '${2:${1/(^.)|([A-Z](?=[a-z]))/${1:/upcase}${2:+ }${2:/downcase}/g}}',",
+            "\t\t${0:options: { collapsible: true, collapsed: true }},",
+            "\t},",
+            "],"
+        ]
+    },
+    "Sanity Collapse Field": {
+        "description": "Make a given object field collapsible to help editors scroll less through the document",
+        "prefix": "_Collapse",
+        "body": [
+            "options: { collapsible: true, ${0:collapsed: false,}},"
+        ]
+    },
+    "Sanity Required": {
+        "description": "Make a given field required",
+        "prefix": "_Required",
+        "body": [
+            "validation: (rule) => rule.required(),"
+        ]
+    },
+    "Sanity Array Validation (min & max)": {
+        "description": "Validate an array field based on its length",
+        "prefix": "_ArrValidation",
+        "body": [
+            "validation: (rule) => [",
+            "\trule.required()",
+            "\t\t.min(${1:1})",
+            "\t\t.max(${2:2})",
+            "\t\t.${4:error}('Required field with at least ${1:1} and at most ${2:2} ${3:entries}.'),",
+            "\t${0:rule.unique()}",
+            "]"
+        ]
+    },
+    "Sanity Basic Array": {
+        "description": "Create a basic array field in Sanity",
+        "prefix": "_ArrFld",
+        "body": [
+            "{",
+            "\tname: '${1:name}',",
+            "\ttitle: '${2:${1/(^.)|([A-Z](?=[a-z]))/${1:/upcase}${2:+ }${2:/downcase}/g}}',",
+            "\ttype: 'array',",
+            "\tof: [{ type: '${3:string}' }],",
+            "},"
+        ]
+    },
+    "Sanity Reference Field": {
+        "description": "Create a basic reference field in Sanity",
+        "prefix": "_RefFld",
+        "body": [
+            "{",
+            "\tname: '${1:name}',",
+            "\ttitle: '${2:${1/(^.)|([A-Z](?=[a-z]))/${1:/upcase}${2:+ }${2:/downcase}/g}}',",
+            "\ttype: 'reference',",
+            "\tto: [{ type: '${3:author}' }],",
+            "},"
+        ]
+    },
+    "Sanity Preview with Select": {
+        "description": "Add a basic preview with selection object in Sanity",
+        "prefix": "_PreviewSelect",
+        "body": [
+            "preview: {",
+            "\tselect: {",
+            "\t\ttitle: '${1:title}',",
+            "\t\tsubtitle: '${2:subtitle}',",
+            "\t\tmedia: '${3:image}',",
+            "\t},",
+            "},"
+        ]
+    },
+    "Sanity Select Object": {
+        "description": "Add a basic selection object for preview in Sanity",
+        "prefix": "_Select",
+        "body": [
+            "\tselect: {",
+            "\t\ttitle: '${1:title}',",
+            "\t\tsubtitle: '${2:subtitle}',",
+            "\t\tmedia: '${3:image}',",
+            "\t},"
+        ]
+    },
+    "Sanity Prepare Function": {
+        "description": "Add a prepare function for preview in Sanity",
+        "prefix": "_Prepare",
+        "body": [
+            "prepare({ title, subtitle, media }) {",
+            "\treturn {",
+            "\t\ttitle: `${1:${title\\}}`,",
+            "\t\tsubtitle: `${2:${subtitle\\}}`,",
+            "\t\tmedia,",
+            "\t};",
+            "},"
+        ]
+    },
+    "Sanity Preview with Select and Prepare": {
+        "description": "Add a preview with selection object and prepare function in Sanity",
+        "prefix": "_PreviewSelectPrepare",
+        "body": [
+            "preview: {",
+            "\tselect: {",
+            "\t\ttitle: '${1:title}',",
+            "\t\tsubtitle: '${2:subtitle}',",
+            "\t\tmedia: '${3:image}',",
+            "\t},",
+            "\tprepare({ title, subtitle, media }) {",
+            "\t\treturn {",
+            "\t\t\ttitle: `${4:\\${title\\}}`,",
+            "\t\t\tsubtitle: `${5:\\${subtitle\\}}`,",
+            "\t\t\tmedia,",
+            "\t\t};",
+            "\t},",
+            "},"
+        ]
+    },
+    "Sanity Object Field": {
+        "description": "Create a basic object field in Sanity",
+        "prefix": "_ObjFld",
+        "body": [
+            "{",
+            "\tname: '${1:name}',",
+            "\ttitle: '${2:title}',",
+            "\ttype: 'object',",
+            "\tfields: [",
+            "\t\t$3",
+            "\t],",
+            "},"
+        ]
+    },
+    "Sanity list of options": {
+        "description": "Add a list array to string/number/array types to render specific options to users.\n🚨 For arrays, this only works if it's an array of strings, in which case it'll render checkboxes",
+        "prefix": "_ListArray",
+        "body": [
+            "options: {",
+            "\tlayout: '${3|radio,select|}',",
+            "\tlist: [",
+            "\t\t{ value: '${1:option1}', title: '${2:${1/(^.)|([A-Z](?=[a-z]))/${1:/upcase}${2:+ }${2:/downcase}/g}}' },",
+            "\t],",
+            "},"
+        ]
+    },
+    "Sanity Export": {
+        "description": "Add export default statment",
+        "prefix": "_export",
+        "body": [
+            "export  { default as ${1:name} } from './${1:name}'",
+        ]
+    },
+}
