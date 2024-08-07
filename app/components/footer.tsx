@@ -82,7 +82,7 @@ const Footer = ({ }) => {
                             <p className="mb-0 text-secondary">
                                 Charleston Pride Festival, Inc. is a 501(c)(3) public charity
                                 under the Internal Revenue Service Code of 1986 and the State of
-                                Sinouth Carolina.
+                                South Carolina.
                             </p>
                         </Col>
                     </Row>

@@ -1,7 +1,11 @@
 
+import { client } from "@/sanity/lib/client";
+import { NavigationQueryResult } from "@/sanity/lib/sanity.types";
+import { homeQuery, navigationQuery } from "@/sanity/queries";
+import { GetStaticProps, InferGetStaticPropsType } from "next";
 import Link from "next/link";
 import React from "react";
-import { NavbarBrand, NavbarCollapse, NavbarToggle, NavLink } from "react-bootstrap";
+import { NavbarBrand, NavbarCollapse, NavbarToggle, NavItem, NavLink } from "react-bootstrap";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -42,8 +46,12 @@ const AboutUs = () => {
     );
 };
 
+function getNavItem(props: { label: string | null, url: string | null }) {
+    return <NavLink target="_blank" href={props.url ?? ''} key={props.label}>{props.label}</NavLink>
+}
 
-export default function MainNavBar({ }) {
+export default async function MainNavBar() {
+    const nav = (await client.fetch(navigationQuery))[0];
     return (
         <Navbar bg="light" expand="lg">
             <Container className="py-3">
@@ -56,16 +64,22 @@ export default function MainNavBar({ }) {
                 </NavbarToggle>
                 <NavbarCollapse id="basic-navbar-nav">
                     <Nav className="mx-auto">
-                        <AboutUs />
-                        {/* <Events /> */}
-                        {/* <PrideWeek /> */}
+                        {nav?.main?.map((menu: any) => {
+                            if (menu._type == 'dropdownItem') {
+                                return <NavDropdown title={menu.label} key={menu.label} >
+                                    {menu.list?.map((item: any) => {
+                                        if (item._type == 'singleItem') {
+                                            return getNavItem(item);
+                                        }
+                                        return getNavItem({ url: (item as any).slug, label: (item as any).title })
+                                    })}
+                                </NavDropdown>
+                            }
+                            else {
+                                return <></>
+                            }
+                        })}
                     </Nav>
-                    {/* <LinkButton color="primary" href="/donate">
-            Make a Donation
-          </LinkButton>
-          <LinkOutlineButton color="primary" href="/become-a-sponsor">
-            Become a Sponsor
-          </LinkOutlineButton> */}
                 </NavbarCollapse>
             </Container>
         </Navbar>

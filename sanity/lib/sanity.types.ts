@@ -519,6 +519,8 @@ export type Header = {
     crop?: SanityImageCrop;
     _type: "image";
   };
+  size?: string;
+  position?: string;
 };
 
 export type MediaTag = {
@@ -538,3 +540,297 @@ export type Slug = {
 
 export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Theme | Icon | TwoColumnGalleryCard | TwoColumnCard | SponsorsCard | SocialsCard | ImageGalleryCard | SingleItem | DropdownItem | List | EmbeddedForm | Button | OurTeam | Navigation | Home | Footer | Sponsorship | Sponsor | Person | Page | Seo | Visibility | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Header | MediaTag | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
+// Source: ./sanity/queries.tsx
+// Variable: slugsQuery
+// Query: *[_type == "page" && defined(slug.current)][]{  _id,  'slug':slug.current}
+export type SlugsQueryResult = Array<{
+  _id: string;
+  slug: string | null;
+}>;
+// Variable: pageBySlugQuery
+// Query: *[_type == "page" && slug.current == $slug][0]
+export type PageBySlugQueryResult = {
+  _id: string;
+  _type: "page";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  description?: string;
+  slug?: Slug;
+  theme?: Theme;
+  header?: Header;
+  content?: Array<({
+    _key: string;
+  } & EmbeddedForm) | ({
+    _key: string;
+  } & List) | {
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  visbility?: Visibility;
+  seo?: Seo;
+} | null;
+// Variable: homeQuery
+// Query: *[_type == "home"]{  ...,  header{    ...,    buttons[]{      label,      url,      reference->{slug{...}}    }    },  content[]{    ...,    buttons[]{      label,      url,      reference->{slug{...}}    }    }  }
+export type HomeQueryResult = Array<{
+  _id: string;
+  _type: "home";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  header: {
+    _type: "header";
+    style?: "block" | "oblique";
+    title?: string;
+    subtitle?: string;
+    theme?: "danger" | "info" | "primary" | "secondary" | "success" | "warning";
+    buttons: Array<{
+      label: string | null;
+      url: string | null;
+      reference: {
+        slug: null;
+      } | {
+        slug: {
+          _type: "slug";
+          current?: string;
+          source?: string;
+        } | null;
+      } | null;
+    }> | null;
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    size?: string;
+    position?: string;
+  } | null;
+  content: Array<{
+    _key: string;
+    _type: "imageGalleryCard";
+    images?: Array<{
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+      _key: string;
+    }>;
+    theme?: "danger" | "info" | "primary" | "secondary" | "success" | "warning";
+    buttons: null;
+  } | {
+    _key: string;
+    _type: "socialsCard";
+    title?: string;
+    subtitle?: string;
+    buttons: null;
+  } | {
+    _key: string;
+    _type: "sponsorsCard";
+    title?: string;
+    theme?: "danger" | "info" | "primary" | "secondary" | "success" | "warning";
+    featured?: boolean;
+    year?: number;
+    event?: "" | "festival" | "parade";
+    buttons: null;
+  } | {
+    _key: string;
+    _type: "twoColumnCard";
+    title?: string;
+    subtitle?: string;
+    theme?: "danger" | "info" | "primary" | "secondary" | "success" | "warning";
+    icon?: "champagne-glasses" | "crown" | "envelope" | "flag" | "grin-hearts" | "hand-holding-usd" | "hands-helping" | "handshake" | "heart" | "map" | "martini-glass" | "shopping-cart" | "smile" | "star" | "ticket" | "user-friends";
+    content?: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
+        _key: string;
+      }>;
+      style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+      listItem?: "bullet" | "number";
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
+        _key: string;
+      }>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }>;
+    buttons: Array<{
+      label: string | null;
+      url: string | null;
+      reference: {
+        slug: null;
+      } | {
+        slug: {
+          _type: "slug";
+          current?: string;
+          source?: string;
+        } | null;
+      } | null;
+    }> | null;
+    primary?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    secondary?: Array<{
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+      _key: string;
+    }>;
+    focus?: boolean;
+    shadow?: boolean;
+    stack?: boolean;
+  } | {
+    _key: string;
+    _type: "twoColumnGalleryCard";
+    title?: string;
+    subtitle?: string;
+    theme?: "danger" | "info" | "primary" | "secondary" | "success" | "warning";
+    icon?: "champagne-glasses" | "crown" | "envelope" | "flag" | "grin-hearts" | "hand-holding-usd" | "hands-helping" | "handshake" | "heart" | "map" | "martini-glass" | "shopping-cart" | "smile" | "star" | "ticket" | "user-friends";
+    buttons: Array<{
+      label: string | null;
+      url: string | null;
+      reference: {
+        slug: null;
+      } | {
+        slug: {
+          _type: "slug";
+          current?: string;
+          source?: string;
+        } | null;
+      } | null;
+    }> | null;
+    images?: Array<{
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+      _key: string;
+    }>;
+  }> | null;
+  seo?: Seo;
+}>;
+// Variable: navigationQuery
+// Query: *[_type == "navigation"]{  _type,  title,  main[]{    _type,    _type=='dropdownItem' =>{      label,      list[]{        _type,        _type=='Page' => @-> {          title,          'slug': slug.current        },        _type == 'singleItem' => {          label,          url        }      }    }  }}
+export type NavigationQueryResult = Array<{
+  _type: "navigation";
+  title: string | null;
+  main: Array<{
+    _type: "dropdownItem";
+    label: string | null;
+    list: Array<{
+      _type: "reference";
+    } | {
+      _type: "singleItem";
+      label: string | null;
+      url: string | null;
+    }> | null;
+  } | {
+    _type: "singleItem";
+  }> | null;
+}>;
+// Variable: sponsorsQuery
+// Query: *[_type == "sponsor"]{  name,  website,  "logo":logo.asset->{    altText,    description,    url,  }}
+export type SponsorsQueryResult = Array<{
+  name: string | null;
+  website: string | null;
+  logo: {
+    altText: string | null;
+    description: string | null;
+    url: string | null;
+  } | null;
+}>;
+// Variable: sponsorshipsQuery
+// Query: *[_type == "sponsorship" && year==$year && event in $event]{  featured,  level,  event,  sponsor->{  name,  website,  "logo":logo.asset->{    altText,    description,    url,  }}} | order(level desc)
+export type SponsorshipsQueryResult = Array<{
+  featured: boolean | null;
+  level: 1 | 2 | 3 | 4 | 5 | 6 | null;
+  event: "festival" | "parade" | null;
+  sponsor: {
+    name: string | null;
+    website: string | null;
+    logo: {
+      altText: string | null;
+      description: string | null;
+      url: string | null;
+    } | null;
+  } | null;
+}>;
+// Variable: peopleQuery
+// Query: *[_type == "person" ]{  name,  title,  bio,  email,  pronouns,  "image":image.asset->{    altText,    description,    url  }}
+export type PeopleQueryResult = Array<never>;
+// Variable: ourTeamQuery
+// Query: *[_type == "page" && slug.current == 'our-team' ]{...,content[]{  _type,  _type == "list" => {    _type,    label,    list[]{      _type,      _type == 'reference' =>@-> {        _type,        _type == 'person' =>        {          name,          title,          email,          bio,          pronouns,          "image":image.asset->{            altText,            description,            url,          }        }      }    }  }}}
+export type OurTeamQueryResult = Array<{
+  _id: string;
+  _type: "page";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  description?: string;
+  slug?: Slug;
+  theme?: Theme;
+  header?: Header;
+  content: Array<{
+    _type: "block";
+  } | {
+    _type: "embeddedForm";
+  } | {
+    _type: "list";
+    label: string | null;
+    list: Array<{
+      _type: "reference";
+    }> | null;
+  }> | null;
+  visbility?: Visibility;
+  seo?: Seo;
+}>;

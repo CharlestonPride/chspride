@@ -42,8 +42,18 @@ export default defineType({
         }),
         defineField({
             name: 'image',
-            title: 'Image',
+            title: 'Background Image',
             type: 'image',
+        }),
+        defineField({
+            name: 'size',
+            title: 'Background Size',
+            type: 'string',
+        }),
+        defineField({
+            name: 'position',
+            title: 'Background Position',
+            type: 'string',
         }),
     ],
 })
