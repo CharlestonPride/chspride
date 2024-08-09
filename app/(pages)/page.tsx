@@ -1,10 +1,11 @@
 import { client } from "@/sanity/lib/client";
-import { HomeQueryResult, TwoColumnCard as TwoColumnCardProps } from "@/sanity/lib/sanity.types";
+import { HomeQueryResult, ImageGalleryCard as ImageGalleryCardProps, TwoColumnCard as TwoColumnCardProps } from "@/sanity/lib/sanity.types";
 import { homeQuery } from "@/sanity/queries";
 import Header from "../components/header";
 import { Header as HeaderProps } from "@/sanity/lib/sanity.types";
 import TwoColumnCard from "../components/card/twoColumnCard";
 import SocialCard from "../components/card/socialCard";
+import GalleryCard from "../components/card/galleryCard";
 
 export default async function Home() {
   const props = (await client.fetch(homeQuery) as HomeQueryResult)[0];
@@ -22,6 +23,9 @@ export default async function Home() {
         }
         if (c._type == 'socialsCard') {
           return <SocialCard></SocialCard>
+        }
+        if (c._type == 'imageGalleryCard') {
+          return <GalleryCard {...c as ImageGalleryCardProps}></GalleryCard>
         }
         return <></>
       })}
