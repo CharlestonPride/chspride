@@ -5,11 +5,16 @@ const GradientButton = (props: { label: string, theme: Theme }) => (
         {props.label}
     </button>
 );
-
-const ExternalGradientButton = (props: { label: string, theme: Theme, url: string }) => (
-    <a href={props.url} target="_blank" type="button" className={"btn bg-gradient-" + props.theme}>
+const SolidButton = (props: { label: string, theme: Theme }) => (
+    <button type="button" className={"btn bg-" + props.theme}>
         {props.label}
-    </a>
+    </button>
 );
 
-export { GradientButton, ExternalGradientButton }
+// const ExternalGradientButton = (props: { label: string, theme: Theme, url: string }) => (
+//     <a href={props.url} target="_blank" type="button" className={"btn bg-gradient-" + props.theme}>
+//         {props.label}
+//     </a>
+// );
+
+export { GradientButton, SolidButton }

@@ -33,8 +33,6 @@ function getStyle(props: HeaderProps): CSSProperties {
 }
 
 function BlockHeader(props: HeaderProps) {
-
-
     return (
         <header className="mb-7">
             <div className="page-header section-height-100">

@@ -1,0 +1,101 @@
+@mixin social-buttons-color($color, $state-color) {
+  background-color: $color;
+  color: $white;
+
+  &:focus,
+  &:hover {
+    background-color: $state-color;
+    color: $white;
+  }
+
+  &:active,
+  &:focus,
+  &:active:focus {
+    box-shadow: none;
+  }
+
+  &.btn-simple {
+    color: $state-color;
+    background-color: transparent;
+    background-image: none !important;
+    box-shadow: none;
+    border: none;
+
+    &:hover,
+    &:focus,
+    &:hover:focus,
+    &:active,
+    &:hover:focus:active {
+      color: $state-color;
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+  }
+
+  &.btn-neutral {
+    color: $color;
+    background-color: $white;
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: $state-color;
+    }
+  }
+}
+
+.btn {
+
+  // social buttons
+  &.btn-facebook {
+    @include social-buttons-color($facebook, $facebook-states);
+  }
+
+  &.btn-twitter {
+    @include social-buttons-color($twitter, $twitter-states);
+  }
+
+  &.btn-pinterest {
+    @include social-buttons-color($pinterest, $pinterest-states);
+  }
+
+  &.btn-linkedin {
+    @include social-buttons-color($linkedin, $linkedin-states);
+  }
+
+  &.btn-dribbble {
+    @include social-buttons-color($dribbble, $dribbble-states);
+  }
+
+  &.btn-github {
+    @include social-buttons-color($github, $github-states);
+  }
+
+  &.btn-youtube {
+    @include social-buttons-color($youtube, $youtube-states);
+  }
+
+  &.btn-instagram {
+    @include social-buttons-color($instagram, $instagram-states);
+  }
+
+  &.btn-reddit {
+    @include social-buttons-color($reddit, $reddit-states);
+  }
+
+  &.btn-tumblr {
+    @include social-buttons-color($tumblr, $tumblr-states);
+  }
+
+  &.btn-behance {
+    @include social-buttons-color($behance, $behance-states);
+  }
+
+  &.btn-vimeo {
+    @include social-buttons-color($vimeo, $vimeo-states);
+  }
+
+  &.btn-slack {
+    @include social-buttons-color($slack, $slack-states);
+  }
+}
