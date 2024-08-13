@@ -257,7 +257,7 @@ export type OurTeam = {
   executiveCommittee?: Array<{
     _key: string;
   } & Person>;
-  boardMemebers?: Array<{
+  boardMembers?: Array<{
     _key: string;
   } & Person>;
   team?: {
@@ -808,29 +808,33 @@ export type SponsorshipsQueryResult = Array<{
 // Query: *[_type == "person" ]{  name,  title,  bio,  email,  pronouns,  "image":image.asset->{    altText,    description,    url  }}
 export type PeopleQueryResult = Array<never>;
 // Variable: ourTeamQuery
-// Query: *[_type == "page" && slug.current == 'our-team' ]{...,content[]{  _type,  _type == "list" => {    _type,    label,    list[]{      _type,      _type == 'reference' =>@-> {        _type,        _type == 'person' =>        {          name,          title,          email,          bio,          pronouns,          "image":image.asset->{            altText,            description,            url,          }        }      }    }  }}}
+// Query: *[_type == "ourTeam" ]{...}
 export type OurTeamQueryResult = Array<{
   _id: string;
-  _type: "page";
+  _type: "ourTeam";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
   title?: string;
   description?: string;
-  slug?: Slug;
   theme?: Theme;
   header?: Header;
-  content: Array<{
-    _type: "block";
-  } | {
-    _type: "embeddedForm";
-  } | {
-    _type: "list";
-    label: string | null;
-    list: Array<{
+  executiveCommittee?: Array<{
+    _key: string;
+  } & Person>;
+  boardMembers?: Array<{
+    _key: string;
+  } & Person>;
+  team?: {
+    asset?: {
+      _ref: string;
       _type: "reference";
-    }> | null;
-  }> | null;
-  visbility?: Visibility;
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
   seo?: Seo;
 }>;

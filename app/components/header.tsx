@@ -1,8 +1,7 @@
-import { Header as HeaderProps, Slug } from "@/sanity/lib/sanity.types";
-import Link from "next/link";
+import { Header as HeaderProps } from "@/sanity/lib/sanity.types";
 import { Col, Container, Row } from "react-bootstrap";
 import { CSSProperties } from "styled-components";
-import { GradientButton } from "./button";
+import { LinkButton } from "./button";
 import { urlFor } from "@/sanity/lib/image";
 
 export default function Header(props: HeaderProps) {
@@ -49,9 +48,7 @@ function BlockHeader(props: HeaderProps) {
                                 <h1 className={`text-${props.theme}`}>{props.title}</h1>
                                 {props.subtitle && <h2>{props.subtitle}</h2>}
                                 {props.buttons?.map(button => {
-                                    return button.reference ?
-                                        <Link href={'/' + (button.reference as any).slug.current}><GradientButton label={button.label!} theme={props.theme!}></GradientButton></Link>
-                                        : <Link href={{ pathname: button.url }} target="_blank" ><GradientButton label={button.label!} theme={props.theme!}></GradientButton></Link>
+                                    return <LinkButton reference={button.reference} label={button.label!} url={button.url} theme={props.theme!} style="gradient"></LinkButton>
                                 })}
                             </div>
                         </div>
@@ -81,9 +78,7 @@ function ObliqueHeader(props: HeaderProps) {
                             <h1 className={`text-${props.theme}`}>{props.title}</h1>
                             {props.subtitle && <h2>{props.subtitle}</h2>}
                             {props.buttons?.map(button => {
-                                return button.reference ?
-                                    <Link href={'/' + (button.reference as any).slug.current}><GradientButton label={button.label!} theme={props.theme!}></GradientButton></Link>
-                                    : <Link href={{ pathname: button.url }} target="_blank" ><GradientButton label={button.label!} theme={props.theme!}></GradientButton></Link>
+                                return <LinkButton reference={button.reference} label={button.label!} url={button.url} theme={props.theme!} style="gradient"></LinkButton>
                             })}
                         </Col>
                     </Row>

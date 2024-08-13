@@ -1,20 +1,9 @@
 import { urlFor } from "@/sanity/lib/image";
 import { ImageGalleryCard as GalleryCardProps, internalGroqTypeReferenceTo, SanityImageCrop, SanityImageHotspot } from "@/sanity/lib/sanity.types";
+import { ImageAsset } from "@/sanity/lib/types.ext";
 import { Container, Row, Col, ColProps } from "react-bootstrap";
 
-type ImageAsset = {
-    asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-    _key: string;
 
-}
 const getImage = (props: ImageAsset, imgClass: string) => {
     const image = props?.asset?._ref as string
     const imageUrl = urlFor(image).url();

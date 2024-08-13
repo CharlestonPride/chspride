@@ -2,8 +2,7 @@ import { TwoColumnCard as TwoColumnCardProps } from "@/sanity/lib/sanity.types";
 import { Container, Row, Col } from "react-bootstrap";
 import { urlFor } from "@/sanity/lib/image";
 import { PortableText } from "next-sanity";
-import Link from "next/link";
-import { GradientButton, SolidButton } from "../button";
+import { LinkButton } from "../button";
 import { RoundShadowIcon } from "../icon";
 
 export type Props = TwoColumnCardProps & { orientation: 'left' | 'right' }
@@ -19,15 +18,7 @@ const CardContent = (props: TwoColumnCardProps) => {
     }
 
     let buttonElems = props.buttons?.map((button, index) => {
-        if (index === 0) {
-
-            return button.reference ?
-                <Link key={index} href={'/' + (button.reference as any).slug.current}><GradientButton label={button.label!} theme={props.theme!}></GradientButton></Link>
-                : <Link key={index} href={{ pathname: button.url }} target="_blank" ><GradientButton label={button.label!} theme={props.theme!}></GradientButton></Link>
-        }
-        return button.reference ?
-            <Link key={index} href={'/' + (button.reference as any).slug.current}><SolidButton label={button.label!} theme={props.theme!}></SolidButton></Link>
-            : <Link key={index} href={{ pathname: button.url }} target="_blank" ><SolidButton label={button.label!} theme={props.theme!}></SolidButton></Link>
+        return <LinkButton reference={button.reference} label={button.label!} url={button.url} theme={props.theme!} style={index === 0 ? 'gradient' : 'solid'}></LinkButton>
     })
 
     return (

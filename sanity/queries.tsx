@@ -93,34 +93,8 @@ export const peopleQuery = groq`
 }
 `
 export const ourTeamQuery = groq`
-*[_type == "page" && slug.current == 'our-team' ]{
-...,
-content[]{
-  _type,
-  _type == "list" => {
-    _type,
-    label,
-    list[]{
-      _type,
-      _type == 'reference' =>@-> {
-        _type,
-        _type == 'person' =>
-        {
-          name,
-          title,
-          email,
-          bio,
-          pronouns,
-          "image":image.asset->{
-            altText,
-            description,
-            url,
-          }
-        }
-      }
-    }
-  }
-}
+*[_type == "ourTeam" ]{
+...
 }`
 
 groq`

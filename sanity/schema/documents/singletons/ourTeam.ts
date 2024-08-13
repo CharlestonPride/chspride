@@ -40,8 +40,8 @@ export default defineType({
             ]
         }),
         defineField({
-            name: 'boardMemebers',
-            title: 'Board Memebers',
+            name: 'boardMembers',
+            title: 'Board Members',
             type: 'array',
             of: [
                 { type: 'person' },
