@@ -43,9 +43,11 @@
   backdrop-filter: $blur-backdrop-filter;
 
   &.blur-gradient-primary {
-    @include gradient-directional(rgba($primary-gradient, 0.95) 0%,
+    @include gradient-directional(
+      rgba($primary-gradient, 0.95) 0%,
       rgba($primary-gradient-state, 0.95) 100%,
-      $deg: 310deg);
+      $deg: 310deg
+    );
   }
 }
 
@@ -183,7 +185,8 @@ $waves-rotate: rotate(180deg) !default;
 $waves-mobile-height: 40px !default;
 $moving-waves-keyframe-0: translate3d(-90px, 0, 0) !default;
 $moving-waves-keyframe-100: translate3d(85px, 0, 0) !default;
-$moving-waves-animation: move-forever 40s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite !default;
+$moving-waves-animation: move-forever 40s cubic-bezier(0.55, 0.5, 0.45, 0.5)
+  infinite !default;
 $moving-waves-child-1-delay: -2s !default;
 $moving-waves-child-1-duration: 11s !default;
 $moving-waves-child-2-delay: -4s !default;
@@ -212,7 +215,7 @@ $moving-waves-child-6-duration: 30s !default;
   }
 
   &.no-animation {
-    .moving-waves>use {
+    .moving-waves > use {
       animation: none;
     }
   }
@@ -223,36 +226,36 @@ $moving-waves-child-6-duration: 30s !default;
 }
 
 /* Animation for the waves */
-.moving-waves>use {
+.moving-waves > use {
   animation: $moving-waves-animation;
 }
 
-.moving-waves>use:nth-child(1) {
+.moving-waves > use:nth-child(1) {
   animation-delay: $moving-waves-child-1-delay;
   animation-duration: $moving-waves-child-1-duration;
 }
 
-.moving-waves>use:nth-child(2) {
+.moving-waves > use:nth-child(2) {
   animation-delay: $moving-waves-child-2-delay;
   animation-duration: $moving-waves-child-2-duration;
 }
 
-.moving-waves>use:nth-child(3) {
+.moving-waves > use:nth-child(3) {
   animation-delay: $moving-waves-child-3-delay;
   animation-duration: $moving-waves-child-3-duration;
 }
 
-.moving-waves>use:nth-child(4) {
+.moving-waves > use:nth-child(4) {
   animation-delay: $moving-waves-child-4-delay;
   animation-duration: $moving-waves-child-4-duration;
 }
 
-.moving-waves>use:nth-child(5) {
+.moving-waves > use:nth-child(5) {
   animation-delay: $moving-waves-child-5-delay;
   animation-duration: $moving-waves-child-5-duration;
 }
 
-.moving-waves>use:nth-child(6) {
+.moving-waves > use:nth-child(6) {
   animation-delay: $moving-waves-child-6-delay;
   animation-duration: $moving-waves-child-6-duration;
 }

@@ -88,7 +88,8 @@
   }
 
   .dropdown-item {
-    transition: background-color $dropdown-transition-time,
+    transition:
+      background-color $dropdown-transition-time,
       color $dropdown-transition-time;
   }
 }

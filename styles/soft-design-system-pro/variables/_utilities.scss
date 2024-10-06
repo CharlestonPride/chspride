@@ -51,7 +51,7 @@ $z-index: (
   "0": 0,
   "1": 1,
   "2": 2,
-  "3": 3
+  "3": 3,
 ) !default;
 
 // extra right values variables - CT
@@ -178,7 +178,7 @@ $paddings: (
   "9": $padding-9,
   "10": $padding-10,
   "11": $padding-11,
-  "12": $padding-12
+  "12": $padding-12,
 ) !default;
 
 // Extra Margins values Map
@@ -189,7 +189,7 @@ $margins: (
   "9": $margin-9,
   "10": $margin-10,
   "11": $margin-11,
-  "12": $margin-12
+  "12": $margin-12,
 ) !default;
 
 // Extra Opacity values Map
@@ -204,7 +204,7 @@ $opacities: (
   "7": $opacity-7,
   "8": $opacity-8,
   "9": $opacity-9,
-  "10": $opacity-10
+  "10": $opacity-10,
 ) !default;
 
 $end: (
@@ -218,7 +218,7 @@ $end: (
   "7": $right-7,
   "8": $right-8,
   "9": $right-9,
-  "10": $right-10
+  "10": $right-10,
 ) !default;
 
 $width: (
@@ -250,7 +250,7 @@ $width: (
   "85": $width-85,
   "90": $width-90,
   "95": $width-95,
-  "100": $width-100
+  "100": $width-100,
 ) !default;
 
 $max-width: (
@@ -258,7 +258,7 @@ $max-width: (
   "200": $max-width-200,
   "300": $max-width-300,
   "400": $max-width-400,
-  "500": $max-width-500
+  "500": $max-width-500,
 ) !default;
 
 $height: (
@@ -267,7 +267,7 @@ $height: (
   "300": $height-300,
   "400": $height-400,
   "500": $height-500,
-  "600": $height-600
+  "600": $height-600,
 ) !default;
 
 $min-height: (
@@ -279,7 +279,7 @@ $min-height: (
   "300": $min-height-300,
   "400": $min-height-400,
   "500": $min-height-500,
-  "600": $min-height-600
+  "600": $min-height-600,
 ) !default;
 
 $max-height: (
@@ -291,7 +291,7 @@ $max-height: (
   "300": $max-height-300,
   "400": $max-height-400,
   "500": $max-height-500,
-  "600": $max-height-600
+  "600": $max-height-600,
 ) !default;
 
 $letterSpacing: (
@@ -299,7 +299,7 @@ $letterSpacing: (
   "2": $letter-spacing-2,
   "3": $letter-spacing-3,
   "4": $letter-spacing-4,
-  "5": $letter-spacing-5
+  "5": $letter-spacing-5,
 ) !default;
 
 $top: (
@@ -308,7 +308,7 @@ $top: (
   "2": $top-2,
   "3": $top-3,
   "4": $top-4,
-  "5": $top-5
+  "5": $top-5,
 ) !default;
 
 $right: (
@@ -317,7 +317,7 @@ $right: (
   "2": $right-2,
   "3": $right-3,
   "4": $right-4,
-  "5": $right-5
+  "5": $right-5,
 ) !default;
 
 $left: (
@@ -326,7 +326,7 @@ $left: (
   "2": $left-2,
   "3": $left-3,
   "4": $left-4,
-  "5": $left-5
+  "5": $left-5,
 ) !default;
 
 $bottom: (
@@ -335,7 +335,7 @@ $bottom: (
   "2": $bottom-2,
   "3": $bottom-3,
   "4": $bottom-4,
-  "5": $bottom-5
+  "5": $bottom-5,
 ) !default;
 
 // blur effect variables
@@ -344,7 +344,8 @@ $blur-box-shadow: inset 0px 0px 2px #fefefed1 !default;
 $blur-backdrop-filter: saturate(200%) blur(30px) !default;
 $blur-backdrop-filter-less: saturate(20%) blur(30px) !default;
 
-$shadow-blur-box-shadow: inset 0 0px 1px 1px rgba(254, 254, 254, 0.9),
+$shadow-blur-box-shadow:
+  inset 0 0px 1px 1px rgba(254, 254, 254, 0.9),
   0 20px 27px 0 rgba(0, 0, 0, 0.05) !default;
 
 // sidebar variables
