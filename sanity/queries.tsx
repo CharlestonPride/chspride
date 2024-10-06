@@ -1,11 +1,11 @@
-import groq from 'groq'
+import groq from "groq";
 
 export const slugsQuery = groq`*[_type == "page" && defined(slug.current)][]{
   _id,
   'slug':slug.current
-}`
+}`;
 
-export const pageBySlugQuery = groq`*[_type == "page" && slug.current == $slug][0]`
+export const pageBySlugQuery = groq`*[_type == "page" && slug.current == $slug][0]`;
 
 export const homeQuery = groq`*[_type == "home"]{
   ...,
@@ -25,7 +25,7 @@ export const homeQuery = groq`*[_type == "home"]{
       reference->{slug{...}}
     }
     }
-  }`
+  }`;
 
 export const navigationQuery = groq`*[_type == "navigation"]
 {
@@ -49,7 +49,7 @@ export const navigationQuery = groq`*[_type == "navigation"]
     }
   }
 }
-`
+`;
 
 export const sponsorsQuery = groq`
 *[_type == "sponsor"]{
@@ -60,7 +60,7 @@ export const sponsorsQuery = groq`
     description,
     url,
   }
-}`
+}`;
 
 export const sponsorshipsQuery = groq`
 *[_type == "sponsorship" && year==$year && event in $event]{
@@ -76,7 +76,7 @@ export const sponsorshipsQuery = groq`
     url,
   }
 }
-} | order(level desc)`
+} | order(level desc)`;
 
 export const peopleQuery = groq`
 *[_type == "person" ]{
@@ -91,14 +91,14 @@ export const peopleQuery = groq`
     url
   }
 }
-`
+`;
 export const ourTeamQuery = groq`
 *[_type == "ourTeam" ]{
 ...
-}`
+}`;
 
 groq`
 "image": image{
       ...,
       "asset": asset->,
-    }`
+    }`;

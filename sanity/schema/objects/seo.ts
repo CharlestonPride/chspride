@@ -1,11 +1,11 @@
-import { getExtension, getImageDimensions } from '@sanity/asset-utils'
-import { defineField, defineType } from 'sanity'
-import { SearchIcon } from '@sanity/icons'
+import { getExtension, getImageDimensions } from "@sanity/asset-utils";
+import { defineField, defineType } from "sanity";
+import { SearchIcon } from "@sanity/icons";
 
 export default defineType({
-  name: 'seo',
-  title: 'SEO',
-  type: 'object',
+  name: "seo",
+  title: "SEO",
+  type: "object",
   icon: SearchIcon,
   options: {
     collapsible: true,
@@ -13,9 +13,9 @@ export default defineType({
   },
   fields: [
     defineField({
-      name: 'noIndex',
+      name: "noIndex",
       description: `Hide this page from search engines and the sitemap`,
-      type: 'boolean',
+      type: "boolean",
       initialValue: false,
     }),
     defineField({
@@ -45,23 +45,23 @@ export default defineType({
       validation: (rule) =>
         rule.custom((value) => {
           if (!value?.asset?._ref) {
-            return true
+            return true;
           }
 
-          const filetype = getExtension(value.asset._ref)
+          const filetype = getExtension(value.asset._ref);
 
-          if (filetype !== 'jpg' && filetype !== 'png') {
-            return 'Image must be a JPG or PNG'
+          if (filetype !== "jpg" && filetype !== "png") {
+            return "Image must be a JPG or PNG";
           }
 
-          const { width, height } = getImageDimensions(value.asset._ref)
+          const { width, height } = getImageDimensions(value.asset._ref);
 
           if (width < 1200 || height < 630) {
-            return 'Image must be at least 1200x630 pixels'
+            return "Image must be at least 1200x630 pixels";
           }
 
-          return true
+          return true;
         }),
     }),
   ],
-})
+});
