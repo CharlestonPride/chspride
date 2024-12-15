@@ -6,6 +6,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { Col, Container, Row } from "react-bootstrap";
 import { fbUrl, instagramUrl, twitterUrl } from "@/app/lib/socialMedia";
+import { SocialsCard } from "@/sanity/lib/sanity.types";
 
 const Facebook = () => {
   return (
@@ -49,7 +50,7 @@ const Twitter = () => {
   );
 };
 
-const SocialCard = ({}) => {
+const SocialCard = (props: SocialsCard) => {
   return (
     <Container className="my-5">
       <Row className="mx-auto">

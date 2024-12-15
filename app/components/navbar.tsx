@@ -1,14 +1,11 @@
 import { client } from "@/sanity/lib/client";
-import { NavigationQueryResult } from "@/sanity/lib/sanity.types";
-import { homeQuery, navigationQuery } from "@/sanity/queries";
-import { GetStaticProps, InferGetStaticPropsType } from "next";
+import { navigationQuery } from "@/sanity/queries";
 import Link from "next/link";
 import React from "react";
 import {
   NavbarBrand,
   NavbarCollapse,
   NavbarToggle,
-  NavItem,
   NavLink,
 } from "react-bootstrap";
 import Container from "react-bootstrap/Container";

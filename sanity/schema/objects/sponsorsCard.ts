@@ -6,7 +6,7 @@ import list from "../objects/list";
 export default defineType({
   name: "sponsorsCard",
   title: "Sponsors card",
-  type: "document",
+  type: "object",
   fields: [
     defineField({
       name: "title",

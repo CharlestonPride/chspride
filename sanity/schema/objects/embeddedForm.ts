@@ -15,6 +15,24 @@ export default defineType({
   ],
   fields: [
     defineField({
+      name: "title",
+      title: "Title",
+      type: "string",
+    }),
+    defineField({
+      name: "enabled",
+      title: "Enabled",
+      type: "boolean",
+      initialValue: true,
+    }),
+    defineField({
+      name: "disabledMessage",
+      title: "Disabled Message",
+      type: "text",
+      description:
+        "If specified, this message will be shown instead of the form when it is disabled.",
+    }),
+    defineField({
       name: "url",
       title: "URL of form to embedded",
       type: "url",

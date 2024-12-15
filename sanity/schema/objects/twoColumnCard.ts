@@ -4,7 +4,7 @@ import { themeField, iconField } from "../fields";
 export default defineType({
   name: "twoColumnCard",
   title: "Two column card",
-  type: "document",
+  type: "object",
   fields: [
     defineField({
       name: "title",

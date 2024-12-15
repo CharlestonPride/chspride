@@ -43,11 +43,18 @@ export default defineType({
       name: "content",
       title: "Content",
       type: "array",
-      of: [{ type: "list" }, { type: "block" }, { type: "embeddedForm" }],
+      of: [
+        { type: "embeddedForm" },
+        { type: "twoColumnCard" },
+        { type: "socialsCard" },
+        { type: "imageGalleryCard" },
+        { type: "twoColumnGalleryCard" },
+        { type: "textBlock" },
+      ],
     }),
     defineField({
-      name: "visbility",
-      title: "Visbility",
+      name: "visibility",
+      title: "Visibility",
       type: "visibility",
     }),
     defineField({

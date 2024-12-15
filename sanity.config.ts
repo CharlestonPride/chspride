@@ -21,14 +21,9 @@ import ourTeam from "./sanity/schema/documents/singletons/ourTeam";
 import { media } from "sanity-plugin-media";
 import { guide } from "./sanity/tools/guide";
 import {
-  imageGalleryCard,
   pageType,
-  socialsCard,
-  sponsorsCard,
   sponsorshipType,
   sponsorType,
-  twoColumnCard,
-  twoColumnGalleryCard,
 } from "./sanity/schema/documents";
 
 const singletonDocumentDefinitions: DocumentDefinition[] = [home, ourTeam];
@@ -36,19 +31,6 @@ const siteSettingDocumentDefinitions: DocumentDefinition[] = [
   navigation,
   footer,
 ];
-const componentDocumentDefinitions: DocumentDefinition[] = [
-  twoColumnCard,
-  twoColumnGalleryCard,
-  imageGalleryCard,
-  sponsorsCard,
-  socialsCard,
-];
-const componentsFilter =
-  "_type in [" +
-  componentDocumentDefinitions.map((def) => {
-    return `"${def.name}"`;
-  }) +
-  "]";
 
 const pageStructure = (): StructureResolver => {
   return (S) => {
@@ -61,8 +43,8 @@ const pageStructure = (): StructureResolver => {
             S.editor()
               .id(typeDef.name)
               .schemaType(typeDef.name)
-              .documentId(typeDef.name),
-          ),
+              .documentId(typeDef.name)
+          )
       );
 
     const siteSettingsListItems: ListItemBuilder = S.listItem()
@@ -79,15 +61,12 @@ const pageStructure = (): StructureResolver => {
                   S.editor()
                     .id(typeDef.name)
                     .schemaType(typeDef.name)
-                    .documentId(typeDef.name),
-                ),
-            ),
-          ),
+                    .documentId(typeDef.name)
+                )
+            )
+          )
       );
     const pagesListItem = S.documentTypeListItem("page").title("Pages");
-    const componentsListItem = S.listItem()
-      .title("Components")
-      .child(S.documentList().title("Components").filter(componentsFilter));
     const sponsorsListItem = S.listItem()
       .title("Sponsors")
       .child(
@@ -96,12 +75,11 @@ const pageStructure = (): StructureResolver => {
           .items([
             S.documentTypeListItem("sponsor").title("Sponsors"),
             S.documentTypeListItem("sponsorship").title("Sponsorships"),
-          ]),
+          ])
       );
 
     // List of remaining document types not explicity handled.
     const handledDocumentDefintions = [
-      ...componentDocumentDefinitions,
       ...singletonDocumentDefinitions,
       ...siteSettingDocumentDefinitions,
       sponsorType,
@@ -112,8 +90,8 @@ const pageStructure = (): StructureResolver => {
     const defaultListItems = S.documentTypeListItems().filter(
       (listItem) =>
         !handledDocumentDefintions.find(
-          (typeDef) => typeDef.name === listItem.getId(),
-        ),
+          (typeDef) => typeDef.name === listItem.getId()
+        )
     );
 
     return S.list()
@@ -122,7 +100,6 @@ const pageStructure = (): StructureResolver => {
         ...singletonListItems,
         S.divider(),
         pagesListItem,
-        componentsListItem,
         sponsorsListItem,
         S.divider(),
         ...defaultListItems,

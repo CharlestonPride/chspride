@@ -5,7 +5,7 @@ export default defineType({
   name: "socialsCard",
   title: "Socials card",
   icon: EarthGlobeIcon,
-  type: "document",
+  type: "object",
   fields: [
     defineField({
       name: "title",

@@ -1,13 +1,8 @@
 "use client";
 import { client } from "@/sanity/lib/client";
-import {
-  OurTeamQueryResult,
-  Header as HeaderProps,
-  Person,
-} from "@/sanity/lib/sanity.types";
+import { OurTeamQueryResult, Person } from "@/sanity/lib/sanity.types";
 import { ourTeamQuery } from "@/sanity/queries";
 import { Container, Row, Col, Button, Card, Modal } from "react-bootstrap";
-import Header from "@/app/components/header";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
@@ -121,7 +116,9 @@ export default async function OurTeam() {
   const props = ((await client.fetch(ourTeamQuery)) as OurTeamQueryResult)[0];
   return (
     <main>
-      <Header {...(props?.header as unknown as HeaderProps)} />
+      {/* <Content {...(props?.content as unknown as Page)}>
+
+      </Content> */}
       <Container className="mt-5">
         <Row>
           <Col>

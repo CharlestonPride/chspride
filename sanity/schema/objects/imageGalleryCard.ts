@@ -6,7 +6,7 @@ import { media } from "sanity-plugin-media";
 export default defineType({
   name: "imageGalleryCard",
   title: "Gallery card",
-  type: "document",
+  type: "object",
   fields: [
     defineField({
       name: "images",

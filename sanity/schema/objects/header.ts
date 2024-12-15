@@ -16,6 +16,7 @@ export default defineType({
         list: [
           { value: "block", title: "Block" },
           { value: "oblique", title: "Oblique" },
+          { value: "wave", title: "Wave" },
         ],
       },
       initialValue: "block",

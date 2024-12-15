@@ -118,7 +118,7 @@ const rightStacked = (props: TwoColumnCardProps, imageUrl: string) => {
 const left = (
   props: TwoColumnCardProps,
   imageUrl: string,
-  imgClass: string,
+  imgClass: string
 ) => {
   return (
     <Container className="my-5">
@@ -144,7 +144,7 @@ const left = (
 const right = (
   props: TwoColumnCardProps,
   imageUrl: string,
-  imgClass: string,
+  imgClass: string
 ) => {
   return (
     <Container className="my-5">

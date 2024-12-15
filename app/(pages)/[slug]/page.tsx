@@ -1,11 +1,8 @@
-import Header from "@/app/components/header";
 import { client } from "@/sanity/lib/client";
-import {
-  PageBySlugQueryResult,
-  Header as HeaderProps,
-} from "@/sanity/lib/sanity.types";
+import { Page as PageProps } from "@/sanity/lib/sanity.types";
 import { pageBySlugQuery, slugsQuery } from "@/sanity/queries";
 import { notFound } from "next/navigation";
+import PageBuilder from "@/app/components/pageBuilder";
 
 export default async function SlugPage({
   params,
@@ -15,8 +12,8 @@ export default async function SlugPage({
   const props = (await client.fetch(
     pageBySlugQuery,
     { slug: params.slug },
-    { next: { revalidate: 0 } },
-  )) as PageBySlugQueryResult;
+    { next: { revalidate: 0 } }
+  )) as PageProps;
 
   if (!props) {
     return notFound();
@@ -24,8 +21,7 @@ export default async function SlugPage({
 
   return (
     <main>
-      <Header {...(props?.header as unknown as HeaderProps)} />
-      <div>{JSON.stringify(props)}</div>
+      <PageBuilder {...props} />
     </main>
   );
 }
