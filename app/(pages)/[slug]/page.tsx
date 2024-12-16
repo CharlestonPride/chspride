@@ -12,7 +12,7 @@ export default async function SlugPage({
   const props = (await client.fetch(
     pageBySlugQuery,
     { slug: params.slug },
-    { next: { revalidate: 0 } }
+    { next: { revalidate: 0 } },
   )) as PageProps;
 
   if (!props) {

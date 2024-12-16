@@ -32,7 +32,7 @@ const dualImageCard = (props: GalleryCardProps) => {
             {props.images &&
               getImage(
                 props?.images[0],
-                "image-left rounded-3 img-fluid position-relative top-0 end-0 bg-cover"
+                "image-left rounded-3 img-fluid position-relative top-0 end-0 bg-cover",
               )}
           </div>
         </Col>
@@ -41,7 +41,7 @@ const dualImageCard = (props: GalleryCardProps) => {
             {props.images &&
               getImage(
                 props?.images[1],
-                "image-right rounded-3 img-fluid position-relative bg-cover"
+                "image-right rounded-3 img-fluid position-relative bg-cover",
               )}
           </div>
         </Col>
@@ -98,7 +98,7 @@ const quadImageCard = (props: GalleryCardProps) => {
             {props.images &&
               getImage(
                 props?.images[3],
-                "image-left rounded-3 img-fluid position-relative top-0 end-0 bg-cover"
+                "image-left rounded-3 img-fluid position-relative top-0 end-0 bg-cover",
               )}
           </div>
         </Col>
@@ -107,7 +107,7 @@ const quadImageCard = (props: GalleryCardProps) => {
             {props.images &&
               getImage(
                 props?.images[4],
-                "image-right rounded-3 img-fluid position-relative bg-cover"
+                "image-right rounded-3 img-fluid position-relative bg-cover",
               )}
           </div>
         </Col>
@@ -118,7 +118,7 @@ const quadImageCard = (props: GalleryCardProps) => {
             {props.images &&
               getImage(
                 props?.images[0],
-                "image-left rounded-3 img-fluid position-relative top-0 end-0 bg-cover"
+                "image-left rounded-3 img-fluid position-relative top-0 end-0 bg-cover",
               )}
           </div>
         </Col>
@@ -127,7 +127,7 @@ const quadImageCard = (props: GalleryCardProps) => {
             {props.images &&
               getImage(
                 props?.images[1],
-                "image-right rounded-3 img-fluid position-relative bg-cover"
+                "image-right rounded-3 img-fluid position-relative bg-cover",
               )}
           </div>
         </Col>
@@ -145,7 +145,7 @@ const pentaImageCard = (props: GalleryCardProps) => {
             {props.images &&
               getImage(
                 props?.images[0],
-                "image-left rounded-3 img-fluid position-relative top-0 end-0 bg-cover"
+                "image-left rounded-3 img-fluid position-relative top-0 end-0 bg-cover",
               )}
           </div>
         </Col>
@@ -154,7 +154,7 @@ const pentaImageCard = (props: GalleryCardProps) => {
             {props.images &&
               getImage(
                 props?.images[1],
-                "image-right rounded-3 img-fluid position-relative bg-cover"
+                "image-right rounded-3 img-fluid position-relative bg-cover",
               )}
           </div>
         </Col>
@@ -172,7 +172,7 @@ const pentaImageCard = (props: GalleryCardProps) => {
             {props.images &&
               getImage(
                 props?.images[3],
-                "image-left rounded-3 img-fluid position-relative top-0 end-0 bg-cover"
+                "image-left rounded-3 img-fluid position-relative top-0 end-0 bg-cover",
               )}
           </div>
         </Col>
@@ -181,7 +181,7 @@ const pentaImageCard = (props: GalleryCardProps) => {
             {props.images &&
               getImage(
                 props?.images[4],
-                "image-right rounded-3 img-fluid position-relative bg-cover"
+                "image-right rounded-3 img-fluid position-relative bg-cover",
               )}
           </div>
         </Col>

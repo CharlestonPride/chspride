@@ -8,7 +8,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typegen": "sanity schema extract && sanity typegen generate"
+    "typegen": "sanity schema extract && sanity typegen generate",
+    "format": "prettier --write . --ignore-path .gitignore",
+    "lint:fix": "npm run format && npm run lint -- --fix"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
