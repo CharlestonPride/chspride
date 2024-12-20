@@ -68,31 +68,9 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type Theme =
-  | "primary"
-  | "secondary"
-  | "success"
-  | "info"
-  | "warning"
-  | "danger";
+export type Theme = "primary" | "secondary" | "success" | "info" | "warning" | "danger";
 
-export type Icon =
-  | "crown"
-  | "flag"
-  | "grin-hearts"
-  | "hand-holding-usd"
-  | "hands-helping"
-  | "heart"
-  | "shopping-cart"
-  | "smile"
-  | "ticket"
-  | "user-friends"
-  | "envelope"
-  | "map"
-  | "martini-glass"
-  | "champagne-glasses"
-  | "star"
-  | "handshake";
+export type Icon = "crown" | "flag" | "grin-hearts" | "hand-holding-usd" | "hands-helping" | "heart" | "shopping-cart" | "smile" | "ticket" | "user-friends" | "envelope" | "map" | "martini-glass" | "champagne-glasses" | "star" | "handshake";
 
 export type SingleItem = {
   _type: "singleItem";
@@ -103,18 +81,15 @@ export type SingleItem = {
 export type DropdownItem = {
   _type: "dropdownItem";
   label?: string;
-  list?: Array<
-    | {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        _key: string;
-        [internalGroqTypeReferenceTo]?: "page";
-      }
-    | ({
-        _key: string;
-      } & SingleItem)
-  >;
+  list?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "page";
+  } | {
+    _key: string;
+  } & SingleItem>;
 };
 
 export type TwoColumnGalleryCard = {
@@ -122,28 +97,10 @@ export type TwoColumnGalleryCard = {
   title?: string;
   subtitle?: string;
   theme?: "primary" | "secondary" | "success" | "info" | "warning" | "danger";
-  icon?:
-    | "crown"
-    | "flag"
-    | "grin-hearts"
-    | "hand-holding-usd"
-    | "hands-helping"
-    | "heart"
-    | "shopping-cart"
-    | "smile"
-    | "ticket"
-    | "user-friends"
-    | "envelope"
-    | "map"
-    | "martini-glass"
-    | "champagne-glasses"
-    | "star"
-    | "handshake";
-  buttons?: Array<
-    {
-      _key: string;
-    } & Button
-  >;
+  icon?: "crown" | "flag" | "grin-hearts" | "hand-holding-usd" | "hands-helping" | "heart" | "shopping-cart" | "smile" | "ticket" | "user-friends" | "envelope" | "map" | "martini-glass" | "champagne-glasses" | "star" | "handshake";
+  buttons?: Array<{
+    _key: string;
+  } & Button>;
   images?: Array<{
     asset?: {
       _ref: string;
@@ -163,23 +120,7 @@ export type TwoColumnCard = {
   title?: string;
   subtitle?: string;
   theme?: "primary" | "secondary" | "success" | "info" | "warning" | "danger";
-  icon?:
-    | "crown"
-    | "flag"
-    | "grin-hearts"
-    | "hand-holding-usd"
-    | "hands-helping"
-    | "heart"
-    | "shopping-cart"
-    | "smile"
-    | "ticket"
-    | "user-friends"
-    | "envelope"
-    | "map"
-    | "martini-glass"
-    | "champagne-glasses"
-    | "star"
-    | "handshake";
+  icon?: "crown" | "flag" | "grin-hearts" | "hand-holding-usd" | "hands-helping" | "heart" | "shopping-cart" | "smile" | "ticket" | "user-friends" | "envelope" | "map" | "martini-glass" | "champagne-glasses" | "star" | "handshake";
   content?: Array<{
     children?: Array<{
       marks?: Array<string>;
@@ -198,11 +139,9 @@ export type TwoColumnCard = {
     _type: "block";
     _key: string;
   }>;
-  buttons?: Array<
-    {
-      _key: string;
-    } & Button
-  >;
+  buttons?: Array<{
+    _key: string;
+  } & Button>;
   primary?: {
     asset?: {
       _ref: string;
@@ -233,46 +172,35 @@ export type TwoColumnCard = {
 
 export type TextBlock = {
   _type: "textBlock";
-  content?: Array<
-    | {
-        children?: Array<{
-          marks?: Array<string>;
-          text?: string;
-          _type: "span";
-          _key: string;
-        }>;
-        style?:
-          | "normal"
-          | "h1"
-          | "h2"
-          | "h3"
-          | "h4"
-          | "h5"
-          | "h6"
-          | "blockquote";
-        listItem?: "bullet" | "number";
-        markDefs?: Array<{
-          href?: string;
-          _type: "link";
-          _key: string;
-        }>;
-        level?: number;
-        _type: "block";
-        _key: string;
-      }
-    | {
-        asset?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-        };
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
-        _type: "image";
-        _key: string;
-      }
-  >;
+  content?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+    _key: string;
+  }>;
 };
 
 export type SponsorsCard = {
@@ -352,16 +280,12 @@ export type OurTeam = {
   description?: string;
   theme?: Theme;
   header?: Header;
-  executiveCommittee?: Array<
-    {
-      _key: string;
-    } & Person
-  >;
-  boardMembers?: Array<
-    {
-      _key: string;
-    } & Person
-  >;
+  executiveCommittee?: Array<{
+    _key: string;
+  } & Person>;
+  boardMembers?: Array<{
+    _key: string;
+  } & Person>;
   team?: {
     asset?: {
       _ref: string;
@@ -383,14 +307,11 @@ export type Navigation = {
   _updatedAt: string;
   _rev: string;
   title?: string;
-  main?: Array<
-    | ({
-        _key: string;
-      } & DropdownItem)
-    | ({
-        _key: string;
-      } & SingleItem)
-  >;
+  main?: Array<{
+    _key: string;
+  } & DropdownItem | {
+    _key: string;
+  } & SingleItem>;
 };
 
 export type Home = {
@@ -403,26 +324,19 @@ export type Home = {
   description?: string;
   theme?: Theme;
   header?: Header;
-  content?: Array<
-    | ({
-        _key: string;
-      } & EmbeddedForm)
-    | ({
-        _key: string;
-      } & TwoColumnCard)
-    | ({
-        _key: string;
-      } & SocialsCard)
-    | ({
-        _key: string;
-      } & ImageGalleryCard)
-    | ({
-        _key: string;
-      } & TwoColumnGalleryCard)
-    | ({
-        _key: string;
-      } & TextBlock)
-  >;
+  content?: Array<{
+    _key: string;
+  } & EmbeddedForm | {
+    _key: string;
+  } & TwoColumnCard | {
+    _key: string;
+  } & SocialsCard | {
+    _key: string;
+  } & ImageGalleryCard | {
+    _key: string;
+  } & TwoColumnGalleryCard | {
+    _key: string;
+  } & TextBlock>;
   seo?: Seo;
 };
 
@@ -494,14 +408,7 @@ export type Person = {
     _type: "image";
   };
   bio?: string;
-  pronouns?:
-    | "he/him/his"
-    | "she/her/hers"
-    | "they/them/theirs"
-    | "ze/hir/hi"
-    | "per/per/pers"
-    | "(name only)"
-    | "(ask me)";
+  pronouns?: "he/him/his" | "she/her/hers" | "they/them/theirs" | "ze/hir/hi" | "per/per/pers" | "(name only)" | "(ask me)";
 };
 
 export type Page = {
@@ -515,26 +422,19 @@ export type Page = {
   slug?: Slug;
   theme?: Theme;
   header?: Header;
-  content?: Array<
-    | ({
-        _key: string;
-      } & EmbeddedForm)
-    | ({
-        _key: string;
-      } & TwoColumnCard)
-    | ({
-        _key: string;
-      } & SocialsCard)
-    | ({
-        _key: string;
-      } & ImageGalleryCard)
-    | ({
-        _key: string;
-      } & TwoColumnGalleryCard)
-    | ({
-        _key: string;
-      } & TextBlock)
-  >;
+  content?: Array<{
+    _key: string;
+  } & EmbeddedForm | {
+    _key: string;
+  } & TwoColumnCard | {
+    _key: string;
+  } & SocialsCard | {
+    _key: string;
+  } & ImageGalleryCard | {
+    _key: string;
+  } & TwoColumnGalleryCard | {
+    _key: string;
+  } & TextBlock>;
   visibility?: Visibility;
   seo?: Seo;
 };
@@ -626,11 +526,9 @@ export type Header = {
   title?: string;
   subtitle?: string;
   theme?: "primary" | "secondary" | "success" | "info" | "warning" | "danger";
-  buttons?: Array<
-    {
-      _key: string;
-    } & Button
-  >;
+  buttons?: Array<{
+    _key: string;
+  } & Button>;
   image?: {
     asset?: {
       _ref: string;
@@ -661,43 +559,7 @@ export type Slug = {
   source?: string;
 };
 
-export type AllSanitySchemaTypes =
-  | SanityImagePaletteSwatch
-  | SanityImagePalette
-  | SanityImageDimensions
-  | SanityFileAsset
-  | Geopoint
-  | Theme
-  | Icon
-  | SingleItem
-  | DropdownItem
-  | TwoColumnGalleryCard
-  | TwoColumnCard
-  | TextBlock
-  | SponsorsCard
-  | SocialsCard
-  | List
-  | ImageGalleryCard
-  | EmbeddedForm
-  | Button
-  | OurTeam
-  | Navigation
-  | Home
-  | Footer
-  | Sponsorship
-  | Sponsor
-  | Person
-  | Page
-  | Seo
-  | Visibility
-  | SanityImageCrop
-  | SanityImageHotspot
-  | SanityImageAsset
-  | SanityAssetSourceData
-  | SanityImageMetadata
-  | Header
-  | MediaTag
-  | Slug;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Theme | Icon | SingleItem | DropdownItem | TwoColumnGalleryCard | TwoColumnCard | TextBlock | SponsorsCard | SocialsCard | List | ImageGalleryCard | EmbeddedForm | Button | OurTeam | Navigation | Home | Footer | Sponsorship | Sponsor | Person | Page | Seo | Visibility | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Header | MediaTag | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/queries.tsx
 // Variable: slugsQuery
@@ -719,26 +581,19 @@ export type PageBySlugQueryResult = {
   slug?: Slug;
   theme?: Theme;
   header?: Header;
-  content?: Array<
-    | ({
-        _key: string;
-      } & EmbeddedForm)
-    | ({
-        _key: string;
-      } & ImageGalleryCard)
-    | ({
-        _key: string;
-      } & SocialsCard)
-    | ({
-        _key: string;
-      } & TextBlock)
-    | ({
-        _key: string;
-      } & TwoColumnCard)
-    | ({
-        _key: string;
-      } & TwoColumnGalleryCard)
-  >;
+  content?: Array<{
+    _key: string;
+  } & EmbeddedForm | {
+    _key: string;
+  } & ImageGalleryCard | {
+    _key: string;
+  } & SocialsCard | {
+    _key: string;
+  } & TextBlock | {
+    _key: string;
+  } & TwoColumnCard | {
+    _key: string;
+  } & TwoColumnGalleryCard>;
   visibility?: Visibility;
   seo?: Seo;
 } | null;
@@ -784,241 +639,165 @@ export type HomeQueryResult = Array<{
     size?: string;
     position?: string;
   } | null;
-  content: Array<
-    | {
+  content: Array<{
+    _key: string;
+    _type: "embeddedForm";
+    title?: string;
+    enabled?: boolean;
+    disabledMessage?: string;
+    url?: string;
+    width?: string;
+    height?: string;
+    buttons: null;
+  } | {
+    _key: string;
+    _type: "imageGalleryCard";
+    images?: Array<{
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+      _key: string;
+    }>;
+    theme?: "danger" | "info" | "primary" | "secondary" | "success" | "warning";
+    buttons: null;
+  } | {
+    _key: string;
+    _type: "socialsCard";
+    title?: string;
+    subtitle?: string;
+    buttons: null;
+  } | {
+    _key: string;
+    _type: "textBlock";
+    content?: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
         _key: string;
-        _type: "embeddedForm";
-        title?: string;
-        enabled?: boolean;
-        disabledMessage?: string;
-        url?: string;
-        width?: string;
-        height?: string;
-        buttons: null;
-      }
-    | {
+      }>;
+      style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+      listItem?: "bullet" | "number";
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
         _key: string;
-        _type: "imageGalleryCard";
-        images?: Array<{
-          asset?: {
-            _ref: string;
-            _type: "reference";
-            _weak?: boolean;
-            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-          };
-          hotspot?: SanityImageHotspot;
-          crop?: SanityImageCrop;
-          _type: "image";
-          _key: string;
-        }>;
-        theme?:
-          | "danger"
-          | "info"
-          | "primary"
-          | "secondary"
-          | "success"
-          | "warning";
-        buttons: null;
-      }
-    | {
+      }>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    } | {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+      _key: string;
+    }>;
+    buttons: null;
+  } | {
+    _key: string;
+    _type: "twoColumnCard";
+    title?: string;
+    subtitle?: string;
+    theme?: "danger" | "info" | "primary" | "secondary" | "success" | "warning";
+    icon?: "champagne-glasses" | "crown" | "envelope" | "flag" | "grin-hearts" | "hand-holding-usd" | "hands-helping" | "handshake" | "heart" | "map" | "martini-glass" | "shopping-cart" | "smile" | "star" | "ticket" | "user-friends";
+    content?: Array<{
+      children?: Array<{
+        marks?: Array<string>;
+        text?: string;
+        _type: "span";
         _key: string;
-        _type: "socialsCard";
-        title?: string;
-        subtitle?: string;
-        buttons: null;
-      }
-    | {
+      }>;
+      style?: "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+      listItem?: "bullet" | "number";
+      markDefs?: Array<{
+        href?: string;
+        _type: "link";
         _key: string;
-        _type: "textBlock";
-        content?: Array<
-          | {
-              children?: Array<{
-                marks?: Array<string>;
-                text?: string;
-                _type: "span";
-                _key: string;
-              }>;
-              style?:
-                | "blockquote"
-                | "h1"
-                | "h2"
-                | "h3"
-                | "h4"
-                | "h5"
-                | "h6"
-                | "normal";
-              listItem?: "bullet" | "number";
-              markDefs?: Array<{
-                href?: string;
-                _type: "link";
-                _key: string;
-              }>;
-              level?: number;
-              _type: "block";
-              _key: string;
-            }
-          | {
-              asset?: {
-                _ref: string;
-                _type: "reference";
-                _weak?: boolean;
-                [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-              };
-              hotspot?: SanityImageHotspot;
-              crop?: SanityImageCrop;
-              _type: "image";
-              _key: string;
-            }
-        >;
-        buttons: null;
-      }
-    | {
-        _key: string;
-        _type: "twoColumnCard";
-        title?: string;
-        subtitle?: string;
-        theme?:
-          | "danger"
-          | "info"
-          | "primary"
-          | "secondary"
-          | "success"
-          | "warning";
-        icon?:
-          | "champagne-glasses"
-          | "crown"
-          | "envelope"
-          | "flag"
-          | "grin-hearts"
-          | "hand-holding-usd"
-          | "hands-helping"
-          | "handshake"
-          | "heart"
-          | "map"
-          | "martini-glass"
-          | "shopping-cart"
-          | "smile"
-          | "star"
-          | "ticket"
-          | "user-friends";
-        content?: Array<{
-          children?: Array<{
-            marks?: Array<string>;
-            text?: string;
-            _type: "span";
-            _key: string;
-          }>;
-          style?:
-            | "blockquote"
-            | "h1"
-            | "h2"
-            | "h3"
-            | "h4"
-            | "h5"
-            | "h6"
-            | "normal";
-          listItem?: "bullet" | "number";
-          markDefs?: Array<{
-            href?: string;
-            _type: "link";
-            _key: string;
-          }>;
-          level?: number;
-          _type: "block";
-          _key: string;
-        }>;
-        buttons: Array<{
-          label: string | null;
-          url: string | null;
-          reference: {
-            slug: {
-              _type: "slug";
-              current?: string;
-              source?: string;
-            } | null;
-          } | null;
-        }> | null;
-        primary?: {
-          asset?: {
-            _ref: string;
-            _type: "reference";
-            _weak?: boolean;
-            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-          };
-          hotspot?: SanityImageHotspot;
-          crop?: SanityImageCrop;
-          _type: "image";
-        };
-        secondary?: Array<{
-          asset?: {
-            _ref: string;
-            _type: "reference";
-            _weak?: boolean;
-            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-          };
-          hotspot?: SanityImageHotspot;
-          crop?: SanityImageCrop;
-          _type: "image";
-          _key: string;
-        }>;
-        focus?: boolean;
-        shadow?: boolean;
-        stack?: boolean;
-      }
-    | {
-        _key: string;
-        _type: "twoColumnGalleryCard";
-        title?: string;
-        subtitle?: string;
-        theme?:
-          | "danger"
-          | "info"
-          | "primary"
-          | "secondary"
-          | "success"
-          | "warning";
-        icon?:
-          | "champagne-glasses"
-          | "crown"
-          | "envelope"
-          | "flag"
-          | "grin-hearts"
-          | "hand-holding-usd"
-          | "hands-helping"
-          | "handshake"
-          | "heart"
-          | "map"
-          | "martini-glass"
-          | "shopping-cart"
-          | "smile"
-          | "star"
-          | "ticket"
-          | "user-friends";
-        buttons: Array<{
-          label: string | null;
-          url: string | null;
-          reference: {
-            slug: {
-              _type: "slug";
-              current?: string;
-              source?: string;
-            } | null;
-          } | null;
-        }> | null;
-        images?: Array<{
-          asset?: {
-            _ref: string;
-            _type: "reference";
-            _weak?: boolean;
-            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-          };
-          hotspot?: SanityImageHotspot;
-          crop?: SanityImageCrop;
-          _type: "image";
-          _key: string;
-        }>;
-      }
-  > | null;
+      }>;
+      level?: number;
+      _type: "block";
+      _key: string;
+    }>;
+    buttons: Array<{
+      label: string | null;
+      url: string | null;
+      reference: {
+        slug: {
+          _type: "slug";
+          current?: string;
+          source?: string;
+        } | null;
+      } | null;
+    }> | null;
+    primary?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    };
+    secondary?: Array<{
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+      _key: string;
+    }>;
+    focus?: boolean;
+    shadow?: boolean;
+    stack?: boolean;
+  } | {
+    _key: string;
+    _type: "twoColumnGalleryCard";
+    title?: string;
+    subtitle?: string;
+    theme?: "danger" | "info" | "primary" | "secondary" | "success" | "warning";
+    icon?: "champagne-glasses" | "crown" | "envelope" | "flag" | "grin-hearts" | "hand-holding-usd" | "hands-helping" | "handshake" | "heart" | "map" | "martini-glass" | "shopping-cart" | "smile" | "star" | "ticket" | "user-friends";
+    buttons: Array<{
+      label: string | null;
+      url: string | null;
+      reference: {
+        slug: {
+          _type: "slug";
+          current?: string;
+          source?: string;
+        } | null;
+      } | null;
+    }> | null;
+    images?: Array<{
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+      _key: string;
+    }>;
+  }> | null;
   seo?: Seo;
 }>;
 // Variable: navigationQuery
@@ -1026,25 +805,19 @@ export type HomeQueryResult = Array<{
 export type NavigationQueryResult = Array<{
   _type: "navigation";
   title: string | null;
-  main: Array<
-    | {
-        _type: "dropdownItem";
-        label: string | null;
-        list: Array<
-          | {
-              _type: "reference";
-            }
-          | {
-              _type: "singleItem";
-              label: string | null;
-              url: string | null;
-            }
-        > | null;
-      }
-    | {
-        _type: "singleItem";
-      }
-  > | null;
+  main: Array<{
+    _type: "dropdownItem";
+    label: string | null;
+    list: Array<{
+      _type: "reference";
+    } | {
+      _type: "singleItem";
+      label: string | null;
+      url: string | null;
+    }> | null;
+  } | {
+    _type: "singleItem";
+  }> | null;
 }>;
 // Variable: sponsorsQuery
 // Query: *[_type == "sponsor"]{  name,  website,  "logo":logo.asset->{    altText,    description,    url,  }}
@@ -1088,16 +861,12 @@ export type OurTeamQueryResult = Array<{
   description?: string;
   theme?: Theme;
   header?: Header;
-  executiveCommittee?: Array<
-    {
-      _key: string;
-    } & Person
-  >;
-  boardMembers?: Array<
-    {
-      _key: string;
-    } & Person
-  >;
+  executiveCommittee?: Array<{
+    _key: string;
+  } & Person>;
+  boardMembers?: Array<{
+    _key: string;
+  } & Person>;
   team?: {
     asset?: {
       _ref: string;
@@ -1111,3 +880,18 @@ export type OurTeamQueryResult = Array<{
   };
   seo?: Seo;
 }>;
+
+// Query TypeMap
+import "@sanity/client";
+declare module "@sanity/client" {
+  interface SanityQueries {
+    "*[_type == \"page\" && defined(slug.current)][]{\n  _id,\n  'slug':slug.current\n}": SlugsQueryResult;
+    "*[_type == \"page\" && slug.current == $slug][0]": PageBySlugQueryResult;
+    "*[_type == \"home\"]{\n  ...,\n  header{\n    ...,\n    buttons[]{\n      label,\n      url,\n      reference->{slug{...}}\n    }\n    },\n  content[]{\n    ...,\n    buttons[]{\n      label,\n      url,\n      reference->{slug{...}}\n    }\n    }\n  }": HomeQueryResult;
+    "*[_type == \"navigation\"]\n{\n  _type,\n  title,\n  main[]{\n    _type,\n    _type=='dropdownItem' =>{\n      label,\n      list[]{\n        _type,\n        _type=='Page' => @-> {\n          title,\n          'slug': slug.current\n        },\n        _type == 'singleItem' => {\n          label,\n          url\n        }\n      }\n    }\n  }\n}\n": NavigationQueryResult;
+    "\n*[_type == \"sponsor\"]{\n  name,\n  website,\n  \"logo\":logo.asset->{\n    altText,\n    description,\n    url,\n  }\n}": SponsorsQueryResult;
+    "\n*[_type == \"sponsorship\" && year==$year && event in $event]{\n  featured,\n  level,\n  event,\n  sponsor->{\n  name,\n  website,\n  \"logo\":logo.asset->{\n    altText,\n    description,\n    url,\n  }\n}\n} | order(level desc)": SponsorshipsQueryResult;
+    "\n*[_type == \"person\" ]{\n  name,\n  title,\n  bio,\n  email,\n  pronouns,\n  \"image\":image.asset->{\n    altText,\n    description,\n    url\n  }\n}\n": PeopleQueryResult;
+    "\n*[_type == \"ourTeam\" ]{\n...\n}": OurTeamQueryResult;
+  }
+}

@@ -25,6 +25,7 @@ import {
   sponsorshipType,
   sponsorType,
 } from "./sanity/schema/documents";
+import { presentationTool } from "sanity/presentation";
 
 const singletonDocumentDefinitions: DocumentDefinition[] = [home, ourTeam];
 const siteSettingDocumentDefinitions: DocumentDefinition[] = [
@@ -43,8 +44,8 @@ const pageStructure = (): StructureResolver => {
             S.editor()
               .id(typeDef.name)
               .schemaType(typeDef.name)
-              .documentId(typeDef.name),
-          ),
+              .documentId(typeDef.name)
+          )
       );
 
     const siteSettingsListItems: ListItemBuilder = S.listItem()
@@ -61,10 +62,10 @@ const pageStructure = (): StructureResolver => {
                   S.editor()
                     .id(typeDef.name)
                     .schemaType(typeDef.name)
-                    .documentId(typeDef.name),
-                ),
-            ),
-          ),
+                    .documentId(typeDef.name)
+                )
+            )
+          )
       );
     const pagesListItem = S.documentTypeListItem("page").title("Pages");
     const sponsorsListItem = S.listItem()
@@ -75,7 +76,7 @@ const pageStructure = (): StructureResolver => {
           .items([
             S.documentTypeListItem("sponsor").title("Sponsors"),
             S.documentTypeListItem("sponsorship").title("Sponsorships"),
-          ]),
+          ])
       );
 
     // List of remaining document types not explicity handled.
@@ -90,8 +91,8 @@ const pageStructure = (): StructureResolver => {
     const defaultListItems = S.documentTypeListItems().filter(
       (listItem) =>
         !handledDocumentDefintions.find(
-          (typeDef) => typeDef.name === listItem.getId(),
-        ),
+          (typeDef) => typeDef.name === listItem.getId()
+        )
     );
 
     return S.list()
@@ -120,6 +121,14 @@ export default defineConfig({
     visionTool(),
     singletonPlugin([navigation.name, footer.name]),
     media(),
+    presentationTool({
+      previewUrl: {
+        preview: "/",
+        previewMode: {
+          enable: "/api/draft-mode/enable",
+        },
+      },
+    }),
   ],
   //tools: [guide()],
   // Add and edit the content schema in the './sanity/schema' folder
