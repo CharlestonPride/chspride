@@ -346,6 +346,8 @@ export type Footer = {
   _updatedAt: string;
   _rev: string;
   title?: string;
+  address?: string;
+  email?: string;
 };
 
 export type Sponsorship = {
@@ -898,6 +900,18 @@ export type OurTeamQueryResult = {
   };
   seo?: Seo;
 } | null;
+// Variable: footerQuery
+// Query: *[_type == "footer"][0]
+export type FooterQueryResult = {
+  _id: string;
+  _type: "footer";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  address?: string;
+  email?: string;
+} | null;
 
 // Query TypeMap
 import "@sanity/client";
@@ -911,5 +925,6 @@ declare module "@sanity/client" {
     "\n*[_type == \"sponsorship\" && year==$year && event in $event]{\n  featured,\n  level,\n  event,\n  sponsor->{\n  name,\n  website,\n  \"logo\":logo.asset->{\n    altText,\n    description,\n    url,\n  }\n}\n} | order(level desc)": SponsorshipsQueryResult;
     "\n*[_type == \"person\" ]{\n  name,\n  title,\n  bio,\n  email,\n  pronouns,\n  \"image\":image.asset->{\n    altText,\n    description,\n    url\n  }\n}\n": PeopleQueryResult;
     "\n*[_type == \"ourTeam\" ][0]{\n...\n}": OurTeamQueryResult;
+    "\n*[_type == \"footer\"][0]": FooterQueryResult;
   }
 }

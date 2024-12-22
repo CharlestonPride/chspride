@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
 import {
   faFacebook,
   faInstagram,
-  faTwitter,
   IconDefinition,
 } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope, faMap } from "@fortawesome/free-solid-svg-icons";
 import { Container, Row, Col } from "react-bootstrap";
-import { fbUrl, twitterUrl, instagramUrl } from "../lib/socialMedia";
+import { fbUrl, instagramUrl } from "../lib/socialMedia";
+import { client } from "@/sanity/lib/client";
+import { footerQuery } from "@/sanity/queries";
+import { FooterQueryResult } from "@/sanity/lib/sanity.types";
 
 type SocialProps = {
   url: string;
@@ -29,27 +30,32 @@ const SocialLink = ({ url, icon }: SocialProps) => {
   );
 };
 
-const Address = () => {
+const Address = (footer: FooterQueryResult) => {
   return (
     <li>
       <FontAwesomeIcon icon={faMap} listItem />
-      Charleston Pride Festival, Inc
-      <br /> PO Box #71084 <br />
-      North Charleston, SC 29415
+      {footer?.address?.split("\n").map((line, index) => (
+        <React.Fragment key={index}>
+          {line}
+          <br />
+        </React.Fragment>
+      ))}
     </li>
   );
 };
 
-const Email = () => {
+const Email = (footer: FooterQueryResult) => {
+  let mailTo = "mailto:" + footer!.email;
   return (
     <li>
       <FontAwesomeIcon icon={faEnvelope} listItem />
-      <a href="mailto:info@charlestonpride.org">info@charlestonpride.org</a>
+      <a href={mailTo}>{footer!.email}</a>
     </li>
   );
 };
 
-const Footer = ({}) => {
+export default async function Footer() {
+  const footer = (await client.fetch(footerQuery)) as FooterQueryResult;
   const year = new Date().getFullYear();
   return (
     <>
@@ -60,8 +66,8 @@ const Footer = ({}) => {
             <Col lg="4" className="my-2">
               <address>
                 <ul className="fa-ul">
-                  <Address />
-                  <Email />
+                  <Address {...footer!} />
+                  <Email {...footer!} />
                 </ul>
               </address>
             </Col>
@@ -73,7 +79,6 @@ const Footer = ({}) => {
             </Col>
             <Col lg="4" className="mx-auto text-center">
               <SocialLink url={fbUrl} icon={faFacebook} />
-              <SocialLink url={twitterUrl} icon={faTwitter} />
               <SocialLink url={instagramUrl} icon={faInstagram} />
             </Col>
           </Row>
@@ -90,5 +95,4 @@ const Footer = ({}) => {
       </footer>
     </>
   );
-};
-export default Footer;
+}

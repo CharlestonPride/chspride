@@ -6,26 +6,23 @@ export default defineType({
   title: "Footer",
   type: "document",
   icon: InsertAboveIcon,
-  // Uncomment below to have edits publish automatically as you type
-  // liveEdit: true,
   fields: [
     defineField({
       name: "title",
-      description: "This field is the title of the website.",
       title: "Title",
       type: "string",
-      validation: (rule) => rule.required(),
+      initialValue: "Footer",
+      readOnly: true,
+    }),
+    defineField({
+      name: "address",
+      title: "Address",
+      type: "text",
+    }),
+    defineField({
+      name: "email",
+      title: "Contact Email",
+      type: "email",
     }),
   ],
-  preview: {
-    select: {
-      title: "title",
-    },
-    prepare({ title }) {
-      return {
-        subtitle: "Footer",
-        title,
-      };
-    },
-  },
 });
