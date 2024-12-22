@@ -11,6 +11,7 @@ export default async function SlugPage({
 }: {
   params: { slug: string };
 }) {
+  const { slug } = await params;
   const { isEnabled } = await draftMode();
   const options: FilteredResponseQueryOptions | undefined = isEnabled
     ? {
@@ -22,7 +23,7 @@ export default async function SlugPage({
 
   const props = (await client.fetch(
     pageBySlugQuery,
-    { slug: params.slug },
+    { slug },
     options
   )) as PageProps;
 

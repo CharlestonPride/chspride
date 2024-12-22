@@ -32,14 +32,8 @@ export default defineType({
       options: { collapsible: true, collapsed: true },
     }),
     defineField({
-      name: "executiveCommittee",
-      title: "Executive Committee",
-      type: "array",
-      of: [{ type: "person" }],
-    }),
-    defineField({
-      name: "boardMembers",
-      title: "Board Members",
+      name: "members",
+      title: "Members",
       type: "array",
       of: [{ type: "person" }],
     }),

@@ -27,6 +27,7 @@ export default function BlockHeader(props: HeaderProps) {
                       url={button.url}
                       theme={props.theme!}
                       style="gradient"
+                      key={button.label}
                     ></LinkButton>
                   );
                 })}

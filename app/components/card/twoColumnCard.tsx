@@ -12,6 +12,7 @@ const CardContent = (props: TwoColumnCardProps) => {
   if (props?.secondary?.length) {
     imagesElems = props.secondary.map((ref, index) => {
       const image = ref?.asset?._ref as string;
+      if (!image) return <></>;
       const imageUrl = urlFor(image).url();
       return <img src={imageUrl} key={index} className="w-100 mb-2" />;
     });
@@ -118,7 +119,7 @@ const rightStacked = (props: TwoColumnCardProps, imageUrl: string) => {
 const left = (
   props: TwoColumnCardProps,
   imageUrl: string,
-  imgClass: string,
+  imgClass: string
 ) => {
   return (
     <Container className="my-5">
@@ -144,7 +145,7 @@ const left = (
 const right = (
   props: TwoColumnCardProps,
   imageUrl: string,
-  imgClass: string,
+  imgClass: string
 ) => {
   return (
     <Container className="my-5">
@@ -169,7 +170,7 @@ const right = (
 };
 export default function TwoColumnCard(props: Props) {
   const image = props.primary?.asset?._ref as string;
-  const imageUrl = urlFor(image).url();
+  const imageUrl = image ? urlFor(image)?.url() : "";
 
   if (props.stack) {
     return props.orientation === "left"

@@ -218,18 +218,6 @@ export type SocialsCard = {
   subtitle?: string;
 };
 
-export type List = {
-  _type: "list";
-  label?: string;
-  list?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "person";
-  }>;
-};
-
 export type ImageGalleryCard = {
   _type: "imageGalleryCard";
   images?: Array<{
@@ -280,10 +268,7 @@ export type OurTeam = {
   description?: string;
   theme?: Theme;
   header?: Header;
-  executiveCommittee?: Array<{
-    _key: string;
-  } & Person>;
-  boardMembers?: Array<{
+  members?: Array<{
     _key: string;
   } & Person>;
   team?: {
@@ -336,7 +321,9 @@ export type Home = {
     _key: string;
   } & TwoColumnGalleryCard | {
     _key: string;
-  } & TextBlock>;
+  } & TextBlock | {
+    _key: string;
+  } & SponsorsCard>;
   seo?: Seo;
 };
 
@@ -434,7 +421,9 @@ export type Page = {
     _key: string;
   } & TwoColumnGalleryCard | {
     _key: string;
-  } & TextBlock>;
+  } & TextBlock | {
+    _key: string;
+  } & SponsorsCard>;
   visibility?: Visibility;
   seo?: Seo;
 };
@@ -559,7 +548,7 @@ export type Slug = {
   source?: string;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Theme | Icon | SingleItem | DropdownItem | TwoColumnGalleryCard | TwoColumnCard | TextBlock | SponsorsCard | SocialsCard | List | ImageGalleryCard | EmbeddedForm | Button | OurTeam | Navigation | Home | Footer | Sponsorship | Sponsor | Person | Page | Seo | Visibility | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Header | MediaTag | Slug;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Theme | Icon | SingleItem | DropdownItem | TwoColumnGalleryCard | TwoColumnCard | TextBlock | SponsorsCard | SocialsCard | ImageGalleryCard | EmbeddedForm | Button | OurTeam | Navigation | Home | Footer | Sponsorship | Sponsor | Person | Page | Seo | Visibility | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Header | MediaTag | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/queries.tsx
 // Variable: slugsQuery
@@ -588,6 +577,8 @@ export type PageBySlugQueryResult = {
   } & ImageGalleryCard | {
     _key: string;
   } & SocialsCard | {
+    _key: string;
+  } & SponsorsCard | {
     _key: string;
   } & TextBlock | {
     _key: string;
@@ -671,6 +662,15 @@ export type HomeQueryResult = Array<{
     _type: "socialsCard";
     title?: string;
     subtitle?: string;
+    buttons: null;
+  } | {
+    _key: string;
+    _type: "sponsorsCard";
+    title?: string;
+    theme?: "danger" | "info" | "primary" | "secondary" | "success" | "warning";
+    featured?: boolean;
+    year?: number;
+    event?: "" | "festival" | "parade";
     buttons: null;
   } | {
     _key: string;
@@ -850,8 +850,8 @@ export type SponsorshipsQueryResult = Array<{
 // Query: *[_type == "person" ]{  name,  title,  bio,  email,  pronouns,  "image":image.asset->{    altText,    description,    url  }}
 export type PeopleQueryResult = Array<never>;
 // Variable: ourTeamQuery
-// Query: *[_type == "ourTeam" ]{...}
-export type OurTeamQueryResult = Array<{
+// Query: *[_type == "ourTeam" ][0]{...}
+export type OurTeamQueryResult = {
   _id: string;
   _type: "ourTeam";
   _createdAt: string;
@@ -861,10 +861,7 @@ export type OurTeamQueryResult = Array<{
   description?: string;
   theme?: Theme;
   header?: Header;
-  executiveCommittee?: Array<{
-    _key: string;
-  } & Person>;
-  boardMembers?: Array<{
+  members?: Array<{
     _key: string;
   } & Person>;
   team?: {
@@ -879,7 +876,7 @@ export type OurTeamQueryResult = Array<{
     _type: "image";
   };
   seo?: Seo;
-}>;
+} | null;
 
 // Query TypeMap
 import "@sanity/client";
@@ -892,6 +889,6 @@ declare module "@sanity/client" {
     "\n*[_type == \"sponsor\"]{\n  name,\n  website,\n  \"logo\":logo.asset->{\n    altText,\n    description,\n    url,\n  }\n}": SponsorsQueryResult;
     "\n*[_type == \"sponsorship\" && year==$year && event in $event]{\n  featured,\n  level,\n  event,\n  sponsor->{\n  name,\n  website,\n  \"logo\":logo.asset->{\n    altText,\n    description,\n    url,\n  }\n}\n} | order(level desc)": SponsorshipsQueryResult;
     "\n*[_type == \"person\" ]{\n  name,\n  title,\n  bio,\n  email,\n  pronouns,\n  \"image\":image.asset->{\n    altText,\n    description,\n    url\n  }\n}\n": PeopleQueryResult;
-    "\n*[_type == \"ourTeam\" ]{\n...\n}": OurTeamQueryResult;
+    "\n*[_type == \"ourTeam\" ][0]{\n...\n}": OurTeamQueryResult;
   }
 }

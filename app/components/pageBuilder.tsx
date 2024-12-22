@@ -3,11 +3,9 @@ import SocialCard from "./card/socialCard";
 import TwoColumnCard from "./card/twoColumnCard";
 import TwoColumnGalleryCard from "./card/twoColumnGalleryCard";
 import { Page } from "@/sanity/lib/sanity.types";
-import BlockHeader from "./header/blockHeader";
-import ObliqueHeader from "./header/obliqueHeader";
-import WaveHeader from "./header/waveHeader";
 import ExternalCard from "./card/externalCard";
 import TextBlock from "./textBlock";
+import HeaderBuilder from "./header/headerBuilder";
 
 export default function PageBuilder(props: Page) {
   let sectionCount = 0;
@@ -43,19 +41,6 @@ export default function PageBuilder(props: Page) {
     }
     return <></>;
   });
-  return (
-    <>
-      {props.header?.style == "block" && (
-        <BlockHeader {...props.header}></BlockHeader>
-      )}
-      {props.header?.style == "oblique" && (
-        <ObliqueHeader {...props.header}></ObliqueHeader>
-      )}
-      {props.header?.style == "wave" ? (
-        <WaveHeader header={props.header} children={content}></WaveHeader>
-      ) : (
-        content
-      )}
-    </>
-  );
+  const headerProps = { header: props.header, content: content };
+  return <HeaderBuilder {...headerProps}></HeaderBuilder>;
 }

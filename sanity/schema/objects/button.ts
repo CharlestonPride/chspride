@@ -57,7 +57,7 @@ export default defineType({
     prepare({ label, url, ref }) {
       return {
         title: label,
-        subtitle: url ? "External Url: " + url : "Internal Ref: " + ref._ref,
+        subtitle: url ? "External Url: " + url : "Internal Ref: " + ref?._ref,
         media: LinkIcon,
       };
     },

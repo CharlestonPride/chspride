@@ -7,6 +7,7 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import SanityImage from "@/app/components/sanityImage";
+import HeaderBuilder from "@/app/components/header/headerBuilder";
 
 const Headshot = (props: Person) => {
   if (props.image) {
@@ -71,9 +72,9 @@ const BoardMember = (props: Person) => {
                       >
                         <FontAwesomeIcon icon={faEnvelope} size="lg" />
                       </Button>
-                      <Button variant="outline-info" onClick={handleShow}>
+                      {/* <Button variant="outline-info" onClick={handleShow}>
                         Bio
-                      </Button>
+                      </Button> */}
                     </div>
                   </div>
                   <div className="d-none d-md-block">
@@ -84,9 +85,9 @@ const BoardMember = (props: Person) => {
                     >
                       <FontAwesomeIcon icon={faEnvelope} size="lg" />
                     </Button>
-                    <Button variant="outline-info" onClick={handleShow}>
+                    {/* <Button variant="outline-info" onClick={handleShow}>
                       Bio
-                    </Button>
+                    </Button> */}
                   </div>
                 </div>
               </Card.Body>
@@ -112,40 +113,44 @@ const BoardMember = (props: Person) => {
   );
 };
 
+const BoardMemberList = (props: OurTeamQueryResult) => {
+  if (!props) return <></>;
+  return (
+    <Container>
+      <Row>
+        <Col className="mx-auto text-center my-5">
+          {props.description && <p className="lead">{props.description}</p>}
+        </Col>
+      </Row>
+      <Row>
+        {props.members?.map((teamMember, index) => {
+          return <BoardMember {...teamMember} key={index} />;
+        })}
+      </Row>
+      {props.team && (
+        <Row>
+          <Col lg="8" className="mx-auto my-5">
+            <SanityImage
+              {...props.team}
+              _key="team"
+              imgClass="w-100 rounded-3 shadow-lg"
+            />
+          </Col>
+        </Row>
+      )}
+    </Container>
+  );
+};
+
 export default async function OurTeam() {
-  const props = ((await client.fetch(ourTeamQuery)) as OurTeamQueryResult)[0];
+  const props = (await client.fetch(ourTeamQuery)) as OurTeamQueryResult;
+  if (!props) return <></>;
+  const content = [<BoardMemberList {...props}></BoardMemberList>];
+  const headerProps = { header: props.header, content };
+
   return (
     <main>
-      {/* <Content {...(props?.content as unknown as Page)}>
-
-      </Content> */}
-      <Container className="mt-5">
-        <Row>
-          <Col>
-            <p className="lead">{props.description}</p>
-          </Col>
-        </Row>
-        <Row>
-          <Col className="mx-auto text-center mb-5">
-            <h2 className="text-gradient text-info">The Executive Committee</h2>
-          </Col>
-        </Row>
-        <Row>
-          {props.executiveCommittee?.map((teamMember, index) => {
-            return <BoardMember {...teamMember} key={index} />;
-          })}
-        </Row>
-        <Row>
-          <Col className="mx-auto text-center mb-5">
-            <h2 className="text-gradient text-info">The Board Members</h2>
-          </Col>
-        </Row>
-        <Row>
-          {props.boardMembers?.map((teamMember, index) => {
-            return <BoardMember {...teamMember} key={index} />;
-          })}
-        </Row>
-      </Container>
+      <HeaderBuilder {...headerProps}></HeaderBuilder>
     </main>
   );
 }

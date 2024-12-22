@@ -93,7 +93,7 @@ export const peopleQuery = groq`
 }
 `;
 export const ourTeamQuery = groq`
-*[_type == "ourTeam" ]{
+*[_type == "ourTeam" ][0]{
 ...
 }`;
 

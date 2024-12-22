@@ -50,6 +50,7 @@ export default defineType({
         { type: "imageGalleryCard" },
         { type: "twoColumnGalleryCard" },
         { type: "textBlock" },
+        { type: "sponsorsCard" },
       ],
     }),
     defineField({
