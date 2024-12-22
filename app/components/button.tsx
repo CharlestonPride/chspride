@@ -7,7 +7,12 @@ const GradientButton = (props: { label: string; theme: Theme }) => (
   </button>
 );
 const SolidButton = (props: { label: string; theme: Theme }) => (
-  <button type="button" className={"btn bg-" + props.theme}>
+  <button type="button" className={"btn btn-" + props.theme}>
+    {props.label}
+  </button>
+);
+const OutlineButton = (props: { label: string; theme: Theme }) => (
+  <button type="button" className={"btn btn-outline-" + props.theme}>
     {props.label}
   </button>
 );
@@ -17,17 +22,29 @@ const LinkButton = (props: {
   url: string | undefined;
   label: string;
   theme: Theme;
-  style: "gradient" | "solid";
+  style: "gradient" | "solid" | "outline";
 }) => {
-  let button =
-    props.style === "gradient" ? (
-      <GradientButton
-        label={props.label!}
-        theme={props.theme!}
-      ></GradientButton>
-    ) : (
-      <SolidButton label={props.label} theme={props.theme}></SolidButton>
-    );
+  let button = null;
+  switch (props.style) {
+    case "gradient":
+      button = (
+        <GradientButton
+          label={props.label}
+          theme={props.theme}
+        ></GradientButton>
+      );
+      break;
+    case "outline":
+      button = (
+        <OutlineButton label={props.label} theme={props.theme}></OutlineButton>
+      );
+      break;
+    default:
+      button = (
+        <SolidButton label={props.label} theme={props.theme}></SolidButton>
+      );
+  }
+
   return props?.reference ? (
     <Link href={"/" + (props.reference as any).slug.current}>{button}</Link>
   ) : (

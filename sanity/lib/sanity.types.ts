@@ -72,8 +72,8 @@ export type Theme = "primary" | "secondary" | "success" | "info" | "warning" | "
 
 export type Icon = "crown" | "flag" | "grin-hearts" | "hand-holding-usd" | "hands-helping" | "heart" | "shopping-cart" | "smile" | "ticket" | "user-friends" | "envelope" | "map" | "martini-glass" | "champagne-glasses" | "star" | "handshake";
 
-export type SingleItem = {
-  _type: "singleItem";
+export type ExternalUrl = {
+  _type: "externalUrl";
   label?: string;
   url?: string;
 };
@@ -85,11 +85,15 @@ export type DropdownItem = {
     _ref: string;
     _type: "reference";
     _weak?: boolean;
-    _key: string;
     [internalGroqTypeReferenceTo]?: "page";
   } | {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "ourTeam";
+  } | {
     _key: string;
-  } & SingleItem>;
+  } & ExternalUrl>;
 };
 
 export type TwoColumnGalleryCard = {
@@ -296,7 +300,15 @@ export type Navigation = {
     _key: string;
   } & DropdownItem | {
     _key: string;
-  } & SingleItem>;
+  } & ExternalUrl>;
+  callToAction?: Array<{
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    _key: string;
+    [internalGroqTypeReferenceTo]?: "page";
+  }>;
+  theme?: "primary" | "secondary" | "success" | "info" | "warning" | "danger";
 };
 
 export type Home = {
@@ -548,7 +560,7 @@ export type Slug = {
   source?: string;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Theme | Icon | SingleItem | DropdownItem | TwoColumnGalleryCard | TwoColumnCard | TextBlock | SponsorsCard | SocialsCard | ImageGalleryCard | EmbeddedForm | Button | OurTeam | Navigation | Home | Footer | Sponsorship | Sponsor | Person | Page | Seo | Visibility | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Header | MediaTag | Slug;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Theme | Icon | ExternalUrl | DropdownItem | TwoColumnGalleryCard | TwoColumnCard | TextBlock | SponsorsCard | SocialsCard | ImageGalleryCard | EmbeddedForm | Button | OurTeam | Navigation | Home | Footer | Sponsorship | Sponsor | Person | Page | Seo | Visibility | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Header | MediaTag | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/queries.tsx
 // Variable: slugsQuery
@@ -801,24 +813,33 @@ export type HomeQueryResult = Array<{
   seo?: Seo;
 }>;
 // Variable: navigationQuery
-// Query: *[_type == "navigation"]{  _type,  title,  main[]{    _type,    _type=='dropdownItem' =>{      label,      list[]{        _type,        _type=='Page' => @-> {          title,          'slug': slug.current        },        _type == 'singleItem' => {          label,          url        }      }    }  }}
-export type NavigationQueryResult = Array<{
+// Query: *[_type == "navigation"][0]{  ...,  main[]{    _type,    _type=='dropdownItem' =>{      label,      list[]{        _type,        _type=='Page' => @-> {          'label': title,          'slug': slug.current        },        _type == 'externalUrl' => {          label,          url        }      }    }  },  callToAction[] -> {    title,    slug  }}
+export type NavigationQueryResult = {
+  _id: string;
   _type: "navigation";
-  title: string | null;
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
   main: Array<{
     _type: "dropdownItem";
     label: string | null;
     list: Array<{
-      _type: "reference";
-    } | {
-      _type: "singleItem";
+      _type: "externalUrl";
       label: string | null;
       url: string | null;
+    } | {
+      _type: "reference";
     }> | null;
   } | {
-    _type: "singleItem";
+    _type: "externalUrl";
   }> | null;
-}>;
+  callToAction: Array<{
+    title: string | null;
+    slug: Slug | null;
+  }> | null;
+  theme?: "danger" | "info" | "primary" | "secondary" | "success" | "warning";
+} | null;
 // Variable: sponsorsQuery
 // Query: *[_type == "sponsor"]{  name,  website,  "logo":logo.asset->{    altText,    description,    url,  }}
 export type SponsorsQueryResult = Array<{
@@ -885,7 +906,7 @@ declare module "@sanity/client" {
     "*[_type == \"page\" && defined(slug.current)][]{\n  _id,\n  'slug':slug.current\n}": SlugsQueryResult;
     "*[_type == \"page\" && slug.current == $slug][0]": PageBySlugQueryResult;
     "*[_type == \"home\"]{\n  ...,\n  header{\n    ...,\n    buttons[]{\n      label,\n      url,\n      reference->{slug{...}}\n    }\n    },\n  content[]{\n    ...,\n    buttons[]{\n      label,\n      url,\n      reference->{slug{...}}\n    }\n    }\n  }": HomeQueryResult;
-    "*[_type == \"navigation\"]\n{\n  _type,\n  title,\n  main[]{\n    _type,\n    _type=='dropdownItem' =>{\n      label,\n      list[]{\n        _type,\n        _type=='Page' => @-> {\n          title,\n          'slug': slug.current\n        },\n        _type == 'singleItem' => {\n          label,\n          url\n        }\n      }\n    }\n  }\n}\n": NavigationQueryResult;
+    "*[_type == \"navigation\"][0]\n{\n  ...,\n  main[]{\n    _type,\n    _type=='dropdownItem' =>{\n      label,\n      list[]{\n        _type,\n        _type=='Page' => @-> {\n          'label': title,\n          'slug': slug.current\n        },\n        _type == 'externalUrl' => {\n          label,\n          url\n        }\n      }\n    }\n  },\n  callToAction[] -> {\n    title,\n    slug\n  }\n}\n": NavigationQueryResult;
     "\n*[_type == \"sponsor\"]{\n  name,\n  website,\n  \"logo\":logo.asset->{\n    altText,\n    description,\n    url,\n  }\n}": SponsorsQueryResult;
     "\n*[_type == \"sponsorship\" && year==$year && event in $event]{\n  featured,\n  level,\n  event,\n  sponsor->{\n  name,\n  website,\n  \"logo\":logo.asset->{\n    altText,\n    description,\n    url,\n  }\n}\n} | order(level desc)": SponsorshipsQueryResult;
     "\n*[_type == \"person\" ]{\n  name,\n  title,\n  bio,\n  email,\n  pronouns,\n  \"image\":image.asset->{\n    altText,\n    description,\n    url\n  }\n}\n": PeopleQueryResult;

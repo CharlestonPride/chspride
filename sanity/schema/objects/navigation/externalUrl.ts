@@ -1,10 +1,10 @@
 import { defineField, defineType } from "sanity";
 
 export default defineType({
-  title: "Single Item",
-  name: "singleItem",
+  name: "externalUrl",
+  title: "External url",
+  description: "A link to an external URL",
   type: "object",
-  icon: "",
   fields: [
     defineField({
       title: "Label",

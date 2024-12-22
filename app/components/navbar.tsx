@@ -1,4 +1,5 @@
 import { client } from "@/sanity/lib/client";
+import { NavigationQueryResult } from "@/sanity/lib/sanity.types";
 import { navigationQuery } from "@/sanity/queries";
 import Link from "next/link";
 import React from "react";
@@ -12,6 +13,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { LinkButton } from "./button";
 
 const Hamburger = () => {
   return (
@@ -28,33 +30,33 @@ const Brand = () => {
     <Link href="/">
       <img
         height="70"
-        src="https://charleston-pride.stream.prepr.io//7hv49f57o9bd-chspride-logo-4c.jpg"
+        src="https://cdn.sanity.io/images/jgra26o6/production/c2e72b38614921be7af4ec9ad998470791fa28bd-1955x677.jpg?h=70"
         alt="Charleston Pride"
       ></img>
     </Link>
   );
 };
 
-const AboutUs = () => {
-  return (
-    <NavDropdown title="About Us" id="about-us">
-      <NavLink href="/our-team">Our Team</NavLink>
-      <NavLink href="/bylaws">Our Bylaws</NavLink>
-      <NavLink href="/serve-on-the-board">Serve on the Board</NavLink>
-    </NavDropdown>
-  );
-};
-
-function getNavItem(props: { label: string | null; url: string | null }) {
+function getExternalNavItem(props: {
+  label: string | null;
+  url: string | null;
+}) {
   return (
     <NavLink target="_blank" href={props.url ?? ""} key={props.label}>
       {props.label}
     </NavLink>
   );
 }
+function getNavItem(props: { label: string | null; slug: string | null }) {
+  return (
+    <NavLink href={props.slug ?? ""} key={props.label}>
+      {props.label}
+    </NavLink>
+  );
+}
 
 export default async function MainNavBar() {
-  const nav = (await client.fetch(navigationQuery))[0];
+  const nav = (await client.fetch(navigationQuery)) as NavigationQueryResult;
   return (
     <Navbar bg="light" expand="lg">
       <Container className="py-3">
@@ -67,18 +69,15 @@ export default async function MainNavBar() {
         </NavbarToggle>
         <NavbarCollapse id="basic-navbar-nav">
           <Nav className="mx-auto">
-            {nav?.main?.map((menu: any) => {
-              if (menu._type == "dropdownItem") {
+            {nav!.main?.map((menu: any) => {
+              if (menu._type == "dropdownItem" && menu.list) {
                 return (
                   <NavDropdown title={menu.label} key={menu.label}>
                     {menu.list?.map((item: any) => {
-                      if (item._type == "singleItem") {
-                        return getNavItem(item);
+                      if (item._type == "externalUrl") {
+                        return getExternalNavItem(item);
                       }
-                      return getNavItem({
-                        url: (item as any).slug,
-                        label: (item as any).title,
-                      });
+                      return getNavItem(item);
                     })}
                   </NavDropdown>
                 );
@@ -87,6 +86,24 @@ export default async function MainNavBar() {
               }
             })}
           </Nav>
+          {nav!.callToAction?.length && (
+            <LinkButton
+              reference={nav?.callToAction[0]}
+              label={nav!.callToAction[0].title!}
+              url={""}
+              theme={nav!.theme!}
+              style="solid"
+            ></LinkButton>
+          )}
+          {nav!.callToAction?.length == 2 && (
+            <LinkButton
+              reference={nav?.callToAction[1]}
+              label={nav!.callToAction[1].title!}
+              url={""}
+              theme={nav!.theme!}
+              style="outline"
+            ></LinkButton>
+          )}
         </NavbarCollapse>
       </Container>
     </Navbar>

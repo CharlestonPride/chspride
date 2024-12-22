@@ -27,10 +27,9 @@ export const homeQuery = groq`*[_type == "home"]{
     }
   }`;
 
-export const navigationQuery = groq`*[_type == "navigation"]
+export const navigationQuery = groq`*[_type == "navigation"][0]
 {
-  _type,
-  title,
+  ...,
   main[]{
     _type,
     _type=='dropdownItem' =>{
@@ -38,15 +37,19 @@ export const navigationQuery = groq`*[_type == "navigation"]
       list[]{
         _type,
         _type=='Page' => @-> {
-          title,
+          'label': title,
           'slug': slug.current
         },
-        _type == 'singleItem' => {
+        _type == 'externalUrl' => {
           label,
           url
         }
       }
     }
+  },
+  callToAction[] -> {
+    title,
+    slug
   }
 }
 `;

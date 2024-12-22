@@ -1,13 +1,12 @@
 import { MenuIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
+import { themeField } from "../../fields";
 
 export default defineType({
   name: "navigation",
   title: "Navigation",
   type: "document",
   icon: MenuIcon,
-  // Uncomment below to have edits publish automatically as you type
-  // liveEdit: true,
   fields: [
     defineField({
       name: "title",
@@ -20,8 +19,23 @@ export default defineType({
       title: "Main Menu",
       name: "main",
       type: "array",
-      of: [{ type: "dropdownItem" }, { type: "singleItem" }],
+      of: [{ type: "dropdownItem" }, { type: "externalUrl" }],
     }),
+    {
+      name: "callToAction",
+      title: "Call to Actions",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          name: "Page",
+          description: "Select a page",
+          to: [{ type: "page" }],
+        },
+      ],
+      validation: (Rule) => Rule.max(2),
+    },
+    themeField,
   ],
   preview: {
     select: {

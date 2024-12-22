@@ -18,8 +18,13 @@ export default defineType({
       name: "list",
       type: "array",
       of: [
-        { type: "reference", name: "Page", to: [{ type: "page" }] },
-        { type: "singleItem" },
+        {
+          type: "reference",
+          name: "Page",
+          description: "Select a page",
+          to: [{ type: "page" }, { type: "ourTeam" }],
+        },
+        { type: "externalUrl" },
       ],
     }),
   ],
