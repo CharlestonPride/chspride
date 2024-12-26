@@ -56,7 +56,7 @@ const SocialCard = (props: SocialsCard) => {
       <Row className="mx-auto">
         <Col md="6">
           <h4 className="mb-1">Thank you for your support!</h4>
-          <p className="lead ">
+          <p className="lead">
             Stay tuned to our socials for the latest updates.
           </p>
         </Col>
@@ -65,7 +65,7 @@ const SocialCard = (props: SocialsCard) => {
           className="d-flex align-items-center justify-content-around"
         >
           <Facebook />
-          <Twitter />
+          {/* <Twitter /> */}
           <Instagram />
         </Col>
       </Row>

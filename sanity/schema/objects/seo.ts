@@ -13,26 +13,15 @@ export default defineType({
   },
   fields: [
     defineField({
-      name: "noIndex",
-      description: `Hide this page from search engines and the sitemap`,
-      type: "boolean",
-      initialValue: false,
-    }),
-    defineField({
       name: `title`,
       type: `string`,
       description: `Override the page title`,
     }),
-    // defineField({
-    //   name: `keywords`,
-    //   type: `string`,
-    //   description: `Separate, with, commas`,
-    // }),
-    // defineField({
-    //   name: `synonyms`,
-    //   type: `string`,
-    //   description: `Similar words to inform the SEO review`,
-    // }),
+    defineField({
+      name: `keywords`,
+      type: `string`,
+      description: `Separate, with, commas`,
+    }),
     defineField({
       name: `description`,
       type: `text`,

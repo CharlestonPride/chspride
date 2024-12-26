@@ -6,6 +6,7 @@ import { Page } from "@/sanity/lib/sanity.types";
 import ExternalCard from "./card/externalCard";
 import TextBlock from "./textBlock";
 import HeaderBuilder from "./header/headerBuilder";
+import SponsorCard from "./card/sponsorCard";
 
 export default function PageBuilder(props: Page) {
   let sectionCount = 0;
@@ -38,6 +39,9 @@ export default function PageBuilder(props: Page) {
     }
     if (c._type == "textBlock") {
       return <TextBlock {...c}></TextBlock>;
+    }
+    if (c._type == "sponsorsCard") {
+      return <SponsorCard {...c}></SponsorCard>;
     }
     return <></>;
   });

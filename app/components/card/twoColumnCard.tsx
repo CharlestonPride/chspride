@@ -29,7 +29,6 @@ const CardContent = (props: TwoColumnCardProps) => {
       ></LinkButton>
     );
   });
-
   return (
     <>
       {props.icon && <RoundShadowIcon theme={props.theme!} icon={props.icon} />}
@@ -37,7 +36,7 @@ const CardContent = (props: TwoColumnCardProps) => {
         {props.title}
       </h3>
       {props.subtitle && <h3>{props.subtitle}</h3>}
-      <div className="mt-4">
+      <div className="mt-4 lead">
         {props.content?.map((text, index) => {
           return <PortableText key={index} value={text}></PortableText>;
         })}
