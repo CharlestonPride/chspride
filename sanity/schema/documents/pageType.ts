@@ -5,7 +5,7 @@ export default defineType({
   name: "page",
   title: "Page",
   type: "document",
-  icon: DocumentIcon,
+  icon: DocumentIcon as any,
   fields: [
     defineField({
       name: "title",

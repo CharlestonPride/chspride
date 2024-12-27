@@ -5,7 +5,7 @@ import {
   faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 import { Col, Container, Row } from "react-bootstrap";
-import { fbUrl, instagramUrl, twitterUrl } from "@/app/lib/socialMedia";
+import { fbUrl, instagramUrl, twitterUrl } from "@/lib/socialMedia";
 import { SocialsCard } from "@/sanity/lib/sanity.types";
 
 const Facebook = () => {

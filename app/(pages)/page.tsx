@@ -2,7 +2,7 @@ import { client } from "@/sanity/lib/client";
 import { HomeQueryResult } from "@/sanity/lib/sanity.types";
 import { homeQuery } from "@/sanity/queries";
 import { Page as PageProps } from "@/sanity/lib/sanity.types";
-import PageBuilder from "../components/pageBuilder";
+import PageBuilder from "@/components/pageBuilder";
 import { draftMode } from "next/headers";
 import { FilteredResponseQueryOptions } from "next-sanity";
 

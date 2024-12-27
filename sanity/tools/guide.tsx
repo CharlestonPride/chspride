@@ -5,7 +5,7 @@ export const guide = () => {
   return {
     title: "Guide",
     name: "guide",
-    icon: DashboardIcon,
+    icon: DashboardIcon as any,
     component: () => (
       <Card padding={4}>
         <Stack>

@@ -1,5 +1,5 @@
-import Footer from "../components/footer";
-import MainNavBar from "../components/navbar";
+import Footer from "@/components/footer";
+import MainNavBar from "@/components/navbar";
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -37,7 +37,7 @@ library.add(
   faMartiniGlass,
   faChampagneGlasses,
   faStar,
-  faHandshake,
+  faHandshake
 );
 
 export default function Layout({

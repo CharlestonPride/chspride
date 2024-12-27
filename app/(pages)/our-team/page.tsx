@@ -6,8 +6,8 @@ import { Container, Row, Col, Button, Card, Modal } from "react-bootstrap";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import SanityImage from "@/app/components/sanityImage";
-import HeaderBuilder from "@/app/components/header/headerBuilder";
+import HeaderBuilder from "@/components/header/headerBuilder";
+import SanityImage from "@/components/sanityImage";
 
 const Headshot = (props: Person) => {
   if (props.image) {
@@ -145,7 +145,9 @@ const BoardMemberList = (props: OurTeamQueryResult) => {
 export default async function OurTeam() {
   const props = (await client.fetch(ourTeamQuery)) as OurTeamQueryResult;
   if (!props) return <></>;
-  const content = [<BoardMemberList {...props}></BoardMemberList>];
+  const content = [
+    <BoardMemberList key="boardlist" {...props}></BoardMemberList>,
+  ];
   const headerProps = { header: props.header, content };
 
   return (

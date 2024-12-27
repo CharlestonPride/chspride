@@ -5,7 +5,7 @@ export default defineType({
   title: "Dropdown Item",
   name: "dropdownItem",
   type: "object",
-  icon: ChevronDownIcon,
+  icon: ChevronDownIcon as any,
   fields: [
     defineField({
       title: "Label",

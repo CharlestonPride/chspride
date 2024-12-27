@@ -4,7 +4,7 @@ import { EarthGlobeIcon } from "@sanity/icons";
 export default defineType({
   name: "socialsCard",
   title: "Socials card",
-  icon: EarthGlobeIcon,
+  icon: EarthGlobeIcon as any,
   type: "object",
   fields: [
     defineField({
@@ -25,7 +25,7 @@ export default defineType({
       return {
         title: "Socials Card",
         subtitle: "Shows social media buttons",
-        media: EarthGlobeIcon,
+        media: EarthGlobeIcon as any,
       };
     },
   },

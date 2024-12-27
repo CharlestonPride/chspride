@@ -6,7 +6,7 @@ export default defineType({
   name: "home",
   title: "Home Page",
   type: "document",
-  icon: HomeIcon,
+  icon: HomeIcon as any,
   fields: [
     ...pageType.fields.filter((f) => !["slug", "visibility"].includes(f.name)),
   ],

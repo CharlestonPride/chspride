@@ -5,7 +5,7 @@ export default defineType({
   name: "ourTeam",
   title: "Our team",
   type: "document",
-  icon: UsersIcon,
+  icon: UsersIcon as any,
   fields: [
     defineField({
       name: "title",

@@ -17,7 +17,7 @@ export default defineField({
     collapsible: true,
     collapsed: true,
   },
-  icon: CalendarIcon,
+  icon: CalendarIcon as any,
   fields: [
     defineField({
       name: "displayFrom",

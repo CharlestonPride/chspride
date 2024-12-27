@@ -4,7 +4,7 @@ export default defineType({
   name: "person",
   title: "Person",
   type: "object",
-  icon: UserIcon,
+  icon: UserIcon as any,
   fields: [
     defineField({
       name: "name",
@@ -71,7 +71,7 @@ export default defineType({
       return {
         title,
         subtitle,
-        media: media ?? UserIcon,
+        media: media ?? (UserIcon as any),
       };
     },
   },

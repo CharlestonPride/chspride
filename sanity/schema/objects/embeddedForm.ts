@@ -5,7 +5,7 @@ export default defineType({
   title: "Embedded Form",
   name: "embeddedForm",
   type: "object",
-  icon: BinaryDocumentIcon,
+  icon: BinaryDocumentIcon as any,
   fieldsets: [
     {
       name: "advanced",
@@ -63,7 +63,7 @@ export default defineType({
       return {
         title: "Embedded Form",
         subtitle: url?.replace(/(^\w+:|^)\/\//, ""),
-        media: LinkIcon,
+        media: LinkIcon as any,
       };
     },
   },

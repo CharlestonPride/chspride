@@ -15,11 +15,9 @@ export default function HeaderBuilder(props: {
         <ObliqueHeader {...props.header} key="oblique"></ObliqueHeader>
       )}
       {props.header?.style == "wave" ? (
-        <WaveHeader
-          header={props.header}
-          children={props.content}
-          key="wave"
-        ></WaveHeader>
+        <WaveHeader header={props.header} key="wave">
+          {props.content}
+        </WaveHeader>
       ) : (
         props.content
       )}

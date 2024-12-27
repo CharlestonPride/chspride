@@ -1,7 +1,6 @@
 import { defineField, defineType } from "sanity";
 import { themeField } from "../fields";
 import { HeartFilledIcon } from "@sanity/icons";
-import list from "../objects/list";
 
 export default defineType({
   name: "sponsorsCard",
@@ -57,7 +56,7 @@ export default defineType({
       return {
         title,
         subtitle: featured ? "Featured first" : "Featured not first",
-        media: HeartFilledIcon,
+        media: HeartFilledIcon as any,
       };
     },
   },

@@ -5,7 +5,7 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { VisualEditing } from "next-sanity";
 import { draftMode } from "next/headers";
-import { DisableDraftMode } from "./components/disableDraftMode";
+import { DisableDraftMode } from "../components/disableDraftMode";
 
 config.autoAddCss = false;
 

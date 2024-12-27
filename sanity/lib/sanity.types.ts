@@ -444,8 +444,8 @@ export type Page = {
 
 export type Seo = {
   _type: "seo";
-  noIndex?: boolean;
   title?: string;
+  keywords?: string;
   description?: string;
   image?: {
     asset?: {

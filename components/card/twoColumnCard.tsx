@@ -3,7 +3,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { urlFor } from "@/sanity/lib/image";
 import { PortableText } from "next-sanity";
 import { LinkButton } from "../button";
-import { RoundShadowIcon } from "../icon";
+import RoundShadowIcon from "../icon";
 
 export type Props = TwoColumnCardProps & { orientation: "left" | "right" };
 
@@ -26,12 +26,15 @@ const CardContent = (props: TwoColumnCardProps) => {
         url={button.url}
         theme={props.theme!}
         style={index === 0 ? "gradient" : "solid"}
+        key={index}
       ></LinkButton>
     );
   });
   return (
     <>
-      {props.icon && <RoundShadowIcon theme={props.theme!} icon={props.icon} />}
+      {props.icon && props.theme && (
+        <RoundShadowIcon theme={props.theme} icon={props.icon} />
+      )}
       <h3 className={"text-gradient mb-0 text-" + props.theme}>
         {props.title}
       </h3>

@@ -15,7 +15,7 @@ export default defineType({
   name: "sponsorship",
   title: "Sponsorship",
   type: "document",
-  icon: DocumentIcon,
+  icon: DocumentIcon as any,
   fields: [
     defineField({
       name: "sponsor",

@@ -6,7 +6,7 @@ export default defineType({
   name: "navigation",
   title: "Navigation",
   type: "document",
-  icon: MenuIcon,
+  icon: MenuIcon as any,
   fields: [
     defineField({
       name: "title",

@@ -6,7 +6,7 @@ export default defineType({
   name: "seo",
   title: "SEO",
   type: "object",
-  icon: SearchIcon,
+  icon: SearchIcon as any,
   options: {
     collapsible: true,
     collapsed: true,

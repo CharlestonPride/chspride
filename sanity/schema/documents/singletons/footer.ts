@@ -5,7 +5,7 @@ export default defineType({
   name: "footer",
   title: "Footer",
   type: "document",
-  icon: InsertAboveIcon,
+  icon: InsertAboveIcon as any,
   fields: [
     defineField({
       name: "title",
