@@ -30,7 +30,7 @@ const Brand = () => {
     <Link href="/">
       <img
         height="70"
-        src="https://cdn.sanity.io/images/jgra26o6/production/c2e72b38614921be7af4ec9ad998470791fa28bd-1955x677.jpg?h=70"
+        src="https://cdn.sanity.io/images/jgra26o6/production/c2e72b38614921be7af4ec9ad998470791fa28bd-1955x677.jpg?h=140"
         alt="Charleston Pride"
       ></img>
     </Link>

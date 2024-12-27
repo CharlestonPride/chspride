@@ -17,9 +17,9 @@ function getSponsorshipColor(sponsorship: Sponsorship) {
     case 4:
       return "yellow";
     case 3:
-      return "blue";
-    case 2:
       return "green";
+    case 2:
+      return "blue";
     default:
       return "purple";
   }

@@ -7,7 +7,11 @@ export default function TextBlock(props: TextBlockProps) {
     <Row>
       <Col lg="10" className="mx-auto">
         {props.content?.map((text, index) => {
-          return <PortableText key={index} value={text}></PortableText>;
+          return (
+            <div className="lead">
+              <PortableText key={index} value={text}></PortableText>
+            </div>
+          );
         })}
       </Col>
     </Row>

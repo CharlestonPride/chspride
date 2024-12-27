@@ -2,17 +2,17 @@ import { Theme } from "@/sanity/lib/sanity.types";
 import Link from "next/link";
 
 const GradientButton = (props: { label: string; theme: Theme }) => (
-  <button type="button" className={"btn bg-gradient-" + props.theme}>
+  <button type="button" className={"me-1 btn bg-gradient-" + props.theme}>
     {props.label}
   </button>
 );
 const SolidButton = (props: { label: string; theme: Theme }) => (
-  <button type="button" className={"btn btn-" + props.theme}>
+  <button type="button" className={"me-1 btn btn-" + props.theme}>
     {props.label}
   </button>
 );
 const OutlineButton = (props: { label: string; theme: Theme }) => (
-  <button type="button" className={"btn btn-outline-" + props.theme}>
+  <button type="button" className={"me-1 btn btn-outline-" + props.theme}>
     {props.label}
   </button>
 );

@@ -3,6 +3,7 @@ import SocialCard from "./card/socialCard";
 import TwoColumnCard from "./card/twoColumnCard";
 import TwoColumnGalleryCard from "./card/twoColumnGalleryCard";
 import { Page } from "@/sanity/lib/sanity.types";
+import { Row, Col } from "react-bootstrap";
 import ExternalCard from "./card/externalCard";
 import TextBlock from "./textBlock";
 import HeaderBuilder from "./header/headerBuilder";
@@ -37,7 +38,17 @@ export default function PageBuilder(props: Page) {
       );
     }
     if (c._type == "embeddedForm") {
-      return <ExternalCard {...c} key={index}></ExternalCard>;
+      if (props.header && props.header?.style === "wave") {
+        return <ExternalCard {...c} key={index}></ExternalCard>;
+      } else {
+        return (
+          <Row>
+            <Col lg="10" className="mx-auto">
+              <ExternalCard {...c} key={index}></ExternalCard>
+            </Col>
+          </Row>
+        );
+      }
     }
     if (c._type == "textBlock") {
       return <TextBlock {...c} key={index}></TextBlock>;

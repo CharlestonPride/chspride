@@ -16,6 +16,16 @@ export default defineType({
       readOnly: true,
     }),
     defineField({
+      name: "slug",
+      title: "Slug",
+      type: "slug",
+      options: {
+        source: "title",
+      },
+      validation: (rule) => rule.required(),
+      readOnly: true,
+    }),
+    defineField({
       name: "description",
       title: "Description",
       type: "text",

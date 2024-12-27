@@ -16,6 +16,8 @@ export default defineType({
   title: "Sponsorship",
   type: "document",
   icon: DocumentIcon as any,
+  description:
+    "A sponsorship for an event or the organization. Please make a seperate sponsorship for each year.",
   fields: [
     defineField({
       name: "sponsor",
@@ -40,9 +42,9 @@ export default defineType({
       name: "event",
       title: "Event",
       type: "string",
-      options: { list: ["parade", "festival"] },
       initialValue: "",
-      validation: (rule) => rule.required(),
+      description:
+        "The event associated with the sponsorship. Leave blank for general sponsorships.",
     }),
     defineField({
       name: "level",

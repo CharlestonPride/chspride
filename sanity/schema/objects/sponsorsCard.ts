@@ -33,7 +33,6 @@ export default defineType({
       title: "Event",
       type: "string",
       description: "The event to show sponsors for.",
-      validation: (rule) => rule.required(),
       options: {
         list: [
           { title: "Any", value: "" },

@@ -269,6 +269,7 @@ export type OurTeam = {
   _updatedAt: string;
   _rev: string;
   title?: string;
+  slug?: Slug;
   description?: string;
   theme?: Theme;
   header?: Header;
@@ -363,7 +364,7 @@ export type Sponsorship = {
     [internalGroqTypeReferenceTo]?: "sponsor";
   };
   year?: number;
-  event?: "parade" | "festival";
+  event?: string;
   level?: 6 | 5 | 4 | 3 | 2 | 1;
   branding?: string;
   featured?: boolean;
@@ -858,7 +859,7 @@ export type SponsorsQueryResult = Array<{
 export type SponsorshipsQueryResult = Array<{
   featured: boolean | null;
   level: 1 | 2 | 3 | 4 | 5 | 6 | null;
-  event: "festival" | "parade" | null;
+  event: string | null;
   sponsor: {
     name: string | null;
     website: string | null;
@@ -881,6 +882,7 @@ export type OurTeamQueryResult = {
   _updatedAt: string;
   _rev: string;
   title?: string;
+  slug?: Slug;
   description?: string;
   theme?: Theme;
   header?: Header;
