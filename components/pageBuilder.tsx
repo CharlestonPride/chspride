@@ -42,9 +42,9 @@ export default function PageBuilder(props: Page) {
         return <ExternalCard {...c} key={index}></ExternalCard>;
       } else {
         return (
-          <Row>
+          <Row key={index}>
             <Col lg="10" className="mx-auto">
-              <ExternalCard {...c} key={index}></ExternalCard>
+              <ExternalCard {...c}></ExternalCard>
             </Col>
           </Row>
         );
