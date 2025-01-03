@@ -6,6 +6,8 @@ import PageBuilder from "@/components/pageBuilder";
 import { draftMode } from "next/headers";
 import { FilteredResponseQueryOptions } from "next-sanity";
 
+export const revalidate = 3600;
+
 export default async function Home() {
   const { isEnabled } = await draftMode();
   const options: FilteredResponseQueryOptions | undefined = isEnabled

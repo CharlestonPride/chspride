@@ -142,6 +142,8 @@ const BoardMemberList = (props: OurTeamQueryResult) => {
   );
 };
 
+export const revalidate = 3600;
+
 export default async function OurTeam() {
   const props = (await client.fetch(ourTeamQuery)) as OurTeamQueryResult;
   if (!props) return <></>;
