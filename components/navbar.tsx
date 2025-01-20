@@ -56,7 +56,10 @@ function getNavItem(props: { label: string | null; slug: string | null }) {
 }
 
 export default async function MainNavBar() {
-  const { data } = await sanityFetch({ query: navigationQuery });
+  const { data } = await sanityFetch({
+    query: navigationQuery,
+    tag: "main-nav",
+  });
   const nav = data as NavigationQueryResult;
   return (
     <Navbar bg="light" expand="lg">

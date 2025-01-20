@@ -124,7 +124,7 @@ const BoardMemberList = (props: OurTeamQueryResult) => {
 //export const revalidate = 3600;
 
 export default async function OurTeam() {
-  const { data } = await sanityFetch({ query: ourTeamQuery });
+  const { data } = await sanityFetch({ query: ourTeamQuery, tag: "our-team" });
   const props = data as OurTeamQueryResult;
   if (!props) return <></>;
   const content = [

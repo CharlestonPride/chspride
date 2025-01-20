@@ -13,6 +13,7 @@ export default async function SlugPage({
   const { data } = await sanityFetch({
     query: pageBySlugQuery,
     params: await params,
+    tag: (await params).slug,
   });
   const props = data as PageProps;
   if (!props) {

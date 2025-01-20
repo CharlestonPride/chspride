@@ -1,5 +1,5 @@
 /**
- * This code is responsible for revalidating queries as the dataset is updated.
+ * This code is responsible for revalidating queries as the dataset is updated using tag-based revalidation.
  *
  * It is set up to receive a validated GROQ-powered Webhook from Sanity.io:
  * https://www.sanity.io/docs/webhooks
@@ -10,7 +10,7 @@
  * 4. Dataset: Choose desired dataset or leave at default "all datasets"
  * 5. Trigger on: "Create", "Update", and "Delete"
  * 6. Filter: Leave empty
- * 7. Projection: {_type, "slug": slug.current}
+ * 7. Projection: {"tags": [_type, _type + ":" + slug.current]}
  * 8. Status: Enable webhook
  * 9. HTTP method: POST
  * 10. HTTP Headers: Leave empty
@@ -20,40 +20,40 @@
  * 14. Save the cofiguration
  */
 
-import { revalidatePath } from "next/cache";
+import { revalidateTag } from "next/cache";
 import { type NextRequest, NextResponse } from "next/server";
 import { parseBody } from "next-sanity/webhook";
 import { revalidateSecret } from "@/sanity/env";
 
+type WebhookPayload = {
+  tags: string[];
+};
+
 export async function POST(req: NextRequest) {
   try {
-    const { body, isValidSignature } = await parseBody<{
-      _type: string;
-      slug?: string | undefined;
-    }>(req, revalidateSecret);
+    const { body, isValidSignature } = await parseBody<WebhookPayload>(
+      req,
+      revalidateSecret,
+      true
+    );
+
     if (!isValidSignature) {
       const message = "Invalid signature";
-      return new Response(message, { status: 401 });
+      return new Response(JSON.stringify({ message, isValidSignature, body }), {
+        status: 401,
+      });
+    } else if (!Array.isArray(body?.tags) || !body.tags.length) {
+      const message = "Bad Request";
+      return new Response(JSON.stringify({ message, body }), { status: 400 });
     }
 
-    if (!body?._type) {
-      return new Response("Bad Request", { status: 400 });
-    }
-
-    // purge everything
-    revalidatePath("/", "layout");
-    // revalidateTag(body._type);
-    // if (body.slug) {
-    //   revalidateTag(`${body._type}:${body.slug}`);
-    // }
-    return NextResponse.json({
-      status: 200,
-      revalidated: true,
-      now: Date.now(),
-      body,
+    body.tags.forEach((tag) => {
+      revalidateTag(tag);
     });
-  } catch (err: any) {
+
+    return NextResponse.json({ body });
+  } catch (err) {
     console.error(err);
-    return new Response(err.message, { status: 500 });
+    return new Response((err as Error).message, { status: 500 });
   }
 }

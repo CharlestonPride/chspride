@@ -55,7 +55,7 @@ const Email = (footer: FooterQueryResult) => {
 };
 
 export default async function Footer() {
-  const { data } = await sanityFetch({ query: footerQuery });
+  const { data } = await sanityFetch({ query: footerQuery, tag: "footer" });
   const footer = data as FooterQueryResult;
   const year = new Date().getFullYear();
   return (

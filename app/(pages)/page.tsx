@@ -17,7 +17,7 @@ export default async function Home() {
         stega: true,
       }
     : undefined;
-  const { data } = await sanityFetch({ query: homeQuery });
+  const { data } = await sanityFetch({ query: homeQuery, tag: "home" });
   const props = (data as HomeQueryResult)[0] as unknown as PageProps;
   return (
     <main>
