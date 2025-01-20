@@ -1,13 +1,15 @@
-"use client";
-import { client } from "@/sanity/lib/client";
 import { OurTeamQueryResult, Person } from "@/sanity/lib/sanity.types";
 import { ourTeamQuery } from "@/sanity/queries";
-import { Container, Row, Col, Button, Card, Modal } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
 import HeaderBuilder from "@/components/header/headerBuilder";
 import SanityImage from "@/components/sanityImage";
+import { sanityFetch } from "@/sanity/lib/live";
 
 const Headshot = (props: Person) => {
   if (props.image) {
@@ -25,12 +27,12 @@ const Headshot = (props: Person) => {
   }
   return (
     <Card className="bg-cover text-center">
-      <Card.Body className="z-index-2 py-8">
+      <div className="z-index-2 py-8">
         <h2>
           {getInitials(props)}
           <p>Coming Soon</p>
         </h2>
-      </Card.Body>
+      </div>
     </Card>
   );
 };
@@ -41,9 +43,6 @@ const getInitials = (props: Person) => {
 };
 
 const BoardMember = (props: Person) => {
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
   return (
     <>
       <Col lg="6" className="my-5">
@@ -53,7 +52,7 @@ const BoardMember = (props: Person) => {
               <Headshot {...props} />
             </Col>
             <Col xs="12" sm="7">
-              <Card.Body className="h-100 pt-lg-5 pb-0">
+              <div className="h-100 pt-lg-5 pb-0">
                 <div className="d-flex flex-column align-items-start h-100">
                   <div className="mb-auto">
                     <h5 className="font-weight-bolder mb-0">{props.name}</h5>
@@ -72,9 +71,6 @@ const BoardMember = (props: Person) => {
                       >
                         <FontAwesomeIcon icon={faEnvelope} size="lg" />
                       </Button>
-                      {/* <Button variant="outline-info" onClick={handleShow}>
-                        Bio
-                      </Button> */}
                     </div>
                   </div>
                   <div className="d-none d-md-block">
@@ -85,30 +81,13 @@ const BoardMember = (props: Person) => {
                     >
                       <FontAwesomeIcon icon={faEnvelope} size="lg" />
                     </Button>
-                    {/* <Button variant="outline-info" onClick={handleShow}>
-                      Bio
-                    </Button> */}
                   </div>
                 </div>
-              </Card.Body>
+              </div>
             </Col>
           </Row>
         </Card>
       </Col>
-      <Modal show={show} onHide={handleClose} size="lg">
-        <Modal.Header closeButton>
-          <Modal.Title>{"About " + props.name}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {props.bio?.split(/\r?\n/).map((b) => <p key={b}>{b}</p>)}
-          {!props.bio?.length && <p>Bio coming soon.</p>}
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="info" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </>
   );
 };
@@ -142,10 +121,11 @@ const BoardMemberList = (props: OurTeamQueryResult) => {
   );
 };
 
-export const revalidate = 3600;
+//export const revalidate = 3600;
 
 export default async function OurTeam() {
-  const props = (await client.fetch(ourTeamQuery)) as OurTeamQueryResult;
+  const { data } = await sanityFetch({ query: ourTeamQuery });
+  const props = data as OurTeamQueryResult;
   if (!props) return <></>;
   const content = [
     <BoardMemberList key="boardlist" {...props}></BoardMemberList>,

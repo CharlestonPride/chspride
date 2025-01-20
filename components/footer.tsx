@@ -8,9 +8,9 @@ import {
 import { faEnvelope, faMap } from "@fortawesome/free-solid-svg-icons";
 import { Container, Row, Col } from "react-bootstrap";
 import { fbUrl, instagramUrl } from "../lib/socialMedia";
-import { client } from "@/sanity/lib/client";
 import { footerQuery } from "@/sanity/queries";
 import { FooterQueryResult } from "@/sanity/lib/sanity.types";
+import { sanityFetch } from "@/sanity/lib/live";
 
 type SocialProps = {
   url: string;
@@ -55,7 +55,8 @@ const Email = (footer: FooterQueryResult) => {
 };
 
 export default async function Footer() {
-  const footer = (await client.fetch(footerQuery)) as FooterQueryResult;
+  const { data } = await sanityFetch({ query: footerQuery });
+  const footer = data as FooterQueryResult;
   const year = new Date().getFullYear();
   return (
     <>

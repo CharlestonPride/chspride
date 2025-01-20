@@ -1,4 +1,4 @@
-import { client } from "@/sanity/lib/client";
+import { sanityFetch } from "@/sanity/lib/live";
 import {
   SponsorsCard as SponsorsCardProps,
   SponsorshipsQueryResult,
@@ -47,11 +47,11 @@ const Sponsor = (sponsorship: Sponsorship) => {
 };
 
 export default async function SponsorCard(props: SponsorsCardProps) {
-  const sponsorships = (await client.fetch(sponsorshipsQuery, {
-    year: props.year,
-    event: [props.event],
-  })) as SponsorshipsQueryResult;
-
+  const { data } = await sanityFetch({
+    query: sponsorshipsQuery,
+    params: { year: props.year, event: props.event },
+  });
+  const sponsorships = data as SponsorshipsQueryResult;
   return (
     <Container className="my-5">
       <Row className="mx-auto">

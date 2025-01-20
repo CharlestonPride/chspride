@@ -40,6 +40,7 @@ export async function POST(req: NextRequest) {
       return new Response("Bad Request", { status: 400 });
     }
 
+    // purge everything
     revalidatePath("/", "layout");
     // revalidateTag(body._type);
     // if (body.slug) {

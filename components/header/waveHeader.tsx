@@ -3,7 +3,7 @@ import { Row, Col } from "react-bootstrap";
 
 export default function WaveHeader(props: {
   header: HeaderProps;
-  children: JSX.Element | JSX.Element[] | undefined;
+  children: React.ReactNode | React.ReactNode[] | undefined;
 }) {
   const headerClass = `card-header p-5 position-relative bg-gradient-${props.header.theme}`;
   return (

@@ -4,7 +4,7 @@ import ObliqueHeader from "./obliqueHeader";
 import WaveHeader from "./waveHeader";
 export default function HeaderBuilder(props: {
   header: Header | undefined;
-  content: JSX.Element[] | undefined;
+  content: React.ReactNode | undefined;
 }) {
   return (
     <>

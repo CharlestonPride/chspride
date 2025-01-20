@@ -6,6 +6,7 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import { VisualEditing } from "next-sanity";
 import { draftMode } from "next/headers";
 import { DisableDraftMode } from "../components/disableDraftMode";
+import { SanityLive } from "@/sanity/lib/live";
 
 config.autoAddCss = false;
 
@@ -35,11 +36,11 @@ export default async function RootLayout({
     <html lang="en">
       <body className={openSans.className}>
         {children}
-
+        <SanityLive />
         {(await draftMode()).isEnabled && (
           <>
-            <VisualEditing />
             <DisableDraftMode />
+            <VisualEditing />
           </>
         )}
       </body>

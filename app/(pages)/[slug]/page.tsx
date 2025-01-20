@@ -3,30 +3,18 @@ import { Page as PageProps } from "@/sanity/lib/sanity.types";
 import { pageBySlugQuery, slugsQuery } from "@/sanity/queries";
 import { notFound } from "next/navigation";
 import PageBuilder from "@/components/pageBuilder";
-import { FilteredResponseQueryOptions } from "next-sanity";
-import { draftMode } from "next/headers";
+import { sanityFetch } from "@/sanity/lib/live";
 
 export default async function SlugPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const { slug } = await params;
-  const { isEnabled } = await draftMode();
-  const options: FilteredResponseQueryOptions | undefined = isEnabled
-    ? {
-        perspective: "previewDrafts",
-        useCdn: false,
-        stega: true,
-      }
-    : { next: { revalidate: 0 } };
-
-  const props = (await client.fetch(
-    pageBySlugQuery,
-    { slug },
-    options
-  )) as PageProps;
-
+  const { data } = await sanityFetch({
+    query: pageBySlugQuery,
+    params: await params,
+  });
+  const props = data as PageProps;
   if (!props) {
     return notFound();
   }
