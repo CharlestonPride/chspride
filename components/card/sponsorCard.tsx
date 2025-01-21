@@ -49,7 +49,7 @@ const Sponsor = (sponsorship: Sponsorship) => {
 export default async function SponsorCard(props: SponsorsCardProps) {
   const { data } = await sanityFetch({
     query: sponsorshipsQuery,
-    params: { year: props.year, event: props.event },
+    params: { year: props.year, event: [props.event] },
   });
   const sponsorships = data as SponsorshipsQueryResult;
   return (
