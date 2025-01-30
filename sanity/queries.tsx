@@ -66,7 +66,7 @@ export const sponsorsQuery = groq`
 }`;
 
 export const sponsorshipsQuery = groq`
-*[_type == "sponsorship" && year==$year && event in $event]{
+*[_type == "sponsorship" && year==$year]{
   featured,
   level,
   event,

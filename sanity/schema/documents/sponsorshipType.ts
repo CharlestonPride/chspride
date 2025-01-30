@@ -39,14 +39,6 @@ export default defineType({
       initialValue: () => CURRENT_YEAR,
     }),
     defineField({
-      name: "event",
-      title: "Event",
-      type: "string",
-      initialValue: "",
-      description:
-        "The event associated with the sponsorship. Leave blank for general sponsorships.",
-    }),
-    defineField({
       name: "level",
       title: "Sponsorship Level",
       type: "number",

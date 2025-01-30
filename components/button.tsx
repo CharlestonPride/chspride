@@ -23,6 +23,7 @@ const LinkButton = (props: {
   label: string;
   theme: Theme;
   style: "gradient" | "solid" | "outline";
+  target?: string;
 }) => {
   let button = null;
   switch (props.style) {
@@ -48,7 +49,7 @@ const LinkButton = (props: {
   return props?.reference ? (
     <Link href={"/" + (props.reference as any).slug.current}>{button}</Link>
   ) : (
-    <Link href={{ pathname: props.url }} target="_blank">
+    <Link href={{ pathname: props.url }} target={props.target ?? "_blank"}>
       {button}
     </Link>
   );
