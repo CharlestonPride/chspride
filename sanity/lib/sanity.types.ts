@@ -276,6 +276,9 @@ export type OurTeam = {
   members?: Array<{
     _key: string;
   } & Person>;
+  volunteers?: Array<{
+    _key: string;
+  } & Person>;
   team?: {
     asset?: {
       _ref: string;
@@ -364,7 +367,6 @@ export type Sponsorship = {
     [internalGroqTypeReferenceTo]?: "sponsor";
   };
   year?: number;
-  event?: string;
   level?: 6 | 5 | 4 | 3 | 2 | 1;
   branding?: string;
   featured?: boolean;
@@ -855,11 +857,11 @@ export type SponsorsQueryResult = Array<{
   } | null;
 }>;
 // Variable: sponsorshipsQuery
-// Query: *[_type == "sponsorship" && year==$year && event in $event]{  featured,  level,  event,  sponsor->{  name,  website,  "logo":logo.asset->{    altText,    description,    url,  }}} | order(level desc)
+// Query: *[_type == "sponsorship" && year==$year]{  featured,  level,  event,  sponsor->{  name,  website,  "logo":logo.asset->{    altText,    description,    url,  }}} | order(level desc)
 export type SponsorshipsQueryResult = Array<{
   featured: boolean | null;
   level: 1 | 2 | 3 | 4 | 5 | 6 | null;
-  event: string | null;
+  event: null;
   sponsor: {
     name: string | null;
     website: string | null;
@@ -887,6 +889,9 @@ export type OurTeamQueryResult = {
   theme?: Theme;
   header?: Header;
   members?: Array<{
+    _key: string;
+  } & Person>;
+  volunteers?: Array<{
     _key: string;
   } & Person>;
   team?: {
@@ -924,7 +929,7 @@ declare module "@sanity/client" {
     "*[_type == \"home\"]{\n  ...,\n  header{\n    ...,\n    buttons[]{\n      label,\n      url,\n      reference->{slug{...}}\n    }\n    },\n  content[]{\n    ...,\n    buttons[]{\n      label,\n      url,\n      reference->{slug{...}}\n    }\n    }\n  }": HomeQueryResult;
     "*[_type == \"navigation\"][0]\n{\n  ...,\n  main[]{\n    _type,\n    _type=='dropdownItem' =>{\n      label,\n      list[]{\n        _type,\n        _type=='Page' => @-> {\n          'label': title,\n          'slug': slug.current\n        },\n        _type == 'externalUrl' => {\n          label,\n          url\n        }\n      }\n    }\n  },\n  callToAction[] -> {\n    title,\n    slug\n  }\n}\n": NavigationQueryResult;
     "\n*[_type == \"sponsor\"]{\n  name,\n  website,\n  \"logo\":logo.asset->{\n    altText,\n    description,\n    url,\n  }\n}": SponsorsQueryResult;
-    "\n*[_type == \"sponsorship\" && year==$year && event in $event]{\n  featured,\n  level,\n  event,\n  sponsor->{\n  name,\n  website,\n  \"logo\":logo.asset->{\n    altText,\n    description,\n    url,\n  }\n}\n} | order(level desc)": SponsorshipsQueryResult;
+    "\n*[_type == \"sponsorship\" && year==$year]{\n  featured,\n  level,\n  event,\n  sponsor->{\n  name,\n  website,\n  \"logo\":logo.asset->{\n    altText,\n    description,\n    url,\n  }\n}\n} | order(level desc)": SponsorshipsQueryResult;
     "\n*[_type == \"person\" ]{\n  name,\n  title,\n  bio,\n  email,\n  pronouns,\n  \"image\":image.asset->{\n    altText,\n    description,\n    url\n  }\n}\n": PeopleQueryResult;
     "\n*[_type == \"ourTeam\" ][0]{\n...\n}": OurTeamQueryResult;
     "\n*[_type == \"footer\"][0]": FooterQueryResult;

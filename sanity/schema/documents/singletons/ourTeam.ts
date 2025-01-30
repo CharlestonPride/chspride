@@ -43,7 +43,13 @@ export default defineType({
     }),
     defineField({
       name: "members",
-      title: "Members",
+      title: "Board Members",
+      type: "array",
+      of: [{ type: "person" }],
+    }),
+    defineField({
+      name: "volunteers",
+      title: "Volunteers",
       type: "array",
       of: [{ type: "person" }],
     }),
