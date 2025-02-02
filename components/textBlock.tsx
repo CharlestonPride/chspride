@@ -4,8 +4,8 @@ import { Col, Row } from "react-bootstrap";
 
 export default function TextBlock(props: TextBlockProps) {
   return (
-    <Row>
-      <Col lg="10" className="mx-auto">
+    <Row className="py-5">
+      <Col lg="8" className="mx-auto">
         {props.content?.map((text, index) => {
           return (
             <div className="lead" key={index}>

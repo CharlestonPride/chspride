@@ -3,7 +3,7 @@ import { UsersIcon } from "@sanity/icons";
 
 export default defineType({
   name: "ourTeam",
-  title: "Our team",
+  title: "Our Team",
   type: "document",
   icon: UsersIcon as any,
   fields: [

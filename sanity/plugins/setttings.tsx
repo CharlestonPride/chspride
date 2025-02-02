@@ -2,9 +2,6 @@
  * This plugin contains all the logic for setting up the singletons
  */
 
-import { type DocumentDefinition } from "sanity";
-import { ListItemBuilder, type StructureResolver } from "sanity/structure";
-
 export const singletonPlugin = (types: string[]) => {
   return {
     name: "singletonPlugin",
@@ -14,7 +11,7 @@ export const singletonPlugin = (types: string[]) => {
         if (creationContext.type === "global") {
           return prev.filter(
             (templateItem: { templateId: string }) =>
-              !types.includes(templateItem.templateId),
+              !types.includes(templateItem.templateId)
           );
         }
 
