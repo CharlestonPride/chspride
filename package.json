@@ -10,7 +10,9 @@
     "lint": "next lint",
     "typegen": "sanity schema extract && sanity typegen generate",
     "format": "prettier --write . --ignore-path .gitignore",
-    "lint:fix": "npm run format && npm run lint -- --fix"
+    "lint:fix": "npm run format && npm run lint -- --fix",
+    "docker:build": "docker build --pull --rm -f Dockerfile -t chspride:latest .",
+    "docker:push": "docker image push ghcr.io/charlestonpride/chspride:latest"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
