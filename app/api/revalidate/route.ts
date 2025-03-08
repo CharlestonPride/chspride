@@ -20,7 +20,7 @@
  * 14. Save the cofiguration
  */
 
-import { revalidateTag } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { type NextRequest, NextResponse } from "next/server";
 import { parseBody } from "next-sanity/webhook";
 import { revalidateSecret } from "@/sanity/env";
@@ -42,14 +42,10 @@ export async function POST(req: NextRequest) {
       return new Response(JSON.stringify({ message, isValidSignature, body }), {
         status: 401,
       });
-    } else if (!Array.isArray(body?.tags) || !body.tags.length) {
-      const message = "Bad Request";
-      return new Response(JSON.stringify({ message, body }), { status: 400 });
     }
 
-    body.tags.forEach((tag) => {
-      revalidateTag(tag);
-    });
+    // revalidate everything
+    revalidatePath("/", "layout");
 
     return NextResponse.json({ body });
   } catch (err) {

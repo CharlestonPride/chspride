@@ -58,6 +58,10 @@ export default function PageBuilder(props: Page) {
     }
     return <></>;
   });
-  const headerProps = { header: props.header, content: content };
-  return <HeaderBuilder {...headerProps}></HeaderBuilder>;
+  const headerProps = {
+    header: props.header,
+    content: content,
+    id: props.slug?.current ?? "page",
+  };
+  return <HeaderBuilder {...headerProps} key={headerProps.id}></HeaderBuilder>;
 }

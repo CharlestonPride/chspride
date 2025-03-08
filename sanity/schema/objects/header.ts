@@ -15,6 +15,7 @@ export default defineType({
         layout: "radio",
         list: [
           { value: "block", title: "Block" },
+          { value: "full", title: "Full" },
           { value: "oblique", title: "Oblique" },
           { value: "wave", title: "Wave" },
         ],

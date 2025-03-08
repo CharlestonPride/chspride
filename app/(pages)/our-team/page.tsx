@@ -191,7 +191,7 @@ export default function OurTeam() {
       setFocusedPerson={setFocusedPerson}
     ></BoardMemberList>,
   ];
-  const headerProps = { header: team.header, content };
+  const headerProps = { header: team.header, content, id: "our-team" };
 
   return (
     <main>
