@@ -1,5 +1,5 @@
 import { TextBlock as TextBlockProps } from "@/sanity/lib/sanity.types";
-import { PortableText } from "next-sanity";
+import { PortableText } from "@portabletext/react";
 import { Col, Row } from "react-bootstrap";
 
 export default function TextBlock(props: TextBlockProps) {

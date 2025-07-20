@@ -1,10 +1,10 @@
-import { sanityFetch } from "@/sanity/lib/live";
+import { client } from "@/sanity/lib/client";
 import {
-  SponsorsCard as SponsorsCardProps,
-  SponsorshipsQueryResult,
+    SponsorsCard as SponsorsCardProps,
+    SponsorshipsQueryResult,
 } from "@/sanity/lib/sanity.types";
 import { sponsorshipsQuery } from "@/sanity/queries";
-import { Container, Row, Col } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 
 type Sponsorship = SponsorshipsQueryResult[number];
 
@@ -47,10 +47,7 @@ const Sponsor = (sponsorship: Sponsorship) => {
 };
 
 export default async function SponsorCard(props: SponsorsCardProps) {
-  const { data } = await sanityFetch({
-    query: sponsorshipsQuery,
-    params: { year: props.year },
-  });
+  const data = await client.fetch(sponsorshipsQuery, { year: props.year });
   const sponsorships = data as SponsorshipsQueryResult;
   return (
     <Container className="my-5">

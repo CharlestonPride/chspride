@@ -1,7 +1,7 @@
-import { TwoColumnCard as TwoColumnCardProps } from "@/sanity/lib/sanity.types";
-import { Container, Row, Col } from "react-bootstrap";
 import { urlFor } from "@/sanity/lib/image";
-import { PortableText } from "next-sanity";
+import { TwoColumnCard as TwoColumnCardProps } from "@/sanity/lib/sanity.types";
+import { PortableText } from "@portabletext/react";
+import { Col, Container, Row } from "react-bootstrap";
 import { LinkButton } from "../button";
 import RoundShadowIcon from "../icon";
 

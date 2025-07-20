@@ -1,19 +1,18 @@
+import { client } from "@/sanity/lib/client";
 import { NavigationQueryResult } from "@/sanity/lib/sanity.types";
 import { navigationQuery } from "@/sanity/queries";
 import Link from "next/link";
-import React from "react";
 import {
-  NavbarBrand,
-  NavbarCollapse,
-  NavbarToggle,
-  NavLink,
+    NavbarBrand,
+    NavbarCollapse,
+    NavbarToggle,
+    NavLink,
 } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { LinkButton } from "./button";
-import { sanityFetch } from "@/sanity/lib/live";
 
 const Hamburger = () => {
   return (
@@ -56,10 +55,7 @@ function getNavItem(props: { label: string | null; slug: string | null }) {
 }
 
 export default async function MainNavBar() {
-  const { data } = await sanityFetch({
-    query: navigationQuery,
-    tag: "main-nav",
-  });
+  const data = await client.fetch(navigationQuery);
   const nav = data as NavigationQueryResult;
   return (
     <Navbar bg="light" expand="lg">

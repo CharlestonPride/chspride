@@ -1,16 +1,16 @@
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { client } from "@/sanity/lib/client";
+import { FooterQueryResult } from "@/sanity/lib/sanity.types";
+import { footerQuery } from "@/sanity/queries";
 import {
-  faFacebook,
-  faInstagram,
-  IconDefinition,
+    faFacebook,
+    faInstagram,
+    IconDefinition,
 } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope, faMap } from "@fortawesome/free-solid-svg-icons";
-import { Container, Row, Col } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
+import { Col, Container, Row } from "react-bootstrap";
 import { fbUrl, instagramUrl } from "../lib/socialMedia";
-import { footerQuery } from "@/sanity/queries";
-import { FooterQueryResult } from "@/sanity/lib/sanity.types";
-import { sanityFetch } from "@/sanity/lib/live";
 
 type SocialProps = {
   url: string;
@@ -55,7 +55,7 @@ const Email = (footer: FooterQueryResult) => {
 };
 
 export default async function Footer() {
-  const { data } = await sanityFetch({ query: footerQuery, tag: "footer" });
+  const data = await client.fetch(footerQuery);
   const footer = data as FooterQueryResult;
   const year = new Date().getFullYear();
   return (
