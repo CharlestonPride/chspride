@@ -70,23 +70,7 @@ export type Geopoint = {
 
 export type Theme = "primary" | "secondary" | "success" | "info" | "warning" | "danger";
 
-export type Icon =
-  | "crown"
-  | "flag"
-  | "grin-hearts"
-  | "hand-holding-usd"
-  | "hands-helping"
-  | "heart"
-  | "shopping-cart"
-  | "smile"
-  | "ticket"
-  | "user-friends"
-  | "envelope"
-  | "map"
-  | "martini-glass"
-  | "champagne-glasses"
-  | "star"
-  | "handshake";
+export type Icon = "crown" | "flag" | "grin-hearts" | "hand-holding-usd" | "hands-helping" | "heart" | "shopping-cart" | "smile" | "ticket" | "user-friends" | "envelope" | "map" | "martini-glass" | "champagne-glasses" | "star" | "handshake";
 
 export type ExternalUrl = {
   _type: "externalUrl";
@@ -565,42 +549,7 @@ export type Header = {
   size?: string;
   position?: string;
 };
-export type AllSanitySchemaTypes =
-  SanityImagePaletteSwatch |
-  SanityImagePalette |
-  SanityImageDimensions |
-  SanityFileAsset |
-  Geopoint |
-  Theme |
-  Icon |
-  ExternalUrl |
-  DropdownItem |
-  TwoColumnGalleryCard |
-  TwoColumnCard |
-  TextBlock |
-  SponsorsCard |
-  SocialsCard |
-  ImageGalleryCard |
-  EmbeddedForm |
-  Button |
-  OurTeam |
-  Navigation |
-  Home |
-  Footer |
-  Sponsorship |
-  Sponsor |
-  Person |
-  Page |
-  Seo |
-  Visibility |
-  SanityImageCrop |
-  SanityImageHotspot |
-  SanityImageAsset |
-  SanityAssetSourceData |
-  SanityImageMetadata |
-  Header |
-  MediaTag |
-  Slug;
+
 export type MediaTag = {
   _id: string;
   _type: "media.tag";

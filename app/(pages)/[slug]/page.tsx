@@ -7,10 +7,9 @@ import { notFound } from "next/navigation";
 export default async function SlugPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const data = await client.fetch(pageBySlugQuery, params);
-  const props = data as PageProps;
+  const props = await client.fetch<PageProps>(pageBySlugQuery, await params);
   if (!props) {
     return notFound();
   }
