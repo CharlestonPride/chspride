@@ -24,6 +24,7 @@ import {
   sponsorshipType,
   sponsorType,
 } from "./sanity/schema/documents";
+import { deploy } from "./sanity/tools/deploy";
 
 const singletonDocumentDefinitions: DocumentDefinition[] = [home, ourTeam];
 const siteSettingDocumentDefinitions: DocumentDefinition[] = [
@@ -119,7 +120,7 @@ export default defineConfig({
     singletonPlugin([navigation.name, footer.name]),
     media(),
   ],
-  //tools: [guide()],
+  tools: [deploy()],
   // Add and edit the content schema in the './sanity/schema' folder
   schema: {
     types: schemaTypes,
