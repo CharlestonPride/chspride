@@ -340,6 +340,7 @@ export type Home = {
   } & TextBlock | {
     _key: string;
   } & SponsorsCard>;
+  alert?: Alert;
   seo?: Seo;
 };
 
@@ -441,6 +442,7 @@ export type Page = {
   } & TextBlock | {
     _key: string;
   } & SponsorsCard>;
+  alert?: Alert;
   visibility?: Visibility;
   seo?: Seo;
 };
@@ -467,6 +469,29 @@ export type Visibility = {
   _type: "visibility";
   displayFrom?: string;
   displayTo?: string;
+};
+
+export type Alert = {
+  _type: "alert";
+  message?: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "normal";
+    listItem?: never;
+    markDefs?: Array<{
+      url?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  }>;
+  theme?: "primary" | "secondary" | "success" | "info" | "warning" | "danger";
 };
 
 export type SanityImageCrop = {
@@ -565,7 +590,7 @@ export type Slug = {
   source?: string;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Theme | Icon | ExternalUrl | DropdownItem | TwoColumnGalleryCard | TwoColumnCard | TextBlock | SponsorsCard | SocialsCard | ImageGalleryCard | EmbeddedForm | Button | OurTeam | Navigation | Home | Footer | Sponsorship | Sponsor | Person | Page | Seo | Visibility | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Header | MediaTag | Slug;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Theme | Icon | ExternalUrl | DropdownItem | TwoColumnGalleryCard | TwoColumnCard | TextBlock | SponsorsCard | SocialsCard | ImageGalleryCard | EmbeddedForm | Button | OurTeam | Navigation | Home | Footer | Sponsorship | Sponsor | Person | Page | Seo | Visibility | Alert | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Header | MediaTag | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/queries.tsx
 // Variable: slugsQuery
@@ -602,6 +627,7 @@ export type PageBySlugQueryResult = {
   } & TwoColumnCard | {
     _key: string;
   } & TwoColumnGalleryCard>;
+  alert?: Alert;
   visibility?: Visibility;
   seo?: Seo;
 } | null;
@@ -815,6 +841,7 @@ export type HomeQueryResult = Array<{
       _key: string;
     }>;
   }> | null;
+  alert?: Alert;
   seo?: Seo;
 }>;
 // Variable: navigationQuery

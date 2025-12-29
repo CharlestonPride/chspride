@@ -8,6 +8,7 @@ import ExternalCard from "./card/externalCard";
 import TextBlock from "./textBlock";
 import HeaderBuilder from "./header/headerBuilder";
 import SponsorCard from "./card/sponsorCard";
+import Alert from "./alert";
 
 export default function PageBuilder(props: Page) {
   let sectionCount = 0;
@@ -63,5 +64,10 @@ export default function PageBuilder(props: Page) {
     content: content,
     id: props.slug?.current ?? "page",
   };
-  return <HeaderBuilder {...headerProps} key={headerProps.id}></HeaderBuilder>;
+  return (
+    <>
+      {props.alert && <Alert {...props.alert} />}
+      <HeaderBuilder {...headerProps} key={headerProps.id}></HeaderBuilder>
+    </>
+  );
 }

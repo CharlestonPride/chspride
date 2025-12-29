@@ -54,6 +54,12 @@ export default defineType({
       ],
     }),
     defineField({
+      name: "alert",
+      title: "Alert",
+      type: "alert",
+      options: { collapsible: true, collapsed: true },
+    }),
+    defineField({
       name: "visibility",
       title: "Visibility",
       type: "visibility",
