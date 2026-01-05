@@ -1,12 +1,18 @@
 import { urlFor } from "@/sanity/lib/image";
 import { TwoColumnCard as TwoColumnCardProps } from "@/sanity/lib/sanity.types";
-import { PortableText } from "@portabletext/react";
+import { PortableText, PortableTextReactComponents } from "@portabletext/react";
 import { Col, Container, Row } from "react-bootstrap";
 import { LinkButton } from "../button";
 import RoundShadowIcon from "../icon";
+import LinkMark from "../portableText/link";
 
 export type Props = TwoColumnCardProps & { orientation: "left" | "right" };
 
+const components: Partial<PortableTextReactComponents> = {
+  marks: {
+    link: LinkMark,
+  },
+};
 const CardContent = (props: TwoColumnCardProps) => {
   let imagesElems = undefined;
   if (props?.secondary?.length) {
@@ -41,7 +47,13 @@ const CardContent = (props: TwoColumnCardProps) => {
       {props.subtitle && <h3>{props.subtitle}</h3>}
       <div className="mt-4 lead">
         {props.content?.map((text, index) => {
-          return <PortableText key={index} value={text}></PortableText>;
+          return (
+            <PortableText
+              key={index}
+              value={text}
+              components={components}
+            ></PortableText>
+          );
         })}
       </div>
       {buttonElems}
