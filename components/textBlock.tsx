@@ -12,7 +12,6 @@ export default function TextBlock(props: TextBlockProps) {
   return (
     <Row className="py-5">
       <Col lg="8" className="mx-auto">
-        <div>{JSON.stringify(props.content)}</div>
         {props.content?.map((text, index) => {
           return (
             <div className="lead" key={index}>
