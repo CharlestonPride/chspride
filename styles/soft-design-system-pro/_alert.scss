@@ -14,3 +14,10 @@
     box-shadow: none;
   }
 }
+
+.alert {
+  a {
+    color: $white;
+    text-decoration: underline;
+  }
+}
