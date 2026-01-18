@@ -1,48 +1,21 @@
 {
-  "name": "chspride",
-  "version": "0.1.0",
+  "name": "chspride-monorepo",
+  "version": "1.0.0",
   "private": true,
+  "description": "Charleston Pride monorepo containing web and mobile applications",
+  "scripts": {
+    "web:dev": "cd web && npm run dev",
+    "web:build": "cd web && npm run build",
+    "web:start": "cd web && npm run start",
+    "web:studio": "cd web && npm run studio",
+    "web:install": "cd web && npm install",
+    "mobile:flutter": "cd mobile && flutter run"
+  },
+  "workspaces": [
+    "web",
+    "mobile"
+  ],
   "engines": {
     "node": ">=20.14.0"
-  },
-  "scripts": {
-    "dev": "next dev",
-    "prebuild": "npm run typegen",
-    "build": "next build",
-    "start": "next start",
-    "studio": "sanity dev",
-    "lint": "next lint",
-    "typegen": "sanity schema extract && sanity typegen generate",
-    "format": "prettier --write . --ignore-path .gitignore",
-    "lint:fix": "npm run format && npm run lint -- --fix"
-  },
-  "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.6.0",
-    "@fortawesome/free-brands-svg-icons": "^6.6.0",
-    "@fortawesome/free-solid-svg-icons": "^6.6.0",
-    "@fortawesome/react-fontawesome": "^0.2.2",
-    "@portabletext/react": "^3.1.0",
-    "@sanity/image-url": "^1.0.2",
-    "@sanity/vision": "^3.52.4",
-    "bootstrap": "^5.3.3",
-    "groq": "^3.52.4",
-    "next": "15.1.0",
-    "next-sanity": "9.8.27",
-    "react": "^18",
-    "react-bootstrap": "^2.10.4",
-    "react-dom": "^18",
-    "sanity": "^3.52.4",
-    "sanity-plugin-media": "^2.3.2",
-    "styled-components": "^6.1.12"
-  },
-  "devDependencies": {
-    "@types/node": "^22",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "15.1.0",
-    "prettier": "3.4.2",
-    "sass": "^1.77.8",
-    "typescript": "^5"
   }
 }
