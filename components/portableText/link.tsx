@@ -1,7 +1,9 @@
 export default function LinkMark({ value, children }: any) {
-  const target = (value?.url || "").startsWith("http") ? "_blank" : undefined;
+  const href = value?.href || value?.url || "#";
+  const target = href.startsWith("http") ? "_blank" : undefined;
+
   return (
-    <a href={value?.url} target={target} rel="noopener noreferrer">
+    <a href={href} target={target} rel="noopener noreferrer">
       {children}
     </a>
   );

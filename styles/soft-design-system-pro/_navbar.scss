@@ -10,6 +10,10 @@
     padding: $navbar-nav-link-padding;
     font-weight: $font-weight-normal;
     font-size: $font-size-lg;
+    text-decoration: none;
+    &:hover {
+      color: $dark;
+      text-decoration: underline;
   }
 
   &.navbar-absolute {
@@ -17,6 +21,7 @@
     width: 100%;
     z-index: 1;
   }
+}
 
   &.navbar-transparent {
     .nav-link {
