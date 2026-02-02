@@ -1,25 +1,32 @@
-# Monorepo Restructuring - Migration Guide
+# Repository Restructuring - Migration Guide
 
 ## What Changed
 
-This repository has been restructured from a single Next.js application to a monorepo that supports both web and mobile applications sharing a common Sanity CMS schema.
+This repository has been restructured to support both web and mobile applications while sharing Sanity CMS schema definitions.
 
 ### New Structure
 
 ```
 chspride/
-├── web/                    # Next.js web application (formerly at root)
-├── mobile/                 # Flutter mobile application (new)
-├── sanity-schema/          # Shared Sanity schema (formerly /sanity)
-├── .github/workflows/      # Updated CI/CD workflows
-├── package.json           # Root monorepo package.json with helper scripts
+├── web/                    # Next.js web application (manages own dependencies)
+│   ├── sanity/lib/        # Web-specific Sanity client & utilities
+│   └── package.json       # Web dependencies
+├── mobile/                 # Flutter mobile application (independent)
+├── sanity-schema/          # Shared schema only (no dependencies)
+│   ├── schema/            # Sanity schema definitions
+│   ├── lib/               # Type definitions
+│   └── queries.tsx        # GROQ queries
+├── package.json           # Root scripts only (no workspaces)
 └── README.md              # Updated documentation
 ```
 
-### Removed
+**Key Changes:**
 
-- `Dockerfile` and `.dockerignore` - No longer needed
-- Root-level build artifacts (`.next`, `build`, `node_modules`, `out`)
+- **Not an npm workspace** - Each app manages dependencies independently
+- **Sanity client moved** - From `sanity-schema/lib/client.ts` to `web/sanity/lib/client.ts`
+- **Environment config moved** - From `sanity-schema/env.ts` to `web/sanity/lib/env.ts`
+- **Image utilities moved** - From `sanity-schema/lib/` to `web/sanity/lib/`
+- **sanity-schema simplified** - Only contains schemas, types, and queries (no dependencies)
 
 ## Next Steps
 
@@ -42,7 +49,12 @@ chspride/
    npm run dev
    ```
 
-The web application should work exactly as before. All imports have been updated to use the new `@sanity/*` path alias that points to `../sanity-schema/`.
+The web application should work exactly as before. Imports are structured as:
+
+- `@/sanity/lib/client` - Local web client
+- `@/sanity/lib/image` - Local image utilities
+- `@sanity/lib/sanity.types` - Shared types from sanity-schema
+- `@sanity/queries` - Shared queries from sanity-schema
 
 ### For Mobile Development
 
@@ -54,11 +66,11 @@ The web application should work exactly as before. All imports have been updated
 
 2. Initialize the Flutter project:
 
-   ```bash
-   flutter create --org com.charlestonpride --project-name chspride_mobile .
+   ```bashSanity client in your Flutter app (independent from web)
+
    ```
 
-3. Set up environment variables:
+3. The mobile app can reference shared schema types from
    - Copy `.env.example` (create one) with your Sanity credentials
    - Configure Sanity client in your Flutter app
 
@@ -88,19 +100,26 @@ The GitHub Actions workflow has been updated:
 
 1. **Path Aliases**: The web app now uses `@sanity/*` to import from the shared schema directory instead of relative `./sanity/` imports.
 
-2. **TypeScript Config**: The `web/tsconfig.json` has been updated with a new path mapping:
+2. \*\*TypeScript Confi
+   - `@/sanity/*` - Maps to `web/sanity/*` (local web code)
+   - `@sanity/*` - Maps to `../sanity-schema/*` (shared schema)
+
+3. **TypeScript Config**: The `web/tsconfig.json` has path mappings:
 
    ```json
-   "@sanity/*": ["../sanity-schema/*"]
+   {
+     "@/*": ["./*"],
+     "@sanity/*": ["../sanity-schema/*"]
+   }
    ```
 
-3. **Environment Variables**: Make sure `.env` files are in the correct locations:
-   - Web: `web/.env` and `web/.env.local`
-   - Mobile: `mobile/.env` (after Flutter initialization)
+4. **No Workspace Configuration**: Each app runs `npm install` independently. There is no shared node_modules or workspace dependencies.
 
-4. **Sanity Studio**: Still accessible at `http://localhost:3000/studio` when running the web dev server.
+5. **Sanity Configuration**: Each app maintains its own Sanity client and configuration:
+   - Web: `web/sanity/lib/client.ts` and `web/sanity/lib/env.ts`
+   - Mobile: Will have its own configurationst:3000/studio` when running the web dev server.
 
-5. **Type Generation**: Run `npm run typegen` from the `web/` directory to regenerate Sanity TypeScript types.
+6. **Type Generation**: Run `npm run typegen` from the `web/` directory to regenerate Sanity TypeScript types.
 
 ## Verification Checklist
 

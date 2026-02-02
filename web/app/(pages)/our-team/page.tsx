@@ -10,7 +10,7 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import HeaderBuilder from "@/components/header/headerBuilder";
 import SanityImage from "@/components/sanityImage";
-import { client } from "@sanity/lib/client";
+import { client } from "@/sanity/lib/client";
 import { use, useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 

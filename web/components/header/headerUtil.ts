@@ -1,4 +1,4 @@
-import { urlFor } from "@sanity/lib/image";
+import { urlFor } from "@/sanity/lib/image";
 import { Header as HeaderProps } from "@sanity/lib/sanity.types";
 import { CSSProperties } from "react";
 

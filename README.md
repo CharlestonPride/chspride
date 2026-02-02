@@ -1,15 +1,17 @@
-# Charleston Pride - Monorepo
+# Charleston Pride
 
-This repository contains the Charleston Pride web and mobile applications, along with shared Sanity CMS schema.
+This repository contains the Charleston Pride web application and mobile application (coming soon), with shared Sanity CMS schema.
 
 ## Repository Structure
 
 ```
-├── web/                 # Next.js web application
-├── mobile/              # Flutter mobile application
-├── sanity-schema/       # Shared Sanity CMS schema and configuration
+├── web/                 # Next.js web application (independent)
+├── mobile/              # Flutter mobile application (independent)
+├── sanity-schema/       # Shared Sanity CMS schema (types, queries, schemas only)
 └── .github/workflows/   # CI/CD workflows
 ```
+
+**Note:** This is not an npm workspace. Each application manages its own dependencies independently.
 
 ## Projects
 
@@ -17,7 +19,9 @@ This repository contains the Charleston Pride web and mobile applications, along
 
 A Next.js application for the Charleston Pride website, using Sanity CMS for content management.
 
-**Getting Started:**
+See [web/README.md](web/README.md) for detailed documentation.
+
+**Quick Start:**
 
 ```bash
 cd web
@@ -28,14 +32,6 @@ npm run dev
 Open [http://localhost:3000](http://localhost:3000) to view the web app.
 
 The Sanity Studio is available at [http://localhost:3000/studio](http://localhost:3000/studio).
-
-**Available Scripts:**
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run studio` - Run Sanity Studio standalone
-- `npm run typegen` - Generate TypeScript types from Sanity schema
 
 ### Mobile Application (`/mobile`)
 
@@ -54,18 +50,19 @@ See [mobile/README.md](mobile/README.md) for more details.
 
 ### Shared Sanity Schema (`/sanity-schema`)
 
-Contains the Sanity CMS schema, plugins, queries, and configuration shared between web and mobile applications.
+Contains only truly shared Sanity CMS content:
 
-Both applications connect to the same Sanity instance but may use different GROQ queries optimized for their respective platforms.
+- Schema definitions
+- Type files (sanity.types.ts, types.ext.ts)
+- GROQ queries
 
-## Environment Variables
+**Note:** Client configuration, image utilities, and environment variables are maintained separately in each application (`web/sanity/lib/`, future `mobile/lib/`). This allows each app to configure Sanity independently while sharing schema definitions.
+The web application stores Sanity credentials in `web/sanity/lib/env.ts`. The mobile application will maintain its own configuration.
 
-Both web and mobile applications require Sanity credentials. Create a `.env` file in each project directory:
-
-```env
-NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
+Environment variables are not used to avoid build-time configuration issues with static exports.T_PUBLIC_SANITY_PROJECT_ID=your_project_id
 NEXT_PUBLIC_SANITY_DATASET=your_dataset
 NEXT_PUBLIC_SANITY_API_VERSION=2024-01-01
+
 ```
 
 ## Deployment
@@ -77,3 +74,4 @@ The web application is automatically deployed to Azure Static Web Apps via GitHu
 - [Next.js Documentation](https://nextjs.org/docs)
 - [Flutter Documentation](https://docs.flutter.dev)
 - [Sanity Documentation](https://www.sanity.io/docs)
+```

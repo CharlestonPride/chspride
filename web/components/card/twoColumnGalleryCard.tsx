@@ -1,4 +1,4 @@
-import { urlFor } from "@sanity/lib/image";
+import { urlFor } from "@/sanity/lib/image";
 import { TwoColumnGalleryCard as TwoColumnGalleryCardProps } from "@sanity/lib/sanity.types";
 import { Container, Row, Col } from "react-bootstrap";
 import { LinkButton } from "../button";

@@ -1,4 +1,4 @@
-import { client } from "@sanity/lib/client";
+import { client } from "@/sanity/lib/client";
 import { NavigationQueryResult } from "@sanity/lib/sanity.types";
 import { navigationQuery } from "@sanity/queries";
 import Link from "next/link";

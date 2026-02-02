@@ -1,4 +1,4 @@
-import { urlFor } from "@sanity/lib/image";
+import { urlFor } from "@/sanity/lib/image";
 import { ImageAsset } from "@sanity/lib/types.ext";
 
 type Props = ImageAsset & { imgClass: string };
