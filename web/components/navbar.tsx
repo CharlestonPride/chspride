@@ -1,6 +1,6 @@
 import { client } from "@/sanity/lib/client";
 import { NavigationQueryResult } from "@sanity/lib/sanity.types";
-import { navigationQuery } from "@sanity/queries";
+import { navigationQuery } from "@/sanity/lib/queries";
 import Link from "next/link";
 import {
     NavbarBrand,

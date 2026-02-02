@@ -3,7 +3,7 @@ import {
     SponsorsCard as SponsorsCardProps,
     SponsorshipsQueryResult,
 } from "@sanity/lib/sanity.types";
-import { sponsorshipsQuery } from "@sanity/queries";
+import { sponsorshipsQuery } from "@/sanity/lib/queries";
 import { Col, Container, Row } from "react-bootstrap";
 
 type Sponsorship = SponsorshipsQueryResult[number];

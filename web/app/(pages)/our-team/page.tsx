@@ -1,6 +1,6 @@
 "use client";
 import { OurTeamQueryResult, Person } from "@sanity/lib/sanity.types";
-import { ourTeamQuery } from "@sanity/queries";
+import { ourTeamQuery } from "@/sanity/lib/queries";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";

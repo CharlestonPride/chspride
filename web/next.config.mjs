@@ -5,6 +5,12 @@ const nextConfig = {
     trailingSlash: true,
     images: {
         unoptimized: true
+    },
+    // Disable Turbopack for now due to Sass compatibility issues
+    turbopack: false,
+    sassOptions: {
+        includePaths: ['./node_modules'],
+        silenceDeprecations: ['legacy-js-api'],
     }
 };
 
