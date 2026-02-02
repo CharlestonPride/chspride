@@ -10,7 +10,14 @@ const nextConfig = {
     turbopack: false,
     sassOptions: {
         includePaths: ['./node_modules'],
-        silenceDeprecations: ['legacy-js-api'],
+        silenceDeprecations: [
+            'legacy-js-api',
+            'import',
+            'color-functions',
+            'global-builtin',
+            'if-function',
+            'function-units'
+        ],
     }
 };
 

@@ -4,8 +4,9 @@ Next.js web application for Charleston Pride, featuring a statically exported si
 
 ## Tech Stack
 
-- **Framework**: Next.js 15.1.0 (static export)
-- **CMS**: Sanity CMS v3
+- **Framework**: Next.js 16 (static export with Webpack)
+- **CMS**: Sanity CMS v5
+- **React**: React 19
 - **Styling**: Bootstrap 5 + Soft UI Design System Pro
 - **TypeScript**: Full type safety with generated Sanity types
 - **Deployment**: Azure Static Web Apps
@@ -14,8 +15,8 @@ Next.js web application for Charleston Pride, featuring a statically exported si
 
 ### Prerequisites
 
-- Node.js 20.14.0 or higher
-- npm 10.7.0 or higher
+- Node.js 20.19.0 or higher
+- npm 10.8.0 or higher
 
 ### Installation
 
@@ -75,6 +76,7 @@ web/
 │       ├── client.ts     # Sanity client instance
 │       ├── env.ts        # Sanity project configuration
 │       ├── image.ts      # Image URL builder utilities
+│       ├── queries.ts    # GROQ queries for web app
 │       └── utils.ts      # Helper functions
 ├── styles/               # SCSS stylesheets
 │   ├── globals.scss      # Global styles & Bootstrap imports
@@ -111,7 +113,7 @@ Example imports:
 ```typescript
 import { client } from "@/sanity/lib/client";           // Local web client
 import { Page } from "@sanity/lib/sanity.types";        // Shared types
-import { homeQuery } from "@sanity/queries";            // Shared queries
+import { homeQuery } from "@/sanity/lib/queries";       // Local web queries
 ```
 
 ## Building for Production
@@ -146,9 +148,15 @@ npm run build
 
 ## Development Notes
 
-### Sass Deprecation Warnings
+### Build System
 
-You may see Sass deprecation warnings during development. These are from the Soft UI Design System theme and Bootstrap, and do not affect functionality. They will be addressed in future updates.
+The application uses Webpack for development and production builds:
+
+```bash
+npm run dev  # Uses --webpack flag to avoid Turbopack Sass issues
+```
+
+Sass deprecation warnings are suppressed in `next.config.mjs` and will be addressed when migrating to a modern CSS framework (e.g., Tailwind CSS).
 
 ### Type Generation
 
