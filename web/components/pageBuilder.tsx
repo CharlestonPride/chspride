@@ -2,7 +2,7 @@ import GalleryCard from "./card/galleryCard";
 import SocialCard from "./card/socialCard";
 import TwoColumnCard from "./card/twoColumnCard";
 import TwoColumnGalleryCard from "./card/twoColumnGalleryCard";
-import { Page } from "@sanity/lib/sanity.types";
+import { Page } from "@/sanity/lib/sanity.types";
 import { Row, Col } from "react-bootstrap";
 import ExternalCard from "./card/externalCard";
 import TextBlock from "./textBlock";

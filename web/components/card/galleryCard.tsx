@@ -1,6 +1,6 @@
 import { urlFor } from "@/sanity/lib/image";
-import { ImageGalleryCard as GalleryCardProps } from "@sanity/lib/sanity.types";
-import { ImageAsset } from "@sanity/lib/types.ext";
+import { ImageGalleryCard as GalleryCardProps } from "@/sanity/lib/sanity.types";
+import { ImageAsset } from "@/sanity/lib/types.ext";
 import { Container, Row, Col, ColProps } from "react-bootstrap";
 
 const getImage = (props: ImageAsset, imgClass: string) => {

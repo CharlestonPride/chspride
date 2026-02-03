@@ -1,6 +1,6 @@
 import PageBuilder from "@/components/pageBuilder";
 import { client } from "@/sanity/lib/client";
-import { Page as PageProps } from "@sanity/lib/sanity.types";
+import { Page as PageProps } from "@/sanity/lib/sanity.types";
 import { pageBySlugQuery, slugsQuery } from "@/sanity/lib/queries";
 import { notFound } from "next/navigation";
 

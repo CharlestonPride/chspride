@@ -1,4 +1,4 @@
-import { Header as HeaderProps } from "@sanity/lib/sanity.types";
+import { Header as HeaderProps } from "@/sanity/lib/sanity.types";
 import { Row, Col } from "react-bootstrap";
 
 export default function WaveHeader(props: {

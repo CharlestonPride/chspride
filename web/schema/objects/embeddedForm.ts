@@ -34,7 +34,7 @@ export default defineType({
     }),
     defineField({
       name: "url",
-      title: "URL of form to embedded",
+      title: "URL of form to embed",
       type: "url",
       validation: (rule) => rule.required(),
     }),

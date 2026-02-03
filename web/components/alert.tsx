@@ -1,4 +1,4 @@
-import { Alert as AlertProps } from "@sanity/lib/sanity.types";
+import { Alert as AlertProps } from "@/sanity/lib/sanity.types";
 import { PortableText, PortableTextReactComponents } from "@portabletext/react";
 import LinkMark from "./portableText/link";
 

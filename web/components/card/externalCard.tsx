@@ -1,4 +1,4 @@
-import { EmbeddedForm } from "@sanity/lib/sanity.types";
+import { EmbeddedForm } from "@/sanity/lib/sanity.types";
 
 export default function ExternalCard(props: EmbeddedForm) {
   return (

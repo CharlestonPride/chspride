@@ -1,4 +1,4 @@
-import { Theme } from "@sanity/lib/sanity.types";
+import { Theme } from "@/sanity/lib/sanity.types";
 import Link from "next/link";
 
 const GradientButton = (props: { label: string; theme: Theme }) => (

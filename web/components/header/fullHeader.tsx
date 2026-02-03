@@ -1,4 +1,4 @@
-import { Header as HeaderProps } from "@sanity/lib/sanity.types";
+import { Header as HeaderProps } from "@/sanity/lib/sanity.types";
 import { Container } from "react-bootstrap";
 import { LinkButton } from "../button";
 import { getStyle } from "./headerUtil";

@@ -1,9 +1,9 @@
 import { urlFor } from "@/sanity/lib/image";
-import { TwoColumnGalleryCard as TwoColumnGalleryCardProps } from "@sanity/lib/sanity.types";
+import { TwoColumnGalleryCard as TwoColumnGalleryCardProps } from "@/sanity/lib/sanity.types";
 import { Container, Row, Col } from "react-bootstrap";
 import { LinkButton } from "../button";
 import RoundShadowIcon from "../icon";
-import { ImageAsset } from "@sanity/lib/types.ext";
+import { ImageAsset } from "@/sanity/lib/types.ext";
 
 export type Props = TwoColumnGalleryCardProps & {
   orientation: "left" | "right";
