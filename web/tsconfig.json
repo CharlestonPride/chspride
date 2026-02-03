@@ -38,7 +38,8 @@
     "next-env.d.ts",
     "../sanity-schema/**/*.tsx",
     "build/dev/types/**/*.ts",
-    "build/types/**/*.ts"
+    "build/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"
