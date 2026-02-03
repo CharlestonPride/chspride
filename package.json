@@ -11,10 +11,6 @@
     "web:install": "cd web && npm install",
     "mobile:flutter": "cd mobile && flutter run"
   },
-  "workspaces": [
-    "web",
-    "mobile"
-  ],
   "engines": {
     "node": ">=20.14.0"
   }

@@ -34,7 +34,7 @@ export default defineType({
     defineField({
       name: "primary",
       title: "Primary Graphic",
-      description: "The primary graphic to be show in one of the columns.",
+      description: "The primary graphic to be shown in one of the columns.",
       type: "image",
       validation: (rule) => rule.required(),
     }),

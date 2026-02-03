@@ -1,6 +1,6 @@
 "use client";
-import { OurTeamQueryResult, Person } from "@sanity/lib/sanity.types";
-import { ourTeamQuery } from "@sanity/queries";
+import { OurTeamQueryResult, Person } from "@/sanity/lib/sanity.types";
+import { ourTeamQuery } from "@/sanity/lib/queries";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -10,7 +10,7 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import HeaderBuilder from "@/components/header/headerBuilder";
 import SanityImage from "@/components/sanityImage";
-import { client } from "@sanity/lib/client";
+import { client } from "@/sanity/lib/client";
 import { use, useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 

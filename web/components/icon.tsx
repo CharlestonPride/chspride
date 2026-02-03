@@ -1,4 +1,4 @@
-import { Theme } from "@sanity/lib/sanity.types";
+import { Theme } from "@/sanity/lib/sanity.types";
 import {
   IconLookup,
   IconDefinition,

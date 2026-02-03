@@ -1,7 +1,7 @@
 import createImageUrlBuilder from "@sanity/image-url";
 import type { Image } from "sanity";
 
-import { dataset, projectId } from "../env";
+import { dataset, projectId } from "./env";
 
 const imageBuilder = createImageUrlBuilder({
   projectId: projectId || "",
@@ -18,6 +18,9 @@ export const urlForImage = (source: Image | undefined) => {
   return imageBuilder?.image(source).auto("format").fit("max");
 };
 
-export function urlForOpenGraphImage(image: Image | undefined) {
-  return urlForImage(image)?.width(1200).height(627).fit("crop").url();
+export function resolveOpenGraphImage(image: Image, width = 1200, height = 627) {
+  if (!image) return undefined
+  const url = urlForImage(image)?.width(width).height(height).fit('crop').url()
+  if (!url) return undefined
+  return { url, alt: image?.alt as string, width, height }
 }

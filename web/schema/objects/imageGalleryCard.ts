@@ -39,7 +39,7 @@ export default defineType({
     prepare({ media }) {
       return {
         title: "Gallery",
-        subtitle: "Images:" + media.length,
+        subtitle: "Images: " + media.length,
         media: media[0],
       };
     },

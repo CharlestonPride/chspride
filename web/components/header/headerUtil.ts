@@ -1,5 +1,5 @@
-import { urlFor } from "@sanity/lib/image";
-import { Header as HeaderProps } from "@sanity/lib/sanity.types";
+import { urlFor } from "@/sanity/lib/image";
+import { Header as HeaderProps } from "@/sanity/lib/sanity.types";
 import { CSSProperties } from "react";
 
 function getStyle(props: HeaderProps): CSSProperties {

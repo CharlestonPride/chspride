@@ -1,4 +1,4 @@
-import { Header, Page } from "@sanity/lib/sanity.types";
+import { Header, Page } from "@/sanity/lib/sanity.types";
 import BlockHeader from "./blockHeader";
 import ObliqueHeader from "./obliqueHeader";
 import WaveHeader from "./waveHeader";

@@ -1,6 +1,6 @@
 import { Container, Row, Col } from "react-bootstrap";
 import { LinkButton } from "../button";
-import { Header as HeaderProps } from "@sanity/lib/sanity.types";
+import { Header as HeaderProps } from "@/sanity/lib/sanity.types";
 import { getStyle } from "./headerUtil";
 
 export default function ObliqueHeader(props: HeaderProps) {

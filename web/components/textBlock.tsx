@@ -1,4 +1,4 @@
-import { TextBlock as TextBlockProps } from "@sanity/lib/sanity.types";
+import { TextBlock as TextBlockProps } from "@/sanity/lib/sanity.types";
 import { PortableText, PortableTextReactComponents } from "@portabletext/react";
 import { Col, Row } from "react-bootstrap";
 import LinkMark from "./portableText/link";

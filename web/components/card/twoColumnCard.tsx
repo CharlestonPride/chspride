@@ -1,5 +1,5 @@
-import { urlFor } from "@sanity/lib/image";
-import { TwoColumnCard as TwoColumnCardProps } from "@sanity/lib/sanity.types";
+import { urlFor } from "@/sanity/lib/image";
+import { TwoColumnCard as TwoColumnCardProps } from "@/sanity/lib/sanity.types";
 import { PortableText, PortableTextReactComponents } from "@portabletext/react";
 import { Col, Container, Row } from "react-bootstrap";
 import { LinkButton } from "../button";

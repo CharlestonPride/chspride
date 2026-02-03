@@ -17,7 +17,7 @@ export default defineType({
   type: "document",
   icon: DocumentIcon as any,
   description:
-    "A sponsorship for an event or the organization. Please make a seperate sponsorship for each year.",
+    "A sponsorship for an event or the organization. Please make a separate sponsorship for each year.",
   fields: [
     defineField({
       name: "sponsor",

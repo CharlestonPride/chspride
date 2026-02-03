@@ -1,4 +1,5 @@
-import groq from "groq";
+// Simple groq tag function for syntax highlighting
+const groq = String.raw;
 
 export const slugsQuery = groq`*[_type == "page" && defined(slug.current)][]{
   _id,
