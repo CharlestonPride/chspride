@@ -16,6 +16,9 @@ In a volunteer-led environment, **simplicity is a feature**. I intentionally pri
 1.  **Sustainable Maintenance:** Choosing Sanity and Azure Functions reduces the "on-call" burden for the organization.
 2.  **Cost Neutrality:** Architected the system to stay within "Free Tier" cloud limits without sacrificing security or performance.
 3.  **Automated Quality Gates:** Implemented **GitHub Actions** for CI/CD, ensuring that any future community contributions meet baseline stability requirements.
+
+ _Note: This repository is a community-led volunteer project. While architected for production stability, it emphasizes rapid delivery and cost-efficiency over traditional enterprise development timelines._
+
 ## Repository Structure
 
 This repository contains the Charleston Pride web application and mobile application (coming soon), with shared Sanity CMS schema.
