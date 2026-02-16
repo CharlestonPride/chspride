@@ -11,6 +11,11 @@ As the sole maintainer and CTO for Charleston Pride, I architected a multi-platf
 * **Serverless Efficiency (Azure Functions):** Utilized an event-driven backend to ensure a secure, "pay-as-you-go" posture, keeping infrastructure costs at near-zero during off-peak months.
 * **Cross-Platform Delivery (Flutter):** Unified the user experience across iOS, Android, and Web with a single Dart codebase, ensuring feature parity while minimizing the maintenance surface area.
 
+### 🚀 Principal-Level Trade-offs
+In a volunteer-led environment, **simplicity is a feature**. I intentionally prioritized:
+1.  **Sustainable Maintenance:** Choosing Sanity and Azure Functions reduces the "on-call" burden for the organization.
+2.  **Cost Neutrality:** Architected the system to stay within "Free Tier" cloud limits without sacrificing security or performance.
+3.  **Automated Quality Gates:** Implemented **GitHub Actions** for CI/CD, ensuring that any future community contributions meet baseline stability requirements.
 ## Repository Structure
 
 This repository contains the Charleston Pride web application and mobile application (coming soon), with shared Sanity CMS schema.
