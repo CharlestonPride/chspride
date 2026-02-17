@@ -13,52 +13,51 @@ import Alert from "./alert";
 export default function PageBuilder(props: Page) {
   let sectionCount = 0;
 
-  let content = props.content?.map((c, index) => {
-    if (c._type == "twoColumnCard") {
-      return (
-        <TwoColumnCard
-          {...c}
-          orientation={sectionCount++ % 2 ? "left" : "right"}
-          key={index}
-        ></TwoColumnCard>
-      );
-    }
-    if (c._type == "socialsCard") {
-      return <SocialCard {...c} key={index}></SocialCard>;
-    }
-    if (c._type == "imageGalleryCard") {
-      return <GalleryCard {...c} key={index}></GalleryCard>;
-    }
-    if (c._type == "twoColumnGalleryCard") {
-      return (
-        <TwoColumnGalleryCard
-          {...c}
-          orientation={sectionCount++ % 2 ? "left" : "right"}
-          key={index}
-        ></TwoColumnGalleryCard>
-      );
-    }
-    if (c._type == "embeddedForm") {
-      if (props.header && props.header?.style === "wave") {
-        return <ExternalCard {...c} key={index}></ExternalCard>;
-      } else {
+  const renderSection = (section: NonNullable<Page["content"]>[number]) => {
+    const key = section?._key ?? `${section?._type}-${sectionCount}`;
+
+    switch (section?._type) {
+      case "twoColumnCard":
         return (
-          <Row key={index}>
+          <TwoColumnCard
+            {...section}
+            orientation={sectionCount++ % 2 ? "left" : "right"}
+            key={key}
+          />
+        );
+      case "socialsCard":
+        return <SocialCard {...section} key={key} />;
+      case "imageGalleryCard":
+        return <GalleryCard {...section} key={key} />;
+      case "twoColumnGalleryCard":
+        return (
+          <TwoColumnGalleryCard
+            {...section}
+            orientation={sectionCount++ % 2 ? "left" : "right"}
+            key={key}
+          />
+        );
+      case "embeddedForm":
+        if (props.header?.style === "wave") {
+          return <ExternalCard {...section} key={key} />;
+        }
+        return (
+          <Row key={key}>
             <Col lg="10" className="mx-auto">
-              <ExternalCard {...c}></ExternalCard>
+              <ExternalCard {...section} />
             </Col>
           </Row>
         );
-      }
+      case "textBlock":
+        return <TextBlock {...section} key={key} />;
+      case "sponsorsCard":
+        return <SponsorCard {...section} key={key} />;
+      default:
+        return null;
     }
-    if (c._type == "textBlock") {
-      return <TextBlock {...c} key={index}></TextBlock>;
-    }
-    if (c._type == "sponsorsCard") {
-      return <SponsorCard {...c} key={index}></SponsorCard>;
-    }
-    return <></>;
-  });
+  };
+
+  const content = props.content?.map(renderSection);
   const headerProps = {
     header: props.header,
     content: content,
@@ -67,7 +66,7 @@ export default function PageBuilder(props: Page) {
   return (
     <>
       {props.alert && <Alert {...props.alert} />}
-      <HeaderBuilder {...headerProps} key={headerProps.id}></HeaderBuilder>
+      <HeaderBuilder {...headerProps} />
     </>
   );
 }

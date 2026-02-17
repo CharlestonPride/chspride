@@ -1,18 +1,13 @@
 import { urlFor } from "@/sanity/lib/image";
 import { TwoColumnCard as TwoColumnCardProps } from "@/sanity/lib/sanity.types";
-import { PortableText, PortableTextReactComponents } from "@portabletext/react";
+import { PortableText } from "@portabletext/react";
 import { Col, Container, Row } from "react-bootstrap";
 import { LinkButton } from "../button";
 import RoundShadowIcon from "../icon";
-import LinkMark from "../portableText/link";
+import { portableTextComponents } from "../portableText/components";
 
 export type Props = TwoColumnCardProps & { orientation: "left" | "right" };
 
-const components: Partial<PortableTextReactComponents> = {
-  marks: {
-    link: LinkMark,
-  },
-};
 const CardContent = (props: TwoColumnCardProps) => {
   let imagesElems = undefined;
   if (props?.secondary?.length) {
@@ -51,7 +46,7 @@ const CardContent = (props: TwoColumnCardProps) => {
             <PortableText
               key={index}
               value={text}
-              components={components}
+              components={portableTextComponents}
             ></PortableText>
           );
         })}
@@ -133,7 +128,7 @@ const rightStacked = (props: TwoColumnCardProps, imageUrl: string) => {
 const left = (
   props: TwoColumnCardProps,
   imageUrl: string,
-  imgClass: string
+  imgClass: string,
 ) => {
   return (
     <Container className="my-5">
@@ -159,7 +154,7 @@ const left = (
 const right = (
   props: TwoColumnCardProps,
   imageUrl: string,
-  imgClass: string
+  imgClass: string,
 ) => {
   return (
     <Container className="my-5">
