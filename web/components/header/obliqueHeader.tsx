@@ -1,5 +1,5 @@
 import { Container, Row, Col } from "react-bootstrap";
-import { LinkButton } from "../button";
+import { LinkButton, GradientButton } from "../button";
 import { Header as HeaderProps } from "@/sanity/lib/sanity.types";
 import { getStyle } from "./headerUtil";
 
@@ -26,12 +26,11 @@ export default function ObliqueHeader(props: HeaderProps) {
                 return (
                   <LinkButton
                     reference={button.reference}
-                    label={button.label!}
                     url={button.url}
-                    theme={props.theme!}
-                    style="gradient"
                     key={button.label}
-                  ></LinkButton>
+                  >
+                    <GradientButton label={button.label!} theme={props.theme!} />
+                  </LinkButton>
                 );
               })}
             </Col>

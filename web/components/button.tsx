@@ -18,41 +18,20 @@ const OutlineButton = (props: { label: string; theme: Theme }) => (
 );
 
 const LinkButton = (props: {
-  reference: any | undefined;
-  url: string | undefined;
-  label: string;
-  theme: Theme;
-  style: "gradient" | "solid" | "outline";
+  reference?: any;
+  url?: string;
   target?: string;
+  children: React.ReactNode;
 }) => {
-  let button = null;
-  switch (props.style) {
-    case "gradient":
-      button = (
-        <GradientButton
-          label={props.label}
-          theme={props.theme}
-        ></GradientButton>
-      );
-      break;
-    case "outline":
-      button = (
-        <OutlineButton label={props.label} theme={props.theme}></OutlineButton>
-      );
-      break;
-    default:
-      button = (
-        <SolidButton label={props.label} theme={props.theme}></SolidButton>
-      );
-  }
-
   return props?.reference ? (
-    <Link href={"/" + (props.reference as any).slug.current}>{button}</Link>
+    <Link href={"/" + (props.reference as any).slug.current}>
+      {props.children}
+    </Link>
   ) : (
     <Link href={{ pathname: props.url }} target={props.target ?? "_blank"}>
-      {button}
+      {props.children}
     </Link>
   );
 };
 
-export { GradientButton, SolidButton, LinkButton };
+export { GradientButton, SolidButton, OutlineButton, LinkButton };
