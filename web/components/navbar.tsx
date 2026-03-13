@@ -12,7 +12,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { LinkButton } from "./button";
+import { LinkButton, SolidButton, OutlineButton } from "./button";
 
 const Hamburger = () => {
   return (
@@ -86,23 +86,21 @@ export default async function MainNavBar() {
               }
             })}
           </Nav>
-          {nav!.callToAction?.length && (
-            <LinkButton
-              reference={nav?.callToAction[0]}
-              label={nav!.callToAction[0].title!}
-              url={""}
-              theme={nav!.theme!}
-              style="solid"
-            ></LinkButton>
+          {nav?.callToAction && nav.callToAction.length > 0 && (
+            <LinkButton reference={nav.callToAction[0]}>
+              <SolidButton
+                label={nav.callToAction[0].title!}
+                theme={nav.theme!}
+              />
+            </LinkButton>
           )}
-          {nav!.callToAction?.length == 2 && (
-            <LinkButton
-              reference={nav?.callToAction[1]}
-              label={nav!.callToAction[1].title!}
-              url={""}
-              theme={nav!.theme!}
-              style="outline"
-            ></LinkButton>
+          {nav?.callToAction?.length === 2 && (
+            <LinkButton reference={nav.callToAction[1]}>
+              <OutlineButton
+                label={nav.callToAction[1].title!}
+                theme={nav.theme!}
+              />
+            </LinkButton>
           )}
         </NavbarCollapse>
       </Container>

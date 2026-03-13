@@ -17,42 +17,29 @@ const OutlineButton = (props: { label: string; theme: Theme }) => (
   </button>
 );
 
-const LinkButton = (props: {
-  reference: any | undefined;
-  url: string | undefined;
-  label: string;
-  theme: Theme;
-  style: "gradient" | "solid" | "outline";
-  target?: string;
-}) => {
-  let button = null;
-  switch (props.style) {
-    case "gradient":
-      button = (
-        <GradientButton
-          label={props.label}
-          theme={props.theme}
-        ></GradientButton>
-      );
-      break;
-    case "outline":
-      button = (
-        <OutlineButton label={props.label} theme={props.theme}></OutlineButton>
-      );
-      break;
-    default:
-      button = (
-        <SolidButton label={props.label} theme={props.theme}></SolidButton>
-      );
-  }
+type LinkButtonProps =
+  | { reference: any; url?: never; target?: never; children: React.ReactNode }
+  | { url: string; reference?: never; target?: string; children: React.ReactNode };
 
-  return props?.reference ? (
-    <Link href={"/" + (props.reference as any).slug.current}>{button}</Link>
-  ) : (
-    <Link href={{ pathname: props.url }} target={props.target ?? "_blank"}>
-      {button}
-    </Link>
-  );
+const LinkButton = (props: LinkButtonProps) => {
+  if (props.reference) {
+    return (
+      <Link href={"/" + props.reference.slug.current}>
+        {props.children}
+      </Link>
+    );
+  }
+  if (props.url) {
+    return (
+      <Link href={{ pathname: props.url }} target={props.target ?? "_blank"}>
+        {props.children}
+      </Link>
+    );
+  }
+  if (process.env.NODE_ENV !== "production") {
+    console.error("LinkButton requires either a `reference` or a `url` prop.");
+  }
+  return <>{props.children}</>;
 };
 
-export { GradientButton, SolidButton, LinkButton };
+export { GradientButton, SolidButton, OutlineButton, LinkButton };

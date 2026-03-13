@@ -10,7 +10,7 @@ const getImage = (props: ImageAsset, imgClass: string) => {
   return <img className={imgClass} src={imageUrl}></img>;
 };
 
-const singleImageCard = (props: GalleryCardProps) => {
+function SingleImageCard(props: GalleryCardProps) {
   return (
     <Container className="my-5">
       <Row>
@@ -24,7 +24,7 @@ const singleImageCard = (props: GalleryCardProps) => {
   );
 };
 
-const dualImageCard = (props: GalleryCardProps) => {
+function DualImageCard(props: GalleryCardProps) {
   return (
     <Container className="my-5">
       <Row className="mt-5">
@@ -51,7 +51,7 @@ const dualImageCard = (props: GalleryCardProps) => {
   );
 };
 
-const triImageCard = (props: GalleryCardProps) => {
+function TriImageCard(props: GalleryCardProps) {
   return (
     <Container className="my-5">
       <Row className={"py-2 border-radius-xl bg-gradient-" + props.theme}>
@@ -90,7 +90,7 @@ function getTriImageClass(order: number): string {
   return "d-lg-block d-none img-fluid border-radius-lg shadow";
 }
 
-const quadImageCard = (props: GalleryCardProps) => {
+function QuadImageCard(props: GalleryCardProps) {
   return (
     <Container className="my-5">
       <Row>
@@ -137,7 +137,7 @@ const quadImageCard = (props: GalleryCardProps) => {
   );
 };
 
-const pentaImageCard = (props: GalleryCardProps) => {
+function PentaImageCard(props: GalleryCardProps) {
   return (
     <Container>
       <Row className="my-5">
@@ -197,14 +197,14 @@ export default function GalleryCard(props: GalleryCardProps) {
   }
   switch (props.images.length) {
     case 1:
-      return singleImageCard(props);
+      return <SingleImageCard {...props} />;
     case 2:
-      return dualImageCard(props);
+      return <DualImageCard {...props} />;
     case 3:
-      return triImageCard(props);
+      return <TriImageCard {...props} />;
     case 4:
-      return quadImageCard(props);
+      return <QuadImageCard {...props} />;
     default:
-      return pentaImageCard(props);
+      return <PentaImageCard {...props} />;
   }
 }

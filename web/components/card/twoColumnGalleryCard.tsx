@@ -1,7 +1,7 @@
 import { urlFor } from "@/sanity/lib/image";
 import { TwoColumnGalleryCard as TwoColumnGalleryCardProps } from "@/sanity/lib/sanity.types";
 import { Container, Row, Col } from "react-bootstrap";
-import { LinkButton } from "../button";
+import { LinkButton, GradientButton, SolidButton } from "../button";
 import RoundShadowIcon from "../icon";
 import { ImageAsset } from "@/sanity/lib/types.ext";
 
@@ -12,14 +12,13 @@ export type Props = TwoColumnGalleryCardProps & {
 const CardContent = (props: TwoColumnGalleryCardProps) => {
   let buttonElems = props.buttons?.map((button, index) => {
     return (
-      <LinkButton
-        reference={button.reference}
-        label={button.label!}
-        url={button.url}
-        theme={props.theme!}
-        style={index === 0 ? "gradient" : "solid"}
-        key={index}
-      ></LinkButton>
+      <LinkButton reference={button.reference} url={button.url} key={index}>
+        {index === 0 ? (
+          <GradientButton label={button.label!} theme={props.theme!} />
+        ) : (
+          <SolidButton label={button.label!} theme={props.theme!} />
+        )}
+      </LinkButton>
     );
   });
 

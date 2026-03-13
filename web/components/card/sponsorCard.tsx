@@ -49,6 +49,13 @@ const Sponsor = (sponsorship: Sponsorship) => {
 export default async function SponsorCard(props: SponsorsCardProps) {
   const data = await client.fetch(sponsorshipsQuery, { year: props.year });
   const sponsorships = data as SponsorshipsQueryResult;
+
+  const featured: SponsorshipsQueryResult = [];
+  const regular: SponsorshipsQueryResult = [];
+  for (const s of sponsorships) {
+    (s?.featured ? featured : regular).push(s);
+  }
+
   return (
     <Container className="my-5">
       <Row className="mx-auto">
@@ -57,36 +64,28 @@ export default async function SponsorCard(props: SponsorsCardProps) {
         </h1>
       </Row>
       <Row className="align-items-end">
-        {sponsorships
-          .filter((sponsor) => sponsor?.featured)
-          .map((sponsorship, index) => {
-            return (
-              <Col
-                key={index}
-                xs={{ span: 10, offset: 1 }}
-                md={{ span: 6, offset: 2 }}
-                lg={{ span: 4, offset: 1 }}
-              >
-                <Sponsor {...sponsorship} />
-              </Col>
-            );
-          })}
+        {featured.map((sponsorship, index) => (
+          <Col
+            key={index}
+            xs={{ span: 10, offset: 1 }}
+            md={{ span: 6, offset: 2 }}
+            lg={{ span: 4, offset: 1 }}
+          >
+            <Sponsor {...sponsorship} />
+          </Col>
+        ))}
       </Row>
       <Row className="align-items-end">
-        {sponsorships
-          .filter((sponsor) => !sponsor?.featured)
-          .map((sponsorship, index) => {
-            return (
-              <Col
-                key={index}
-                xs={{ span: 6, offset: 0 }}
-                md={{ span: 4, offset: 0 }}
-                lg={{ span: 2, offset: 0 }}
-              >
-                <Sponsor {...sponsorship} />
-              </Col>
-            );
-          })}
+        {regular.map((sponsorship, index) => (
+          <Col
+            key={index}
+            xs={{ span: 6, offset: 0 }}
+            md={{ span: 4, offset: 0 }}
+            lg={{ span: 2, offset: 0 }}
+          >
+            <Sponsor {...sponsorship} />
+          </Col>
+        ))}
       </Row>
     </Container>
   );
