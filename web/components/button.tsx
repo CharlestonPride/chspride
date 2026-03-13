@@ -17,21 +17,29 @@ const OutlineButton = (props: { label: string; theme: Theme }) => (
   </button>
 );
 
-const LinkButton = (props: {
-  reference?: any;
-  url?: string;
-  target?: string;
-  children: React.ReactNode;
-}) => {
-  return props?.reference ? (
-    <Link href={"/" + (props.reference as any).slug.current}>
-      {props.children}
-    </Link>
-  ) : (
-    <Link href={{ pathname: props.url }} target={props.target ?? "_blank"}>
-      {props.children}
-    </Link>
-  );
+type LinkButtonProps =
+  | { reference: any; url?: never; target?: never; children: React.ReactNode }
+  | { url: string; reference?: never; target?: string; children: React.ReactNode };
+
+const LinkButton = (props: LinkButtonProps) => {
+  if (props.reference) {
+    return (
+      <Link href={"/" + props.reference.slug.current}>
+        {props.children}
+      </Link>
+    );
+  }
+  if (props.url) {
+    return (
+      <Link href={{ pathname: props.url }} target={props.target ?? "_blank"}>
+        {props.children}
+      </Link>
+    );
+  }
+  if (process.env.NODE_ENV !== "production") {
+    console.error("LinkButton requires either a `reference` or a `url` prop.");
+  }
+  return <>{props.children}</>;
 };
 
 export { GradientButton, SolidButton, OutlineButton, LinkButton };

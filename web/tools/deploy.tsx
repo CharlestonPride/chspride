@@ -4,7 +4,7 @@ import { PublishIcon } from "@sanity/icons";
 
 type Status = "idle" | "loading" | "success" | "error";
 
-const DEPLOY_HOOK_URL = process.env.SANITY_STUDIO_DEPLOY_HOOK_URL;
+const DEPLOY_HOOK_URL = process.env.NEXT_PUBLIC_SANITY_DEPLOY_HOOK_URL;
 
 function DeployTool() {
   const [status, setStatus] = useState<Status>("idle");
@@ -14,7 +14,7 @@ function DeployTool() {
     if (!DEPLOY_HOOK_URL) {
       setStatus("error");
       setMessage(
-        "SANITY_STUDIO_DEPLOY_HOOK_URL is not set. Add it to your .env file.",
+        "NEXT_PUBLIC_SANITY_DEPLOY_HOOK_URL is not set. Add it to your .env file.",
       );
       return;
     }

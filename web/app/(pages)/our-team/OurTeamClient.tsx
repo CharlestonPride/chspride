@@ -13,8 +13,19 @@ import { useState } from "react";
 import { Modal } from "react-bootstrap";
 
 const getInitials = (props: Person) => {
-  let name = props.email!.split("@")[0].split(".");
-  return name[0][0].toUpperCase() + name[1][0].toUpperCase();
+  if (props.name) {
+    const parts = props.name.trim().split(/\s+/).filter(Boolean);
+    if (parts.length >= 2) {
+      return parts[0][0].toUpperCase() + parts[parts.length - 1][0].toUpperCase();
+    }
+    return parts[0]?.[0]?.toUpperCase() ?? "?";
+  }
+  const localPart = props.email?.split("@")[0] ?? "";
+  const segments = localPart.split(".").filter(Boolean);
+  if (segments.length >= 2) {
+    return segments[0][0].toUpperCase() + segments[1][0].toUpperCase();
+  }
+  return segments[0]?.[0]?.toUpperCase() ?? "?";
 };
 
 const Headshot = (props: Person) => {

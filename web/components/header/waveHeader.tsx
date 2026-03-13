@@ -20,12 +20,12 @@ const waveComponent = (
       />
     </defs>
     <g className="moving-waves">
-      <use xlinkHref="#a" x={48} y={-1} fill="rgba(255,255,255,0.40" />
+      <use xlinkHref="#a" x={48} y={-1} fill="rgba(255,255,255,0.40)" />
       <use xlinkHref="#a" x={48} y={3} fill="rgba(255,255,255,0.35)" />
       <use xlinkHref="#a" x={48} y={5} fill="rgba(255,255,255,0.25)" />
       <use xlinkHref="#a" x={48} y={8} fill="rgba(255,255,255,0.20)" />
       <use xlinkHref="#a" x={48} y={13} fill="rgba(255,255,255,0.15)" />
-      <use xlinkHref="#a" x={48} y={16} fill="rgba(255,255,255,0.95" />
+      <use xlinkHref="#a" x={48} y={16} fill="rgba(255,255,255,0.95)" />
     </g>
   </svg>
 );
