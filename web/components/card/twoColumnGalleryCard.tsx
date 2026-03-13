@@ -11,13 +11,19 @@ export type Props = TwoColumnGalleryCardProps & {
 
 const CardContent = (props: TwoColumnGalleryCardProps) => {
   let buttonElems = props.buttons?.map((button, index) => {
-    return (
-      <LinkButton reference={button.reference} url={button.url} key={index}>
-        {index === 0 ? (
-          <GradientButton label={button.label!} theme={props.theme!} />
-        ) : (
-          <SolidButton label={button.label!} theme={props.theme!} />
-        )}
+    const inner =
+      index === 0 ? (
+        <GradientButton label={button.label!} theme={props.theme!} />
+      ) : (
+        <SolidButton label={button.label!} theme={props.theme!} />
+      );
+    return button.reference ? (
+      <LinkButton reference={button.reference} key={index}>
+        {inner}
+      </LinkButton>
+    ) : (
+      <LinkButton url={button.url ?? ""} key={index}>
+        {inner}
       </LinkButton>
     );
   });

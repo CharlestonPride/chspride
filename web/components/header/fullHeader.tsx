@@ -19,17 +19,17 @@ export default function FullHeader(props: HeaderProps) {
               <div className="card card-body blur d-flex justify-content-center shadow-lg p-5 mt-5">
                 <h1 className={`text-${props.theme}`}>{props.title}</h1>
                 {props.subtitle && <h2>{props.subtitle}</h2>}
-                {props.buttons?.map((button) => {
-                  return (
-                    <LinkButton
-                      reference={button.reference}
-                      url={button.url}
-                      key={button.label}
-                    >
+                {props.buttons?.map((button) =>
+                  button.reference ? (
+                    <LinkButton reference={button.reference} key={button.label}>
                       <GradientButton label={button.label!} theme={props.theme!} />
                     </LinkButton>
-                  );
-                })}
+                  ) : (
+                    <LinkButton url={button.url ?? ""} key={button.label}>
+                      <GradientButton label={button.label!} theme={props.theme!} />
+                    </LinkButton>
+                  )
+                )}
               </div>
             </div>
           </div>
