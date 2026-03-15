@@ -1,31 +1,44 @@
 # Charleston Pride - Mobile App
 
-This directory will contain the Flutter mobile application for Charleston Pride.
+A Capacitor PWA wrapper around the Charleston Pride production website, packaged for iOS and Android.
+
+## How It Works
+
+This app uses Capacitor's `server.url` setting to load `https://charlestonpride.org` directly — it does not bundle a local web build. This keeps the mobile app always in sync with the live website without any additional build steps.
 
 ## Setup
 
-To initialize the Flutter project, run:
-
 ```bash
-flutter create --org com.charlestonpride --project-name chspride_mobile .
+cd mobile
+npm install
 ```
 
-## Sanity Integration
+## Adding Native Platforms
 
-This mobile app will use the shared Sanity schema located in `../sanity-schema/`.
+```bash
+npm run add:ios       # Add iOS platform
+npm run add:android   # Add Android platform
+```
 
-The app will connect to the same Sanity instance as the web application, but may use different GROQ queries optimized for mobile views.
+## Syncing
 
-## Development
+After adding platforms or updating `capacitor.config.json`:
 
-Coming soon...
+```bash
+npm run sync
+```
+
+## Opening in Native IDEs
+
+```bash
+npm run open:ios      # Open in Xcode
+npm run open:android  # Open in Android Studio
+```
 
 ## Configuration
 
-You'll need to create a `.env` file with the following Sanity credentials:
+See `capacitor.config.json` for app ID, name, and plugin settings.
 
-```
-SANITY_PROJECT_ID=your_project_id
-SANITY_DATASET=your_dataset
-SANITY_API_TOKEN=your_token
-```
+- **App ID:** `org.charlestonpride.app`
+- **App Name:** Charleston Pride
+- **Source:** `https://charlestonpride.org` (live website)

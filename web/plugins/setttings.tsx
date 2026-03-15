@@ -11,7 +11,7 @@ export const singletonPlugin = (types: string[]) => {
         if (creationContext.type === "global") {
           return prev.filter(
             (templateItem: { templateId: string }) =>
-              !types.includes(templateItem.templateId)
+              !types.includes(templateItem.templateId),
           );
         }
 

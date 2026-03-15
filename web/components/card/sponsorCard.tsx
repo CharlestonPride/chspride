@@ -1,7 +1,7 @@
 import { client } from "@/sanity/lib/client";
 import {
-    SponsorsCard as SponsorsCardProps,
-    SponsorshipsQueryResult,
+  SponsorsCard as SponsorsCardProps,
+  SponsorshipsQueryResult,
 } from "@/sanity/lib/sanity.types";
 import { sponsorshipsQuery } from "@/sanity/lib/queries";
 import { Col, Container, Row } from "react-bootstrap";

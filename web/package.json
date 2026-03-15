@@ -13,7 +13,7 @@
     "studio": "sanity dev",
     "lint": "next lint",
     "typegen": "sanity schema extract && sanity typegen generate",
-    "format": "prettier --write . --ignore-path .gitignore",
+    "format": "prettier --write .",
     "lint:fix": "npm run format && npm run lint -- --fix"
   },
   "dependencies": {
@@ -47,6 +47,7 @@
     "typescript": "^5"
   },
   "overrides": {
-    "prettier": "3.3.3"
+    "prettier": "3.3.3",
+    "uuid": "^10.0.0"
   }
 }

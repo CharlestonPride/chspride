@@ -9,7 +9,16 @@
     "web:start": "cd web && npm run start",
     "web:studio": "cd web && npm run studio",
     "web:install": "cd web && npm install",
-    "mobile:flutter": "cd mobile && flutter run"
+    "web:lint": "cd web && npm run lint",
+    "web:format": "cd web && npm run format",
+    "web:lint:fix": "cd web && npm run lint:fix",
+    "community:dev": "cd community && npm run dev",
+    "community:build": "cd community && npm run build",
+    "community:install": "cd community && npm install",
+    "community:lint": "cd community && npm run lint",
+    "mobile:sync": "cd mobile && npm run sync",
+    "lint": "npm run web:lint && npm run community:lint",
+    "format": "npm run web:format"
   },
   "engines": {
     "node": ">=24.0.0"

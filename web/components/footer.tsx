@@ -2,9 +2,9 @@ import { client } from "@/sanity/lib/client";
 import { FooterQueryResult } from "@/sanity/lib/sanity.types";
 import { footerQuery } from "@/sanity/lib/queries";
 import {
-    faFacebook,
-    faInstagram,
-    IconDefinition,
+  faFacebook,
+  faInstagram,
+  IconDefinition,
 } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope, faMap } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

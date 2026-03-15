@@ -1,38 +1,56 @@
-# Charleston Pride - Sanity CMS Schema
+# Charleston Pride - Sanity CMS
 
-Documentation for the Sanity CMS schema and how it's used across web and mobile applications.
-
-## Purpose
-
-- **Web Application**: Manages the full Sanity Studio, schema definitions, plugins, and tools in `/web/schema/`, `/web/plugins/`, and `/web/tools/`
-- **Mobile Application**: Will generate Dart classes from exported `schema.json` for type-safe Sanity data access
+Documentation for the Sanity CMS schema and how it's used across applications.
 
 ## Schema Location
 
-All Sanity schema definitions, Studio configuration, plugins, and tools are located in `/web`:
+Sanity schema definitions live in `/web/schema/` — co-located with the Studio that owns them:
 
 ```
 web/
-├── schema/             # Schema definitions
-│   ├── documents/      # Document types (page, person, sponsor, etc.)
-│   ├── objects/        # Reusable objects (buttons, cards, etc.)
-│   ├── fields/         # Field definitions
-│   └── index.ts        # Exports all schema types
-├── plugins/            # Sanity Studio plugins
-│   └── setttings.tsx   # Singleton plugin
-├── tools/              # Custom Studio tools
-│   ├── deploy.tsx      # Deployment tool
-│   └── guide.tsx       # Guide tool
-├── sanity/lib/         # Web-specific Sanity configuration
-│   ├── client.ts       # Sanity client
-│   ├── env.ts          # Project configuration
-│   ├── image.ts        # Image utilities
-│   ├── queries.ts      # GROQ queries
-│   └── sanity.types.ts # Generated types (git-ignored)
-└── schema.json         # Exported schema (git-ignored)
+└── schema/
+    ├── documents/        # Document types (page, person, sponsor, etc.)
+    │   └── singletons/   # Singleton documents (home, footer, navigation, ourTeam)
+    ├── objects/          # Reusable objects (buttons, cards, etc.)
+    ├── fields/           # Field definitions
+    └── index.ts          # Exports all schema types
 ```
 
-## Generating schema.json
+## Sanity Studio
+
+The Studio is integrated into the `/web` Next.js app and is the only place schemas are registered with Sanity:
+
+- **Development:** http://localhost:3000/studio
+- **Standalone:** `cd web && npm run studio`
+- **Production:** https://charlestonpride.org/studio
+
+Studio-specific config (structure, plugins, tools) lives exclusively in `/web`:
+
+```
+web/
+├── sanity.config.ts      # Studio config — imports schemas from ./schema
+├── sanity.cli.ts         # Sanity CLI config (includes typegen config)
+├── schema/               # Sanity schema definitions
+├── plugins/              # Sanity Studio plugins
+├── tools/                # Custom Studio tools
+└── sanity/lib/           # Web-specific Sanity utilities
+    ├── client.ts         # Sanity client
+    ├── env.ts            # Project config (projectId, dataset, apiVersion)
+    ├── image.ts          # Image URL builder
+    ├── queries.ts        # GROQ queries (web-specific)
+    └── sanity.types.ts   # Generated TypeScript types (git-ignored)
+```
+
+## App-Specific Configuration
+
+Each app maintains its own Sanity client configuration and GROQ queries under `<app>/sanity/lib/`. The `/community` app consumes Sanity data via GROQ queries and does not import schema definitions directly.
+
+| App         | Client config         | GROQ queries                        | Schema         |
+|-------------|----------------------|-------------------------------------|----------------|
+| `/web`      | `web/sanity/lib/`    | `web/sanity/lib/queries.ts`         | `web/schema/`  |
+| `/community`| *(future)*           | *(future)*                          | N/A            |
+
+## Generating Types
 
 From the `/web` directory:
 
@@ -40,48 +58,20 @@ From the `/web` directory:
 npm run typegen
 ```
 
-This command:
-
-1. Extracts the schema to `web/schema.json`
-2. Generates TypeScript types to `web/sanity/lib/sanity.types.ts`
-
-The Flutter app can use `web/schema.json` to generate Dart classes.
-
-## Web Application - Sanity Studio
-
-The Sanity Studio is integrated into the Next.js web application:
-
-- **Development**: http://localhost:3000/studio
-- **Production**: https://yourdomain.com/studio
-
-To run Studio standalone:
-
-```bash
-cd web
-npm run studio
-```
-
-## Mobile Application Usage
-
-The Flutter app will:
-
-1. Use a Sanity Dart package to connect to the CMS
-2. Generate Dart classes from `web/schema.json` for type safety
-3. Define its own GROQ queries optimized for mobile views
-4. Configure Sanity credentials independently
-
-All schema definitions, plugins, and Studio tools are maintained in `/web` since only the web app runs Sanity Studio.
-
-This command extracts the schema and generates TypeScript types in `lib/sanity.types.ts`.
+This runs `sanity schema extract` (writes `web/schema.json`) then `sanity typegen generate` (writes `web/sanity/lib/sanity.types.ts`). Both files are git-ignored.
 
 ## Environment Variables
 
-Both applications need these Sanity credentials:
+`/web` needs these Sanity credentials in `.env`:
 
-- `NEXT_PUBLIC_SANITY_PROJECT_ID` - Your Sanity project ID
-- `NEXT_PUBLIC_SANITY_DATASET` - Dataset name (e.g., 'production')
-- `NEXT_PUBLIC_SANITY_API_VERSION` - API version (e.g., '2024-01-01')
+```
+NEXT_PUBLIC_SANITY_PROJECT_ID=
+NEXT_PUBLIC_SANITY_DATASET=
+NEXT_PUBLIC_SANITY_API_VERSION=
+```
 
-For write operations (Studio):
+For Studio write operations:
 
-- `SANITY_API_TOKEN` - API token with write permissions
+```
+SANITY_API_TOKEN=
+```

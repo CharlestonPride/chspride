@@ -16,7 +16,9 @@ const getInitials = (props: Person) => {
   if (props.name) {
     const parts = props.name.trim().split(/\s+/).filter(Boolean);
     if (parts.length >= 2) {
-      return parts[0][0].toUpperCase() + parts[parts.length - 1][0].toUpperCase();
+      return (
+        parts[0][0].toUpperCase() + parts[parts.length - 1][0].toUpperCase()
+      );
     }
     return parts[0]?.[0]?.toUpperCase() ?? "?";
   }
@@ -179,11 +181,7 @@ const BoardMemberList = ({
   );
 };
 
-export default function OurTeamClient({
-  team,
-}: {
-  team: OurTeamQueryResult;
-}) {
+export default function OurTeamClient({ team }: { team: OurTeamQueryResult }) {
   const [focusedPerson, setFocusedPerson] = useState<Person | null>(null);
 
   if (!team) return <></>;
