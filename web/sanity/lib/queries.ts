@@ -6,7 +6,39 @@ export const slugsQuery = groq`*[_type == "page" && defined(slug.current)][]{
   'slug':slug.current
 }`;
 
-export const pageBySlugQuery = groq`*[_type == "page" && slug.current == $slug][0]`;
+export const pageBySlugQuery = groq`*[_type == "page" && slug.current == $slug][0]{
+  ...,
+  header{
+    ...,
+    buttons[]{
+      label,
+      url,
+      reference->{slug{...}}
+    }
+  },
+  content[]{
+    ...,
+    event->{
+      _id,
+      name,
+      slug,
+      description,
+      "image": images[0],
+      location,
+      startDateTime,
+      endDateTime,
+      isFree,
+      price,
+      ageRestriction,
+      ctaLabel
+    },
+    buttons[]{
+      label,
+      url,
+      reference->{slug{...}}
+    }
+  }
+}`;
 
 export const homeQuery = groq`*[_type == "home"]{
   ...,
@@ -17,16 +49,30 @@ export const homeQuery = groq`*[_type == "home"]{
       url,
       reference->{slug{...}}
     }
-    },
+  },
   content[]{
     ...,
+    event->{
+      _id,
+      name,
+      slug,
+      description,
+      "image": images[0],
+      location,
+      startDateTime,
+      endDateTime,
+      isFree,
+      price,
+      ageRestriction,
+      ctaLabel
+    },
     buttons[]{
       label,
       url,
       reference->{slug{...}}
     }
-    }
-  }`;
+  }
+}`;
 
 export const navigationQuery = groq`*[_type == "navigation"][0]
 {
@@ -103,6 +149,59 @@ export const ourTeamQuery = groq`
 
 export const footerQuery = groq`
 *[_type == "footer"][0]`;
+
+export const eventsPageQuery = groq`
+*[_type == "events"][0]{
+  title,
+  header{
+    ...,
+    buttons[]{
+      label,
+      url,
+      reference->{slug{...}}
+    }
+  }
+}`;
+
+export const eventsQuery = groq`
+*[_type == "event" && showOnCP == true] | order(startDateTime asc){
+  _id,
+  name,
+  slug,
+  description,
+  "image": images[0],
+  location,
+  startDateTime,
+  endDateTime,
+  isFree,
+  price,
+  ageRestriction,
+  ctaLabel,
+  isFeatured
+}`;
+
+export const eventBySlugQuery = groq`
+*[_type == "event" && slug.current == $slug][0]{
+  _id,
+  name,
+  slug,
+  description,
+  content,
+  images,
+  location,
+  startDateTime,
+  endDateTime,
+  isFree,
+  price,
+  ageRestriction,
+  ctaLabel,
+  keywords
+}`;
+
+export const eventSlugsQuery = groq`
+*[_type == "event" && defined(slug.current)]{
+  "slug": slug.current
+}`;
 
 groq`
 "image": image{

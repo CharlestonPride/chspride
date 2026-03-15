@@ -2,6 +2,7 @@ import GalleryCard from "./card/galleryCard";
 import SocialCard from "./card/socialCard";
 import TwoColumnCard from "./card/twoColumnCard";
 import TwoColumnGalleryCard from "./card/twoColumnGalleryCard";
+import EventCard from "./card/eventCard";
 import { Page } from "@/sanity/lib/sanity.types";
 import { Row, Col } from "react-bootstrap";
 import ExternalCard from "./card/externalCard";
@@ -21,6 +22,17 @@ export default function PageBuilder(props: Page) {
           orientation={sectionCount++ % 2 ? "left" : "right"}
           key={index}
         ></TwoColumnCard>
+      );
+    }
+    if (c._type == "eventCard") {
+      const ec = c as any;
+      if (!ec.event) return <></>;
+      return (
+        <EventCard
+          event={ec.event}
+          orientation={sectionCount++ % 2 ? "left" : "right"}
+          key={index}
+        />
       );
     }
     if (c._type == "socialsCard") {
