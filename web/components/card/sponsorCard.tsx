@@ -1,4 +1,7 @@
+"use client";
+import { useEffect, useState } from "react";
 import { client } from "@/sanity/lib/client";
+import { previewClient } from "@/sanity/lib/previewClient";
 import {
   SponsorsCard as SponsorsCardProps,
   SponsorshipsQueryResult,
@@ -46,9 +49,16 @@ const Sponsor = (sponsorship: Sponsorship) => {
   );
 };
 
-export default async function SponsorCard(props: SponsorsCardProps) {
-  const data = await client.fetch(sponsorshipsQuery, { year: props.year });
-  const sponsorships = data as SponsorshipsQueryResult;
+export default function SponsorCard(props: SponsorsCardProps) {
+  const [sponsorships, setSponsorships] = useState<SponsorshipsQueryResult>([]);
+
+  useEffect(() => {
+    const fetchClient =
+      process.env.NEXT_PUBLIC_PREVIEW_MODE === "true" ? previewClient : client;
+    fetchClient
+      .fetch<SponsorshipsQueryResult>(sponsorshipsQuery, { year: props.year })
+      .then(setSponsorships);
+  }, [props.year]);
 
   const featured: SponsorshipsQueryResult = [];
   const regular: SponsorshipsQueryResult = [];
