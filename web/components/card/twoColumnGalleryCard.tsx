@@ -66,7 +66,7 @@ export default function TwoColumnGalleryCard(props: Props) {
                 {props.images &&
                   getImage(
                     props?.images[0],
-                    "w-100 border-radius-lg shadow mt-0 mt-lg-7"
+                    "w-100 border-radius-lg shadow mt-0 mt-lg-7",
                   )}
               </Col>
               <Col xs="6" lg="3">
@@ -75,31 +75,31 @@ export default function TwoColumnGalleryCard(props: Props) {
                 {props.images &&
                   getImage(
                     props?.images[2],
-                    "w-100 border-radius-lg shadow mt-4"
+                    "w-100 border-radius-lg shadow mt-4",
                   )}
               </Col>
               <Col xs="6" lg="3">
                 {props.images &&
                   getImage(
                     props?.images[3],
-                    "w-100 border-radius-lg shadow mt-0 mt-lg-5"
+                    "w-100 border-radius-lg shadow mt-0 mt-lg-5",
                   )}
                 {props.images &&
                   getImage(
                     props?.images[4],
-                    "w-100 border-radius-lg shadow mt-4"
+                    "w-100 border-radius-lg shadow mt-4",
                   )}
               </Col>
               <Col xs="6" lg="3">
                 {props.images &&
                   getImage(
                     props?.images[5],
-                    "w-100 border-radius-lg shadow mt-3"
+                    "w-100 border-radius-lg shadow mt-3",
                   )}
                 {props.images &&
                   getImage(
                     props?.images[6],
-                    "w-100 border-radius-lg shadow mt-4"
+                    "w-100 border-radius-lg shadow mt-4",
                   )}
               </Col>
             </Row>
@@ -120,7 +120,7 @@ export default function TwoColumnGalleryCard(props: Props) {
               {props.images &&
                 getImage(
                   props?.images[0],
-                  "w-100 border-radius-lg shadow mt-0 mt-lg-7"
+                  "w-100 border-radius-lg shadow mt-0 mt-lg-7",
                 )}
             </Col>
             <Col xs="6" lg="3">
@@ -129,31 +129,31 @@ export default function TwoColumnGalleryCard(props: Props) {
               {props.images &&
                 getImage(
                   props?.images[2],
-                  "w-100 border-radius-lg shadow mt-4"
+                  "w-100 border-radius-lg shadow mt-4",
                 )}
             </Col>
             <Col xs="6" lg="3">
               {props.images &&
                 getImage(
                   props?.images[3],
-                  "w-100 border-radius-lg shadow mt-0 mt-lg-5"
+                  "w-100 border-radius-lg shadow mt-0 mt-lg-5",
                 )}
               {props.images &&
                 getImage(
                   props?.images[4],
-                  "w-100 border-radius-lg shadow mt-4"
+                  "w-100 border-radius-lg shadow mt-4",
                 )}
             </Col>
             <Col xs="6" lg="3">
               {props.images &&
                 getImage(
                   props?.images[5],
-                  "w-100 border-radius-lg shadow mt-3"
+                  "w-100 border-radius-lg shadow mt-3",
                 )}
               {props.images &&
                 getImage(
                   props?.images[6],
-                  "w-100 border-radius-lg shadow mt-4"
+                  "w-100 border-radius-lg shadow mt-4",
                 )}
             </Col>
           </Row>

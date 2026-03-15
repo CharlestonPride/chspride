@@ -1,0 +1,15 @@
+# dependencies
+node_modules/
+
+# Next.js build output
+.next/
+out/
+
+# env files
+.env
+.env.local
+.env*.local
+
+# Capacitor native projects (add ios/ and android/ if you want to track them)
+ios/
+android/

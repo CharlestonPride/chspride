@@ -25,13 +25,19 @@ export default function ObliqueHeader(props: HeaderProps) {
               {props.buttons?.map((button) =>
                 button.reference ? (
                   <LinkButton reference={button.reference} key={button.label}>
-                    <GradientButton label={button.label!} theme={props.theme!} />
+                    <GradientButton
+                      label={button.label!}
+                      theme={props.theme!}
+                    />
                   </LinkButton>
                 ) : (
                   <LinkButton url={button.url ?? ""} key={button.label}>
-                    <GradientButton label={button.label!} theme={props.theme!} />
+                    <GradientButton
+                      label={button.label!}
+                      theme={props.theme!}
+                    />
                   </LinkButton>
-                )
+                ),
               )}
             </Col>
           </Row>

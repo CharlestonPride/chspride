@@ -28,13 +28,9 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   return (
     <html lang="en">
-      <body className={openSans.className}>
-        {children}
-
-      </body>
+      <body className={openSans.className}>{children}</body>
     </html>
   );
 }

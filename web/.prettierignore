@@ -1,0 +1,5 @@
+build/
+.next/
+node_modules/
+sanity/lib/sanity.types.ts
+schema.json

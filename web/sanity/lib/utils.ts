@@ -18,9 +18,13 @@ export const urlForImage = (source: Image | undefined) => {
   return imageBuilder?.image(source).auto("format").fit("max");
 };
 
-export function resolveOpenGraphImage(image: Image, width = 1200, height = 627) {
-  if (!image) return undefined
-  const url = urlForImage(image)?.width(width).height(height).fit('crop').url()
-  if (!url) return undefined
-  return { url, alt: image?.alt as string, width, height }
+export function resolveOpenGraphImage(
+  image: Image,
+  width = 1200,
+  height = 627,
+) {
+  if (!image) return undefined;
+  const url = urlForImage(image)?.width(width).height(height).fit("crop").url();
+  if (!url) return undefined;
+  return { url, alt: image?.alt as string, width, height };
 }

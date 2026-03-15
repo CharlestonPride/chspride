@@ -22,7 +22,7 @@ function SingleImageCard(props: GalleryCardProps) {
       </Row>
     </Container>
   );
-};
+}
 
 function DualImageCard(props: GalleryCardProps) {
   return (
@@ -49,7 +49,7 @@ function DualImageCard(props: GalleryCardProps) {
       </Row>
     </Container>
   );
-};
+}
 
 function TriImageCard(props: GalleryCardProps) {
   return (
@@ -67,7 +67,7 @@ function TriImageCard(props: GalleryCardProps) {
       </Row>
     </Container>
   );
-};
+}
 
 function getTriColProps(order: number): ColProps {
   if (order === 1) {
@@ -135,7 +135,7 @@ function QuadImageCard(props: GalleryCardProps) {
       </Row>
     </Container>
   );
-};
+}
 
 function PentaImageCard(props: GalleryCardProps) {
   return (
@@ -189,7 +189,7 @@ function PentaImageCard(props: GalleryCardProps) {
       </Row>
     </Container>
   );
-};
+}
 
 export default function GalleryCard(props: GalleryCardProps) {
   if (!props.images?.length) {

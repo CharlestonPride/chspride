@@ -19,14 +19,17 @@ const OutlineButton = (props: { label: string; theme: Theme }) => (
 
 type LinkButtonProps =
   | { reference: any; url?: never; target?: never; children: React.ReactNode }
-  | { url: string; reference?: never; target?: string; children: React.ReactNode };
+  | {
+      url: string;
+      reference?: never;
+      target?: string;
+      children: React.ReactNode;
+    };
 
 const LinkButton = (props: LinkButtonProps) => {
   if (props.reference) {
     return (
-      <Link href={"/" + props.reference.slug.current}>
-        {props.children}
-      </Link>
+      <Link href={"/" + props.reference.slug.current}>{props.children}</Link>
     );
   }
   if (props.url) {

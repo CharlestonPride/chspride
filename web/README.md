@@ -71,8 +71,14 @@ web/
 │   ├── card/             # Card components
 │   ├── header/           # Header components
 │   └── portableText/     # Portable Text renderers
-├── sanity/               # Web-specific Sanity configuration
-│   └── lib/              
+├── schema/               # Sanity schema definitions
+│   ├── documents/        # Document types
+│   │   └── singletons/   # Singleton documents
+│   ├── objects/          # Reusable objects
+│   ├── fields/           # Field definitions
+│   └── index.ts          # Schema entry point
+├── sanity/               # Sanity configuration & utilities
+│   └── lib/
 │       ├── client.ts     # Sanity client instance
 │       ├── env.ts        # Sanity project configuration
 │       ├── image.ts      # Image URL builder utilities
@@ -106,14 +112,14 @@ export const studioUrl = "http://localhost:3333";
 The project uses TypeScript path aliases configured in `tsconfig.json`:
 
 - **`@/*`** - Maps to `web/*` (local application code)
-- **`@sanity/*`** - Maps to `../sanity-schema/*` (shared schema from parent directory)
+- **`@sanity/*`** - Maps to `web/sanity/*` (Sanity utilities)
 
 Example imports:
 
 ```typescript
-import { client } from "@/sanity/lib/client";           // Local web client
-import { Page } from "@sanity/lib/sanity.types";        // Shared types
-import { homeQuery } from "@/sanity/lib/queries";       // Local web queries
+import { client } from "@/sanity/lib/client"; // Sanity client
+import { homeQuery } from "@/sanity/lib/queries"; // GROQ queries
+import { schemaTypes } from "@/schema/index"; // Schema definitions
 ```
 
 ## Building for Production
@@ -160,13 +166,14 @@ Sass deprecation warnings are suppressed in `next.config.mjs` and will be addres
 
 ### Type Generation
 
-After modifying Sanity schemas in `../sanity-schema/`, regenerate types:
+After modifying Sanity schemas in `schema/`, regenerate types:
 
 ```bash
 npm run typegen
 ```
 
 This command:
+
 1. Extracts the schema to `schema.json`
 2. Generates TypeScript types to `sanity/lib/sanity.types.ts`
 

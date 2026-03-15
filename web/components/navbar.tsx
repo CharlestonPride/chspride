@@ -3,10 +3,10 @@ import { NavigationQueryResult } from "@/sanity/lib/sanity.types";
 import { navigationQuery } from "@/sanity/lib/queries";
 import Link from "next/link";
 import {
-    NavbarBrand,
-    NavbarCollapse,
-    NavbarToggle,
-    NavLink,
+  NavbarBrand,
+  NavbarCollapse,
+  NavbarToggle,
+  NavLink,
 } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";

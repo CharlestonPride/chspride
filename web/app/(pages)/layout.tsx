@@ -37,7 +37,7 @@ library.add(
   faMartiniGlass,
   faChampagneGlasses,
   faStar,
-  faHandshake
+  faHandshake,
 );
 
 export default function Layout({
