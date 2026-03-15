@@ -1,4 +1,4 @@
-import { defineField, defineType } from "../../../../web/node_modules/sanity";
+import { defineField, defineType } from "sanity";
 import { UsersIcon } from "@sanity/icons";
 
 export default defineType({

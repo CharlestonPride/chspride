@@ -18,11 +18,12 @@ import footer from "./schema/documents/singletons/footer";
 import home from "./schema/documents/singletons/home";
 import navigation from "./schema/documents/singletons/navigation";
 import ourTeam from "./schema/documents/singletons/ourTeam";
+import events from "./schema/documents/singletons/events";
 import { media } from "sanity-plugin-media";
 import { pageType, sponsorshipType, sponsorType } from "./schema/documents";
 import { deploy } from "./tools/deploy";
 
-const singletonDocumentDefinitions: DocumentDefinition[] = [home, ourTeam];
+const singletonDocumentDefinitions: DocumentDefinition[] = [home, ourTeam, events];
 const siteSettingDocumentDefinitions: DocumentDefinition[] = [
   navigation,
   footer,
@@ -111,7 +112,7 @@ export default defineConfig({
       structure: pageStructure,
     }),
     visionTool(),
-    singletonPlugin([navigation.name, footer.name]),
+    singletonPlugin([navigation.name, footer.name, home.name, ourTeam.name, events.name]),
     media(),
   ],
   tools: [deploy()],

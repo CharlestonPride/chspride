@@ -46,6 +46,7 @@ export default defineType({
       of: [
         { type: "embeddedForm" },
         { type: "twoColumnCard" },
+        { type: "eventCard" },
         { type: "socialsCard" },
         { type: "imageGalleryCard" },
         { type: "twoColumnGalleryCard" },
