@@ -16,6 +16,9 @@ export default defineType({
 
     defineField({
       name: "logo",
+      title: "Logo",
+      description:
+        "Sponsor logo. Horizontal or square logos work best. PNG with a transparent background gives the cleanest result.",
       type: "image",
       options: {
         hotspot: true,

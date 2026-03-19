@@ -25,6 +25,9 @@ export default defineType({
     }),
     defineField({
       name: "image",
+      title: "Headshot",
+      description:
+        "Profile photo. Square or portrait (tall) works best. Use the hotspot tool to keep the face centered when cropped.",
       type: "image",
       options: {
         hotspot: true,

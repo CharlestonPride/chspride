@@ -34,7 +34,8 @@ export default defineType({
     defineField({
       name: "primary",
       title: "Primary Graphic",
-      description: "The primary graphic to be shown in one of the columns.",
+      description:
+        "Shown in the image column alongside the text. Portrait (tall) or square images work best — landscape images will appear shorter than expected.",
       type: "image",
       validation: (rule) => rule.required(),
     }),
@@ -42,7 +43,7 @@ export default defineType({
       name: "secondary",
       title: "Secondary Graphics",
       description:
-        "Optional second graphics that will appear below the content block.",
+        "Up to 2 small images shown below the content. Portrait or square images work best.",
       type: "array",
       of: [{ type: "image" }],
       validation: (rule) => [

@@ -34,12 +34,13 @@ export default defineType({
       title: "Content",
       description: "Full event details shown on the event page.",
       type: "array",
-      of: [{ type: "block" }, { type: "image" }],
+      of: [{ type: "block" }, { type: "image" }, {type: "embeddedForm"}],
     }),
     defineField({
       name: "images",
       title: "Images",
-      description: "Up to 3 images. The first image is used on event cards.",
+      description:
+        "Up to 3 portrait-oriented images. The first is used on event cards.",
       type: "array",
       of: [{ type: "image", options: { hotspot: true } }],
       validation: (rule) => rule.max(3),

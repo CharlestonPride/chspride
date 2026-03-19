@@ -1,8 +1,9 @@
 import { urlFor } from "@/sanity/lib/image";
 import Link from "next/link";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { PortableText, PortableTextReactComponents } from "@portabletext/react";
 import LinkMark from "@/components/portableText/link";
+import WaveHeader from "@/components/header/waveHeader";
 
 const portableTextComponents: Partial<PortableTextReactComponents> = {
   marks: { link: LinkMark },
@@ -67,10 +68,6 @@ export interface EventDetail {
 }
 
 export default function EventDetailView({ event }: { event: EventDetail }) {
-  const primaryImageRef = event.images?.[0]?.asset?._ref;
-  const primaryImageUrl = primaryImageRef
-    ? urlFor(primaryImageRef).url()
-    : undefined;
   const priceLabel = event.isFree !== false ? "Free" : (event.price ?? "");
   const locationLabel = formatLocation(event.location);
   const ageLabel =
@@ -80,99 +77,95 @@ export default function EventDetailView({ event }: { event: EventDetail }) {
 
   return (
     <main>
-      {primaryImageUrl && (
-        <div
-          style={{
-            height: "40vh",
-            background: `url(${primaryImageUrl}) center/cover no-repeat`,
-          }}
-        />
-      )}
+      <WaveHeader header={{ title: event.name, theme: "primary" } as any}>
+        <Link href="/events" className="text-primary mb-4 d-inline-block">
+          ← Back to Events
+        </Link>
 
-      <Container className="py-6">
-        <Row>
-          <Col lg={{ span: 8, offset: 2 }}>
-            <Link href="/events" className="text-primary mb-4 d-inline-block">
-              ← Back to Events
-            </Link>
+        {event.images?.[0]?.asset?._ref && (
+          <div className="text-center my-4">
+            <img
+              src={urlFor(event.images[0].asset._ref).url()}
+              alt={event.name}
+              className="border-radius-lg shadow-card"
+              style={{ maxWidth: "50%", height: "auto" }}
+            />
+          </div>
+        )}
 
-            <h1 className="text-gradient text-primary">{event.name}</h1>
+        <div className="d-flex flex-wrap gap-2 my-3">
+          <span
+            className="badge bg-gradient-primary text-white"
+            style={{ fontSize: "0.9rem" }}
+          >
+            📅 {formatDate(event.startDateTime)}
+            {event.endDateTime &&
+              new Date(event.startDateTime).toDateString() !==
+              new Date(event.endDateTime).toDateString() &&
+              ` – ${formatDate(event.endDateTime)}`}
+          </span>
+          <span
+            className="badge bg-gradient-primary text-white"
+            style={{ fontSize: "0.9rem" }}
+          >
+            🕐 {formatTime(event.startDateTime)}
+            {event.endDateTime && ` – ${formatTime(event.endDateTime)}`}
+          </span>
+          {locationLabel && (
+            <span
+              className="badge bg-gradient-secondary text-white"
+              style={{ fontSize: "0.9rem" }}
+            >
+              📍 {locationLabel}
+            </span>
+          )}
+          <span
+            className="badge bg-gradient-success text-white"
+            style={{ fontSize: "0.9rem" }}
+          >
+            {priceLabel}
+          </span>
+          {ageLabel && (
+            <span
+              className="badge bg-gradient-warning text-white"
+              style={{ fontSize: "0.9rem" }}
+            >
+              {ageLabel}
+            </span>
+          )}
+        </div>
 
-            <div className="d-flex flex-wrap gap-2 my-3">
-              <span
-                className="badge bg-gradient-primary text-white"
-                style={{ fontSize: "0.9rem" }}
-              >
-                📅 {formatDate(event.startDateTime)}
-                {event.endDateTime &&
-                  new Date(event.startDateTime).toDateString() !==
-                    new Date(event.endDateTime).toDateString() &&
-                  ` – ${formatDate(event.endDateTime)}`}
-              </span>
-              <span
-                className="badge bg-gradient-primary text-white"
-                style={{ fontSize: "0.9rem" }}
-              >
-                🕐 {formatTime(event.startDateTime)}
-                {event.endDateTime && ` – ${formatTime(event.endDateTime)}`}
-              </span>
-              {locationLabel && (
-                <span
-                  className="badge bg-gradient-secondary text-white"
-                  style={{ fontSize: "0.9rem" }}
-                >
-                  📍 {locationLabel}
-                </span>
-              )}
-              <span
-                className="badge bg-gradient-success text-white"
-                style={{ fontSize: "0.9rem" }}
-              >
-                {priceLabel}
-              </span>
-              {ageLabel && (
-                <span
-                  className="badge bg-gradient-warning text-white"
-                  style={{ fontSize: "0.9rem" }}
-                >
-                  {ageLabel}
-                </span>
-              )}
-            </div>
+        {event.description && (
+          <p className="lead mt-3">{event.description}</p>
+        )}
 
-            {event.description && (
-              <p className="lead mt-3">{event.description}</p>
-            )}
+        {(event.content?.length ?? 0) > 0 && (
+          <div className="mt-4">
+            <PortableText
+              value={event.content}
+              components={portableTextComponents}
+            />
+          </div>
+        )}
 
-            {(event.content?.length ?? 0) > 0 && (
-              <div className="mt-4">
-                <PortableText
-                  value={event.content}
-                  components={portableTextComponents}
-                />
-              </div>
-            )}
-
-            {(event.images?.length ?? 0) > 1 && (
-              <Row className="mt-5 g-3">
-                {event.images!.slice(1).map((img: any, i: number) => {
-                  const ref = img?.asset?._ref;
-                  if (!ref) return null;
-                  return (
-                    <Col key={i} xs="12" md="6">
-                      <img
-                        src={urlFor(ref).url()}
-                        alt={`${event.name} photo ${i + 2}`}
-                        className="w-100 border-radius-lg shadow-card"
-                      />
-                    </Col>
-                  );
-                })}
-              </Row>
-            )}
-          </Col>
-        </Row>
-      </Container>
+        {(event.images?.length ?? 0) > 1 && (
+          <Row className="mt-5 g-3">
+            {event.images!.slice(1).map((img: any, i: number) => {
+              const ref = img?.asset?._ref;
+              if (!ref) return null;
+              return (
+                <Col key={i} xs="12" md="6">
+                  <img
+                    src={urlFor(ref).url()}
+                    alt={`${event.name} photo ${i + 2}`}
+                    className="w-100 border-radius-lg shadow-card"
+                  />
+                </Col>
+              );
+            })}
+          </Row>
+        )}
+      </WaveHeader>
     </main>
   );
 }

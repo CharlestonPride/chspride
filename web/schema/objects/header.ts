@@ -43,6 +43,8 @@ export default defineType({
     defineField({
       name: "image",
       title: "Background Image",
+      description:
+        "Full-width image displayed behind the header. Use a wide landscape photo — minimum 1920×600 recommended. Portrait images will be heavily cropped on desktop.",
       type: "image",
     }),
     defineField({
