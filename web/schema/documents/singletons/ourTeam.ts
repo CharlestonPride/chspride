@@ -56,6 +56,8 @@ export default defineType({
     defineField({
       name: "team",
       title: "Team Photo",
+      description:
+        "Group photo displayed at the bottom of the Our Team page. Landscape (wide) images work best.",
       type: "image",
     }),
     defineField({

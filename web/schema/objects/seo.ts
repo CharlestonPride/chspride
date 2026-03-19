@@ -29,6 +29,8 @@ export default defineType({
     }),
     defineField({
       name: `image`,
+      title: `Social Share Image`,
+      description: `Image shown when this page is shared on social media. Must be JPG or PNG, at least 1200×630 pixels (landscape).`,
       type: `image`,
       options: { hotspot: true },
       validation: (rule) =>

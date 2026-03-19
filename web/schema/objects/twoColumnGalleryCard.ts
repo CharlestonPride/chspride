@@ -31,6 +31,8 @@ export default defineType({
     defineField({
       name: "images",
       title: "Images",
+      description:
+        "2–7 images shown as a gallery. Square or portrait images give the most consistent look — avoid mixing orientations.",
       type: "array",
       of: [{ type: "image" }],
       validation: (rule) => [

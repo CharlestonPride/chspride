@@ -2,10 +2,37 @@ import { client } from "@/sanity/lib/client";
 import { previewClient } from "@/sanity/lib/previewClient";
 import { eventBySlugQuery, eventSlugsQuery } from "@/sanity/lib/queries";
 import { notFound } from "next/navigation";
+import { urlFor } from "@/sanity/lib/image";
+import type { Metadata } from "next";
 import EventDetailView, {
   EventDetail,
 } from "@/components/event/EventDetailView";
 import EventDetailPreview from "@/components/preview/EventDetailPreview";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const event = await client.fetch<EventDetail>(eventBySlugQuery, { slug });
+  if (!event) return {};
+
+  const imageRef = event.images?.[0]?.asset?._ref;
+  const ogImageUrl = imageRef
+    ? urlFor(imageRef).width(1200).height(630).fit("crop").url()
+    : undefined;
+
+  return {
+    title: `${event.name} | Charleston Pride`,
+    description: event.description,
+    openGraph: {
+      title: event.name,
+      description: event.description,
+      ...(ogImageUrl && { images: [{ url: ogImageUrl, width: 1200, height: 630 }] }),
+    },
+  };
+}
 
 export default async function EventDetailPage({
   params,
