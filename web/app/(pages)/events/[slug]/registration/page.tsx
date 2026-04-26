@@ -65,6 +65,6 @@ export async function generateStaticParams() {
   const results = await fetchClient.fetch<{ slug: string }[]>(
     `*[_type == "event" && defined(slug.current) && defined(registration.url)]{ "slug": slug.current }`,
   );
-  if (!results?.length) return [];
+  if (!results?.length) return [{ slug: "_placeholder" }];
   return results.map((r) => ({ slug: r.slug }));
 }

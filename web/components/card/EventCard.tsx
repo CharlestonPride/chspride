@@ -22,6 +22,7 @@ export type EventSummary = {
   ageRestriction?: string;
   ctaLabel?: string;
   theme?: string;
+  isFeatured?: boolean;
   hasTickets?: boolean;
   hasRegistration?: boolean;
   registrationLabel?: string;
