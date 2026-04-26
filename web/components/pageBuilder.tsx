@@ -9,6 +9,7 @@ import ExternalCard from "./card/externalCard";
 import TextBlock from "./textBlock";
 import HeaderBuilder from "./header/headerBuilder";
 import SponsorCard from "./card/sponsorCard";
+import UpcomingEventsCard from "./card/UpcomingEventsCard";
 import Alert from "./alert";
 
 export default function PageBuilder(props: Page) {
@@ -68,6 +69,17 @@ export default function PageBuilder(props: Page) {
     }
     if (c._type == "sponsorsCard") {
       return <SponsorCard {...c} key={index}></SponsorCard>;
+    }
+    if (c._type == "upcomingEventsCard") {
+      const uc = c as any;
+      return (
+        <UpcomingEventsCard
+          key={index}
+          title={uc.title}
+          maxNonFeatured={uc.maxNonFeatured}
+          theme={uc.theme}
+        />
+      );
     }
     return <></>;
   });

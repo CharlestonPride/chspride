@@ -4,6 +4,10 @@ import { Col, Row } from "react-bootstrap";
 import { PortableText, PortableTextReactComponents } from "@portabletext/react";
 import LinkMark from "@/components/portableText/link";
 import WaveHeader from "@/components/header/waveHeader";
+import TicketSection, { TicketData } from "@/components/event/TicketSection";
+import RegistrationButton, {
+  RegistrationData,
+} from "@/components/event/RegistrationButton";
 
 const portableTextComponents: Partial<PortableTextReactComponents> = {
   marks: { link: LinkMark },
@@ -64,7 +68,10 @@ export interface EventDetail {
   price?: string;
   ageRestriction?: string;
   ctaLabel?: string;
+  theme?: string;
   keywords?: string[];
+  tickets?: TicketData;
+  registration?: RegistrationData & { description?: string };
 }
 
 export default function EventDetailView({ event }: { event: EventDetail }) {
@@ -75,77 +82,101 @@ export default function EventDetailView({ event }: { event: EventDetail }) {
       ? event.ageRestriction
       : undefined;
 
+  const theme = event.theme ?? "primary";
+  const heroRef = event.images?.[0]?.asset?._ref;
+  const hasImage = !!heroRef;
+
   return (
     <main>
-      <WaveHeader header={{ title: event.name, theme: "primary" } as any}>
-        <Link href="/events" className="text-primary mb-4 d-inline-block">
-          ← Back to Events
-        </Link>
-
-        {event.images?.[0]?.asset?._ref && (
-          <div className="text-center my-4">
-            <img
-              src={urlFor(event.images[0].asset._ref).url()}
-              alt={event.name}
-              className="border-radius-lg shadow-card"
-              style={{ maxWidth: "50%", height: "auto" }}
-            />
-          </div>
-        )}
-
-        <div className="d-flex flex-wrap gap-2 my-3">
-          <span
-            className="badge bg-gradient-primary text-white"
-            style={{ fontSize: "0.9rem" }}
-          >
-            📅 {formatDate(event.startDateTime)}
-            {event.endDateTime &&
-              new Date(event.startDateTime).toDateString() !==
-              new Date(event.endDateTime).toDateString() &&
-              ` – ${formatDate(event.endDateTime)}`}
-          </span>
-          <span
-            className="badge bg-gradient-primary text-white"
-            style={{ fontSize: "0.9rem" }}
-          >
-            🕐 {formatTime(event.startDateTime)}
-            {event.endDateTime && ` – ${formatTime(event.endDateTime)}`}
-          </span>
-          {locationLabel && (
-            <span
-              className="badge bg-gradient-secondary text-white"
-              style={{ fontSize: "0.9rem" }}
-            >
-              📍 {locationLabel}
-            </span>
+      <WaveHeader header={{ title: event.name, theme: event.theme ?? "primary" } as any}>
+        <Row className="g-4">
+          {hasImage && (
+            <Col xs={12} lg={5}>
+              <img
+                src={urlFor(heroRef!).width(600).url()}
+                alt={event.name}
+                className="w-100 border-radius-lg shadow-card"
+              />
+            </Col>
           )}
-          <span
-            className="badge bg-gradient-success text-white"
-            style={{ fontSize: "0.9rem" }}
-          >
-            {priceLabel}
-          </span>
-          {ageLabel && (
-            <span
-              className="badge bg-gradient-warning text-white"
-              style={{ fontSize: "0.9rem" }}
-            >
-              {ageLabel}
-            </span>
-          )}
-        </div>
 
-        {event.description && (
-          <p className="lead mt-3">{event.description}</p>
-        )}
+          <Col xs={12} lg={hasImage ? 7 : 12}>
+            <Link href="/events" className="text-primary mb-3 d-inline-block">
+              ← Back to Events
+            </Link>
 
-        {(event.content?.length ?? 0) > 0 && (
-          <div className="mt-4">
-            <PortableText
-              value={event.content}
-              components={portableTextComponents}
-            />
-          </div>
+            <div className="d-flex flex-wrap gap-2 my-3">
+              <span
+                className={`badge bg-gradient-${theme} text-white`}
+                style={{ fontSize: "0.9rem" }}
+              >
+                📅 {formatDate(event.startDateTime)}
+                {event.endDateTime &&
+                  new Date(event.startDateTime).toDateString() !==
+                  new Date(event.endDateTime).toDateString() &&
+                  ` – ${formatDate(event.endDateTime)}`}
+              </span>
+              <span
+                className={`badge bg-gradient-${theme} text-white`}
+                style={{ fontSize: "0.9rem" }}
+              >
+                🕐 {formatTime(event.startDateTime)}
+                {event.endDateTime && ` – ${formatTime(event.endDateTime)}`}
+              </span>
+              {locationLabel && (
+                <span
+                  className="badge bg-gradient-secondary text-white"
+                  style={{ fontSize: "0.9rem" }}
+                >
+                  📍 {locationLabel}
+                </span>
+              )}
+              <span
+                className="badge bg-gradient-success text-white"
+                style={{ fontSize: "0.9rem" }}
+              >
+                {priceLabel}
+              </span>
+              {ageLabel && (
+                <span
+                  className="badge bg-gradient-warning text-white"
+                  style={{ fontSize: "0.9rem" }}
+                >
+                  {ageLabel}
+                </span>
+              )}
+            </div>
+
+            {event.description && (
+              <p className="lead mt-3">{event.description}</p>
+            )}
+
+            {(event.content?.length ?? 0) > 0 && (
+              <div className="mt-4">
+                <PortableText
+                  value={event.content}
+                  components={portableTextComponents}
+                />
+              </div>
+            )}
+
+          </Col>
+        </Row>
+
+        {(event.registration?.url || event.tickets?.url) && (
+          <Row className="mt-4">
+            <Col xs={12}>
+              {event.registration?.url && (
+                <RegistrationButton
+                  registration={event.registration}
+                  eventSlug={event.slug?.current ?? ""}
+                />
+              )}
+              {event.tickets?.url && (
+                <TicketSection tickets={event.tickets} />
+              )}
+            </Col>
+          </Row>
         )}
 
         {(event.images?.length ?? 0) > 1 && (
@@ -156,7 +187,7 @@ export default function EventDetailView({ event }: { event: EventDetail }) {
               return (
                 <Col key={i} xs="12" md="6">
                   <img
-                    src={urlFor(ref).url()}
+                    src={urlFor(ref).width(600).url()}
                     alt={`${event.name} photo ${i + 2}`}
                     className="w-100 border-radius-lg shadow-card"
                   />

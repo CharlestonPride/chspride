@@ -30,7 +30,8 @@ export const pageBySlugQuery = groq`*[_type == "page" && slug.current == $slug][
       isFree,
       price,
       ageRestriction,
-      ctaLabel
+      ctaLabel,
+      theme
     },
     buttons[]{
       label,
@@ -64,7 +65,8 @@ export const homeQuery = groq`*[_type == "home"]{
       isFree,
       price,
       ageRestriction,
-      ctaLabel
+      ctaLabel,
+      theme
     },
     buttons[]{
       label,
@@ -164,7 +166,10 @@ export const eventsPageQuery = groq`
 }`;
 
 export const eventsQuery = groq`
-*[_type == "event" && showOnCP == true] | order(startDateTime asc){
+*[_type == "event" && showOnCP == true && (
+  (defined(endDateTime) && endDateTime >= now()) ||
+  (!defined(endDateTime) && startDateTime >= now())
+)] | order(startDateTime asc){
   _id,
   name,
   slug,
@@ -177,7 +182,11 @@ export const eventsQuery = groq`
   price,
   ageRestriction,
   ctaLabel,
-  isFeatured
+  theme,
+  isFeatured,
+  "hasTickets": defined(tickets.url),
+  "hasRegistration": defined(registration.url),
+  "registrationLabel": registration.label
 }`;
 
 export const eventBySlugQuery = groq`
@@ -195,7 +204,42 @@ export const eventBySlugQuery = groq`
   price,
   ageRestriction,
   ctaLabel,
-  keywords
+  theme,
+  keywords,
+  tickets{
+    url,
+    embedMode,
+    openDateTime,
+    closeDateTime,
+    isSoldOut,
+    soldOutMessage,
+    unavailableMessage
+  },
+  registration{
+    label,
+    description,
+    url,
+    embedMode,
+    openDateTime,
+    closeDateTime,
+    unavailableMessage
+  }
+}`;
+
+export const eventRegistrationBySlugQuery = groq`
+*[_type == "event" && slug.current == $slug][0]{
+  _id,
+  name,
+  slug,
+  registration{
+    label,
+    description,
+    url,
+    embedMode,
+    openDateTime,
+    closeDateTime,
+    unavailableMessage
+  }
 }`;
 
 export const eventSlugsQuery = groq`
