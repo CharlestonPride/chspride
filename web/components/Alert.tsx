@@ -1,6 +1,6 @@
 import { Alert as AlertProps } from "@/sanity/lib/sanity.types";
 import { PortableText, PortableTextReactComponents } from "@portabletext/react";
-import LinkMark from "./portableText/link";
+import LinkMark from "./portableText/Link";
 
 export default function Alert(props: AlertProps) {
   const components: Partial<PortableTextReactComponents> = {

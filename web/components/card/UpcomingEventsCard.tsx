@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Container } from "react-bootstrap";
 import { client } from "@/sanity/lib/client";
 import { eventsQuery } from "@/sanity/lib/queries";
-import EventCard, { EventSummary } from "./eventCard";
+import EventCard, { EventSummary } from "./EventCard";
 
 type Props = {
   title?: string;

@@ -2,8 +2,8 @@ import { urlFor } from "@/sanity/lib/image";
 import Link from "next/link";
 import { Col, Row } from "react-bootstrap";
 import { PortableText, PortableTextReactComponents } from "@portabletext/react";
-import LinkMark from "@/components/portableText/link";
-import WaveHeader from "@/components/header/waveHeader";
+import LinkMark from "@/components/portableText/Link";
+import WaveHeader from "@/components/header/WaveHeader";
 import TicketSection, { TicketData } from "@/components/event/TicketSection";
 import RegistrationButton, {
   RegistrationData,

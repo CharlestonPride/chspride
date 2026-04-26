@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import WaveHeader from "@/components/header/waveHeader";
+import WaveHeader from "@/components/header/WaveHeader";
 import { useEffect, useState } from "react";
 import { useIsMobile } from "@/lib/useIsMobile";
 

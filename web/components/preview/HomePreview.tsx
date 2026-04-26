@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { previewClient } from "@/sanity/lib/previewClient";
-import PageBuilder from "@/components/pageBuilder";
+import PageBuilder from "@/components/PageBuilder";
 import { homeQuery } from "@/sanity/lib/queries";
 import { HomeQueryResult, Page as PageProps } from "@/sanity/lib/sanity.types";
 

@@ -1,16 +1,16 @@
-import GalleryCard from "./card/galleryCard";
-import SocialCard from "./card/socialCard";
-import TwoColumnCard from "./card/twoColumnCard";
-import TwoColumnGalleryCard from "./card/twoColumnGalleryCard";
-import EventCard from "./card/eventCard";
+import GalleryCard from "./card/GalleryCard";
+import SocialCard from "./card/SocialCard";
+import TwoColumnCard from "./card/TwoColumnCard";
+import TwoColumnGalleryCard from "./card/TwoColumnGalleryCard";
+import EventCard from "./card/EventCard";
 import { Page } from "@/sanity/lib/sanity.types";
 import { Row, Col } from "react-bootstrap";
-import ExternalCard from "./card/externalCard";
-import TextBlock from "./textBlock";
-import HeaderBuilder from "./header/headerBuilder";
-import SponsorCard from "./card/sponsorCard";
+import ExternalCard from "./card/ExternalCard";
+import TextBlock from "./TextBlock";
+import HeaderBuilder from "./header/HeaderBuilder";
+import SponsorCard from "./card/SponsorCard";
 import UpcomingEventsCard from "./card/UpcomingEventsCard";
-import Alert from "./alert";
+import Alert from "./Alert";
 
 export default function PageBuilder(props: Page) {
   let sectionCount = 0;

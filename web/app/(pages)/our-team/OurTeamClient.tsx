@@ -7,8 +7,8 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import HeaderBuilder from "@/components/header/headerBuilder";
-import SanityImage from "@/components/sanityImage";
+import HeaderBuilder from "@/components/header/HeaderBuilder";
+import SanityImage from "@/components/SanityImage";
 import { useState } from "react";
 import { Modal } from "react-bootstrap";
 
