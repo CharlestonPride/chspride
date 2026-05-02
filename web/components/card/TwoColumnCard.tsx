@@ -3,8 +3,8 @@ import { TwoColumnCard as TwoColumnCardProps } from "@/sanity/lib/sanity.types";
 import { PortableText, PortableTextReactComponents } from "@portabletext/react";
 import { Col, Container, Row } from "react-bootstrap";
 import { LinkButton, GradientButton, SolidButton } from "../button";
-import RoundShadowIcon from "../icon";
-import LinkMark from "../portableText/link";
+import RoundShadowIcon from "../Icon";
+import LinkMark from "../portableText/Link";
 
 export type Props = TwoColumnCardProps & { orientation: "left" | "right" };
 

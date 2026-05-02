@@ -36,7 +36,7 @@ export default function WaveHeader(props: {
 }) {
   const headerClass = `card-header p-5 position-relative bg-gradient-${props.header.theme}`;
   return (
-    <section className="pt-3 pt-md-5 pt-lg-7 pb-md-5 pb-lg-7">
+    <section className="pt-3 pt-md-5 pt-lg-7 pb-md-5 pb-lg-7 mx-2">
       <Row>
         <Col lg="10" className="mx-auto">
           <div className="card shadow-lg">

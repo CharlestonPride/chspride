@@ -1,7 +1,7 @@
 import { client } from "@/sanity/lib/client";
 import { eventsPageQuery, eventsQuery } from "@/sanity/lib/queries";
-import HeaderBuilder from "@/components/header/headerBuilder";
-import EventCard, { EventSummary } from "@/components/card/eventCard";
+import HeaderBuilder from "@/components/header/HeaderBuilder";
+import EventCard, { EventSummary } from "@/components/card/EventCard";
 import EventsPreview from "@/components/preview/EventsPreview";
 
 export default async function EventsPage() {

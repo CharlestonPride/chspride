@@ -1,8 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 import { previewClient } from "@/sanity/lib/previewClient";
-import HeaderBuilder from "@/components/header/headerBuilder";
-import EventCard, { EventSummary } from "@/components/card/eventCard";
+import HeaderBuilder from "@/components/header/HeaderBuilder";
+import EventCard, { EventSummary } from "@/components/card/EventCard";
 import { eventsPageQuery, eventsQuery } from "@/sanity/lib/queries";
 
 export default function EventsPreview() {

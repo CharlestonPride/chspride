@@ -1,5 +1,6 @@
 import { CalendarIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
+import themeField from "../fields/themeField";
 
 export default defineType({
   name: "event",
@@ -45,6 +46,7 @@ export default defineType({
       of: [{ type: "image", options: { hotspot: true } }],
       validation: (rule) => rule.max(3),
     }),
+    themeField,
     defineField({
       name: "location",
       title: "Location",
@@ -109,6 +111,130 @@ export default defineType({
         ],
       },
       initialValue: "all-ages",
+    }),
+    defineField({
+      name: "tickets",
+      title: "Tickets",
+      type: "object",
+      description: "Configure ticket sales for this event.",
+      options: { collapsible: true, collapsed: true },
+      fields: [
+        defineField({
+          name: "url",
+          title: "Ticket URL",
+          type: "url",
+          description: "Link to the ticketing page (e.g. Eventbrite).",
+        }),
+        defineField({
+          name: "embedMode",
+          title: "Display Mode",
+          type: "string",
+          description:
+            "On mobile devices (< 768px) the ticket page always opens in a new tab regardless of this setting.",
+          options: {
+            layout: "radio",
+            list: [
+              { value: "iframe", title: "Embed in page (iframe)" },
+              { value: "tab", title: "Open in new tab" },
+            ],
+          },
+          initialValue: "iframe",
+        }),
+        defineField({
+          name: "openDateTime",
+          title: "Sales Open",
+          type: "datetime",
+          description: "When ticket sales begin. Leave blank to allow sales immediately.",
+        }),
+        defineField({
+          name: "closeDateTime",
+          title: "Sales Close",
+          type: "datetime",
+          description: "When ticket sales end. Leave blank to allow sales up to the event.",
+        }),
+        defineField({
+          name: "isSoldOut",
+          title: "Sold Out",
+          type: "boolean",
+          initialValue: false,
+        }),
+        defineField({
+          name: "soldOutMessage",
+          title: "Sold Out Message",
+          type: "string",
+          initialValue: "Tickets are sold out.",
+        }),
+        defineField({
+          name: "unavailableMessage",
+          title: "Unavailable Message",
+          type: "string",
+          description: "Shown when ticket sales have not yet opened or have closed.",
+          initialValue: "Tickets are not currently available.",
+        }),
+      ],
+    }),
+    defineField({
+      name: "registration",
+      title: "Registration",
+      type: "object",
+      description: "Configure registration for this event (e.g. vendor sign-up, pageant entry).",
+      options: { collapsible: true, collapsed: true },
+      fields: [
+        defineField({
+          name: "label",
+          title: "Registration Label",
+          type: "string",
+          description: 'Button/page label, e.g. "Register as Vendor" or "Enter the Pageant".',
+          initialValue: "Register",
+        }),
+        defineField({
+          name: "description",
+          title: "Registration Description",
+          type: "text",
+          rows: 3,
+          description: "Introductory text shown at the top of the registration page.",
+        }),
+        defineField({
+          name: "url",
+          title: "Registration URL",
+          type: "url",
+          description: "Link to the registration form.",
+        }),
+        defineField({
+          name: "embedMode",
+          title: "Display Mode",
+          type: "string",
+          description:
+            "On mobile devices (< 768px) the registration page always opens in a new tab regardless of this setting.",
+          options: {
+            layout: "radio",
+            list: [
+              { value: "iframe", title: "Embed in page (iframe)" },
+              { value: "tab", title: "Open in new tab" },
+            ],
+          },
+          initialValue: "iframe",
+        }),
+        defineField({
+          name: "openDateTime",
+          title: "Registration Opens",
+          type: "datetime",
+          description: "When registration opens. Leave blank to allow registration immediately.",
+        }),
+        defineField({
+          name: "closeDateTime",
+          title: "Registration Closes",
+          type: "datetime",
+          description: "When registration closes.",
+        }),
+        defineField({
+          name: "unavailableMessage",
+          title: "Unavailable Message",
+          type: "string",
+          description: "Shown when registration has not yet opened or has closed.",
+          initialValue: "Registration is not currently available.",
+        }),
+      ],
     }),
     defineField({
       name: "isFeatured",

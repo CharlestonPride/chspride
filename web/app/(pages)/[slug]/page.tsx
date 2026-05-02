@@ -1,4 +1,4 @@
-import PageBuilder from "@/components/pageBuilder";
+import PageBuilder from "@/components/PageBuilder";
 import { client } from "@/sanity/lib/client";
 import { previewClient } from "@/sanity/lib/previewClient";
 import { Page as PageProps } from "@/sanity/lib/sanity.types";

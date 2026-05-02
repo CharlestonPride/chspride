@@ -1,8 +1,8 @@
 import { Header, Page } from "@/sanity/lib/sanity.types";
-import BlockHeader from "./blockHeader";
-import ObliqueHeader from "./obliqueHeader";
-import WaveHeader from "./waveHeader";
-import FullHeader from "./fullHeader";
+import BlockHeader from "./BlockHeader";
+import ObliqueHeader from "./ObliqueHeader";
+import WaveHeader from "./WaveHeader";
+import FullHeader from "./FullHeader";
 export default function HeaderBuilder(props: {
   header: Header | undefined;
   content: React.ReactNode | undefined;

@@ -21,6 +21,11 @@ export type EventSummary = {
   price?: string;
   ageRestriction?: string;
   ctaLabel?: string;
+  theme?: string;
+  isFeatured?: boolean;
+  hasTickets?: boolean;
+  hasRegistration?: boolean;
+  registrationLabel?: string;
 };
 
 export type EventCardProps = {
@@ -67,6 +72,7 @@ function formatLocation(
 }
 
 const EventContent = ({ event }: { event: EventSummary }) => {
+  const theme = event.theme ?? "primary";
   const priceLabel = event.isFree !== false ? "Free" : (event.price ?? "");
   const locationLabel = formatLocation(event.location);
   const ageLabel =
@@ -76,10 +82,10 @@ const EventContent = ({ event }: { event: EventSummary }) => {
 
   return (
     <>
-      <p className="text-primary mb-1" style={{ fontSize: "0.85rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+      <p className="mb-1" style={{ fontSize: "0.85rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>
         {formatDateRange(event.startDateTime, event.endDateTime)}
       </p>
-      <h3 className="text-gradient mb-0 text-primary">{event.name}</h3>
+      <h3 className={`text-gradient mb-0 text-${theme}`}>{event.name}</h3>
 
       <div className="mt-2 d-flex flex-wrap gap-2">
         {locationLabel && (
@@ -93,6 +99,14 @@ const EventContent = ({ event }: { event: EventSummary }) => {
         {ageLabel && (
           <span className="badge bg-gradient-warning text-white">{ageLabel}</span>
         )}
+        {event.hasTickets && (
+          <span className="badge bg-gradient-info text-white">Tickets Available</span>
+        )}
+        {event.hasRegistration && (
+          <span className="badge bg-gradient-secondary text-white">
+            {event.registrationLabel ?? "Registration"}
+          </span>
+        )}
       </div>
 
       {event.description && (
@@ -102,7 +116,7 @@ const EventContent = ({ event }: { event: EventSummary }) => {
       )}
 
       <Link href={`/events/${event.slug.current}`} className="mt-3 d-inline-block">
-        <button type="button" className="btn bg-gradient-primary">
+        <button type="button" className={`btn bg-gradient-${theme}`}>
           {event.ctaLabel ?? "More Info"}
         </button>
       </Link>
@@ -112,7 +126,7 @@ const EventContent = ({ event }: { event: EventSummary }) => {
 
 export default function EventCard({ event, orientation }: EventCardProps) {
   const imageRef = event.image?.asset?._ref;
-  const imageUrl = imageRef ? urlFor(imageRef).url() : undefined;
+  const imageUrl = imageRef ? urlFor(imageRef).width(600).url() : undefined;
 
   const contentCol = (
     <Col

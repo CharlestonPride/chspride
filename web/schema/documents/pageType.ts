@@ -52,6 +52,7 @@ export default defineType({
         { type: "twoColumnGalleryCard" },
         { type: "textBlock" },
         { type: "sponsorsCard" },
+        { type: "upcomingEventsCard" },
       ],
     }),
     defineField({
