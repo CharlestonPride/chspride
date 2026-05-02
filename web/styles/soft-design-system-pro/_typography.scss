@@ -261,6 +261,9 @@ p {
   &.text-primary {
     background-image: $text-gradient-bg-primary;
   }
+  &.text-secondary {
+    background-image: $text-gradient-bg-secondary;
+  }
   &.text-info {
     background-image: $text-gradient-bg-info;
   }

@@ -82,10 +82,10 @@ const EventContent = ({ event }: { event: EventSummary }) => {
 
   return (
     <>
-      <p className={`text-${theme} mb-1`} style={{ fontSize: "0.85rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>
+      <p className="mb-1" style={{ fontSize: "0.85rem", fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>
         {formatDateRange(event.startDateTime, event.endDateTime)}
       </p>
-      <h3 className={`mb-0 text-${theme}`}>{event.name}</h3>
+      <h3 className={`text-gradient mb-0 text-${theme}`}>{event.name}</h3>
 
       <div className="mt-2 d-flex flex-wrap gap-2">
         {locationLabel && (
@@ -126,7 +126,7 @@ const EventContent = ({ event }: { event: EventSummary }) => {
 
 export default function EventCard({ event, orientation }: EventCardProps) {
   const imageRef = event.image?.asset?._ref;
-  const imageUrl = imageRef ? urlFor(imageRef).url() : undefined;
+  const imageUrl = imageRef ? urlFor(imageRef).width(600).url() : undefined;
 
   const contentCol = (
     <Col
