@@ -8,6 +8,7 @@
   },
   "scripts": {
     "dev": "next dev",
+    "dev:test": "NEXT_PUBLIC_SANITY_DATASET=test next dev",
     "build": "next build",
     "lint": "next lint",
     "sync": "cap sync",

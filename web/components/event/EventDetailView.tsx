@@ -8,6 +8,7 @@ import TicketSection, { TicketData } from "@/components/event/TicketSection";
 import RegistrationButton, {
   RegistrationData,
 } from "@/components/event/RegistrationButton";
+import AddToCalendarButtons from "@/components/event/AddToCalendarButtons";
 
 const portableTextComponents: Partial<PortableTextReactComponents> = {
   marks: { link: LinkMark },
@@ -178,6 +179,18 @@ export default function EventDetailView({ event }: { event: EventDetail }) {
             </Col>
           </Row>
         )}
+
+        <Row className="mt-2">
+          <Col xs={12}>
+            <AddToCalendarButtons
+              name={event.name}
+              startDateTime={event.startDateTime}
+              endDateTime={event.endDateTime}
+              description={event.description}
+              location={locationLabel}
+            />
+          </Col>
+        </Row>
 
         {(event.images?.length ?? 0) > 1 && (
           <Row className="mt-5 g-3">

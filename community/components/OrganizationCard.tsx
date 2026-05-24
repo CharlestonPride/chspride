@@ -30,7 +30,7 @@ function SocialLink({ href, label, children }: { href: string; label: string; ch
 
 export default function OrganizationCard({ org }: { org: OrganizationData }) {
   const logoRef = org.logo?.asset?._ref;
-  const logoUrl = logoRef ? urlFor(org.logo!).width(160).height(160).fit("crop").url() : null;
+  const logoUrl = logoRef ? urlFor(org.logo!).width(256).height(256).fit("crop").url() : null;
 
   return (
     <div
@@ -43,7 +43,7 @@ export default function OrganizationCard({ org }: { org: OrganizationData }) {
       {/* Logo + Name */}
       <div className="flex items-center gap-3">
         <div
-          className="shrink-0 w-20 h-20 rounded-xl flex items-center justify-center overflow-hidden"
+          className="shrink-0 w-32 h-32 rounded-xl flex items-center justify-center overflow-hidden"
           style={{ backgroundColor: "var(--color-surface)" }}
         >
           {logoUrl ? (
@@ -59,7 +59,7 @@ export default function OrganizationCard({ org }: { org: OrganizationData }) {
 
         <h3
           style={{ color: "var(--color-text)", fontFamily: "var(--font-display)" }}
-          className="font-bold text-sm leading-snug"
+          className="font-bold text-lg leading-snug"
         >
           {org.name}
         </h3>

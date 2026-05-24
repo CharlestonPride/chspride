@@ -105,7 +105,7 @@ export default async function ResourcePage({
   if (!resource) notFound();
 
   const logoRef = resource.logo?.asset?._ref;
-  const logoUrl = logoRef ? urlFor(resource.logo!).width(160).height(160).fit("crop").url() : null;
+  const logoUrl = logoRef ? urlFor(resource.logo!).width(256).height(256).fit("crop").url() : null;
   const categoryLabel = resource.category ? (CATEGORY_LABELS[resource.category] ?? resource.category) : null;
 
   const locationLabel = resource.location?.isVirtual
@@ -134,7 +134,7 @@ export default async function ResourcePage({
       <div className="flex items-start gap-5 mb-6">
         {logoUrl && (
           <div
-            className="shrink-0 w-16 h-16 rounded-xl overflow-hidden flex items-center justify-center"
+            className="shrink-0 w-32 h-32 rounded-xl overflow-hidden flex items-center justify-center"
             style={{ backgroundColor: "var(--color-card)" }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}

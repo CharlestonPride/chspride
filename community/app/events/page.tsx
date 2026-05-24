@@ -43,15 +43,27 @@ export default async function EventsPage() {
         </div>
       )}
 
-      {/* Google Calendar embed */}
-      <div className="mt-10 rounded-xl overflow-hidden" style={{ border: "1px solid var(--color-border)" }}>
-        <iframe
-          src="https://calendar.google.com/calendar/embed?src=c_1b66c6e757e2b6f7fff05a847d8406ae3a39bc0204307afef7d5814991f6b3ec%40group.calendar.google.com&ctz=America%2FNew_York"
-          style={{ border: 0, display: "block", filter: "invert(1) hue-rotate(180deg)" }}
-          width="100%"
-          height="600"
-          title="Charleston Pride Community Calendar"
-        />
+      {/* Google Calendar — embed on desktop, button on mobile */}
+      <div className="mt-10">
+        <a
+          href="https://calendar.google.com/calendar/embed?src=c_1b66c6e757e2b6f7fff05a847d8406ae3a39bc0204307afef7d5814991f6b3ec%40group.calendar.google.com&ctz=America%2FNew_York"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="sm:hidden flex items-center justify-center gap-2 w-full px-5 py-3 rounded-xl font-semibold text-sm transition-opacity hover:opacity-90"
+          style={{ backgroundColor: "var(--color-primary)", color: "#fff" }}
+        >
+          Open Community Calendar &rarr;
+        </a>
+
+        <div className="hidden sm:block rounded-xl overflow-hidden" style={{ border: "1px solid var(--color-border)" }}>
+          <iframe
+            src="https://calendar.google.com/calendar/embed?src=c_1b66c6e757e2b6f7fff05a847d8406ae3a39bc0204307afef7d5814991f6b3ec%40group.calendar.google.com&ctz=America%2FNew_York"
+            style={{ border: 0, display: "block", filter: "invert(1) hue-rotate(180deg)" }}
+            width="100%"
+            height="600"
+            title="Charleston Pride Community Calendar"
+          />
+        </div>
       </div>
     </div>
   );

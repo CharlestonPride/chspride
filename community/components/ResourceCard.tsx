@@ -34,7 +34,7 @@ const CATEGORY_LABELS: Record<string, string> = {
 
 export default function ResourceCard({ resource }: { resource: ResourceCardData }) {
   const logoRef = resource.logo?.asset?._ref;
-  const logoUrl = logoRef ? urlFor(resource.logo!).width(80).height(80).fit("crop").url() : null;
+  const logoUrl = logoRef ? urlFor(resource.logo!).width(256).height(256).fit("crop").url() : null;
   const categoryLabel = resource.category ? (CATEGORY_LABELS[resource.category] ?? resource.category) : null;
   const locationLabel = resource.location?.isVirtual
     ? (resource.location.serviceArea ?? "Online")
@@ -54,7 +54,7 @@ export default function ResourceCard({ resource }: { resource: ResourceCardData 
     >
       {/* Logo */}
       <div
-        className="shrink-0 w-12 h-12 rounded-lg flex items-center justify-center overflow-hidden"
+        className="shrink-0 w-32 h-32 rounded-lg flex items-center justify-center overflow-hidden"
         style={{ backgroundColor: "var(--color-surface)" }}
       >
         {logoUrl ? (

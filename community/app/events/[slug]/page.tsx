@@ -5,6 +5,7 @@ import { client } from "@/sanity/lib/client";
 import { uipEventBySlugQuery, uipEventSlugsQuery } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
 import PortableText from "@/components/PortableText";
+import AddToCalendarButtons from "@/components/AddToCalendarButtons";
 
 interface EventDetail {
   _id: string;
@@ -280,6 +281,14 @@ export default async function EventPage({
               )}
             </>
           )}
+
+          <AddToCalendarButtons
+            name={event.name}
+            startDateTime={event.startDateTime}
+            endDateTime={event.endDateTime}
+            description={event.description}
+            location={locationLabel ?? undefined}
+          />
         </div>
       </div>
 
