@@ -73,14 +73,14 @@ export default function ResourceCard({ resource }: { resource: ResourceCardData 
         <div className="flex items-center gap-2 flex-wrap">
           <h3
             style={{ color: "var(--color-text)", fontFamily: "var(--font-display)" }}
-            className="font-semibold text-sm leading-snug group-hover:text-purple-300 transition-colors"
+            className="font-semibold text-lg leading-snug group-hover:text-purple-300 transition-colors"
           >
             {resource.name}
           </h3>
 
           {resource.isEmergency && (
             <span
-              className="text-xs px-2 py-0.5 rounded-full font-semibold shrink-0"
+              className="text-base px-2 py-0.5 rounded-full font-semibold shrink-0"
               style={{ backgroundColor: "rgba(239,68,68,0.2)", color: "var(--color-danger)" }}
             >
               Emergency
@@ -91,14 +91,14 @@ export default function ResourceCard({ resource }: { resource: ResourceCardData 
         <div className="flex flex-wrap gap-2">
           {categoryLabel && (
             <span
-              className="text-xs px-2 py-0.5 rounded-full"
+              className="text-base px-2 py-0.5 rounded-full"
               style={{ backgroundColor: "rgba(168,85,247,0.15)", color: "var(--color-primary)" }}
             >
               {categoryLabel}
             </span>
           )}
           {locationLabel && (
-            <span className="text-xs" style={{ color: "var(--color-muted)" }}>
+            <span className="text-base" style={{ color: "var(--color-muted)" }}>
               {locationLabel}
             </span>
           )}
@@ -107,7 +107,7 @@ export default function ResourceCard({ resource }: { resource: ResourceCardData 
         {resource.description && (
           <p
             style={{ color: "var(--color-muted)" }}
-            className="text-xs line-clamp-2 mt-0.5"
+            className="text-base line-clamp-2 mt-0.5"
           >
             {resource.description}
           </p>

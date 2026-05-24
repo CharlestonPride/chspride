@@ -38,7 +38,7 @@ export default function Navbar() {
                 <Link
                   href={href}
                   style={{ color: "var(--color-muted)" }}
-                  className="text-sm font-medium hover:text-white transition-colors"
+                  className="text-base font-medium hover:text-white transition-colors"
                 >
                   {label}
                 </Link>

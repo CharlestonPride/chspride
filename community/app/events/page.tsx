@@ -25,7 +25,7 @@ export default async function EventsPage() {
         >
           Upcoming Events
         </h1>
-        <p className="mt-2 text-sm" style={{ color: "var(--color-muted)" }}>
+        <p className="mt-2 text-base" style={{ color: "var(--color-muted)" }}>
           LGBTQIA+ events in Charleston and the Lowcountry.
         </p>
       </div>
@@ -39,7 +39,7 @@ export default async function EventsPage() {
       ) : (
         <div className="text-center py-24" style={{ color: "var(--color-muted)" }}>
           <p className="text-xl font-semibold mb-2">No upcoming events</p>
-          <p className="text-sm">Check back soon — more events are on the way!</p>
+          <p className="text-base">Check back soon — more events are on the way!</p>
         </div>
       )}
 
@@ -49,7 +49,7 @@ export default async function EventsPage() {
           href="https://calendar.google.com/calendar/embed?src=c_1b66c6e757e2b6f7fff05a847d8406ae3a39bc0204307afef7d5814991f6b3ec%40group.calendar.google.com&ctz=America%2FNew_York"
           target="_blank"
           rel="noopener noreferrer"
-          className="sm:hidden flex items-center justify-center gap-2 w-full px-5 py-3 rounded-xl font-semibold text-sm transition-opacity hover:opacity-90"
+          className="sm:hidden flex items-center justify-center gap-2 w-full px-5 py-3 rounded-xl font-semibold text-base transition-opacity hover:opacity-90"
           style={{ backgroundColor: "var(--color-primary)", color: "#fff" }}
         >
           Open Community Calendar &rarr;

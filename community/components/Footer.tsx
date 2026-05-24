@@ -11,7 +11,7 @@ export default function Footer() {
       className="mt-auto"
     >
       <div className="rainbow-bar" />
-      <div className="max-w-3xl mx-auto px-4 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
+      <div className="max-w-3xl mx-auto px-4 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-base">
         <p>
           &copy; {new Date().getFullYear()}{" "}
           <a

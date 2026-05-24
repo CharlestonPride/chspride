@@ -61,14 +61,14 @@ export default function AddToCalendarButtons({
         href={googleUrl.toString()}
         target="_blank"
         rel="noopener noreferrer"
-        className="px-4 py-2 rounded-lg text-xs font-semibold transition-colors hover:border-purple-400"
+        className="px-4 py-2 rounded-lg text-base font-semibold transition-colors hover:border-purple-400"
         style={{ border: "1px solid var(--color-primary)", color: "var(--color-primary)" }}
       >
         Add to Google Calendar
       </a>
       <button
         onClick={downloadICS}
-        className="px-4 py-2 rounded-lg text-xs font-semibold transition-colors hover:border-purple-400"
+        className="px-4 py-2 rounded-lg text-base font-semibold transition-colors hover:border-purple-400"
         style={{ border: "1px solid var(--color-primary)", color: "var(--color-primary)" }}
       >
         Download .ics

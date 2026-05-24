@@ -107,7 +107,7 @@ function Chip({
   const { bg, text } = styles[color];
   return (
     <span
-      className="text-xs px-3 py-1 rounded-full font-medium"
+      className="text-base px-3 py-1 rounded-full font-medium"
       style={{ backgroundColor: bg, color: text }}
     >
       {children}
@@ -154,7 +154,7 @@ export default async function EventPage({
     <div className="max-w-4xl mx-auto px-4 py-10">
       <Link
         href="/events"
-        className="inline-flex items-center gap-1 text-sm mb-6 hover:underline"
+        className="inline-flex items-center gap-1 text-base mb-6 hover:underline"
         style={{ color: "var(--color-primary)" }}
       >
         &larr; Back to Events
@@ -203,7 +203,7 @@ export default async function EventPage({
           </div>
 
           {locationLabel && (
-            <p className="text-sm mb-4 flex items-center gap-1" style={{ color: "var(--color-muted)" }}>
+            <p className="text-base mb-4 flex items-center gap-1" style={{ color: "var(--color-muted)" }}>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
               </svg>
@@ -224,7 +224,7 @@ export default async function EventPage({
                 href={`https://charlestonpride.org/events/${event.slug}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-2.5 rounded-lg text-sm font-semibold transition-opacity hover:opacity-90"
+                className="px-5 py-2.5 rounded-lg text-base font-semibold transition-opacity hover:opacity-90"
                 style={{ backgroundColor: "var(--color-primary)", color: "#fff" }}
               >
                 View on Charleston Pride &rarr;
@@ -239,7 +239,7 @@ export default async function EventPage({
                       href={event.tickets!.url!}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-5 py-2.5 rounded-lg text-sm font-semibold transition-opacity hover:opacity-90"
+                      className="px-5 py-2.5 rounded-lg text-base font-semibold transition-opacity hover:opacity-90"
                       style={{ backgroundColor: "var(--color-primary)", color: "#fff" }}
                     >
                       Get Tickets
@@ -250,7 +250,7 @@ export default async function EventPage({
                       href={event.registration!.url!}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-5 py-2.5 rounded-lg text-sm font-semibold transition-colors hover:border-purple-400"
+                      className="px-5 py-2.5 rounded-lg text-base font-semibold transition-colors hover:border-purple-400"
                       style={{
                         border: "1px solid var(--color-border)",
                         color: "var(--color-text)",
@@ -263,19 +263,19 @@ export default async function EventPage({
               )}
 
               {event.tickets?.url && event.tickets.isSoldOut && (
-                <p className="text-sm mt-3 font-medium" style={{ color: "var(--color-danger)" }}>
+                <p className="text-base mt-3 font-medium" style={{ color: "var(--color-danger)" }}>
                   {event.tickets.soldOutMessage ?? "Tickets are sold out."}
                 </p>
               )}
 
               {showTicketUnavailable && (
-                <p className="text-sm mt-3" style={{ color: "var(--color-muted)" }}>
+                <p className="text-base mt-3" style={{ color: "var(--color-muted)" }}>
                   {event.tickets!.unavailableMessage ?? "Tickets are not currently available."}
                 </p>
               )}
 
               {showRegistrationUnavailable && (
-                <p className="text-sm mt-3" style={{ color: "var(--color-muted)" }}>
+                <p className="text-base mt-3" style={{ color: "var(--color-muted)" }}>
                   {event.registration!.unavailableMessage ?? "Registration is not currently available."}
                 </p>
               )}

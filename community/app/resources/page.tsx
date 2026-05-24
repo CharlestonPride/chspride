@@ -26,7 +26,7 @@ export default async function ResourcesPage() {
         >
           Community Resources
         </h1>
-        <p className="mt-2 text-sm" style={{ color: "var(--color-muted)" }}>
+        <p className="mt-2 text-base" style={{ color: "var(--color-muted)" }}>
           LGBTQIA+ resources across healthcare, mental health, legal services, and more.
         </p>
       </div>
