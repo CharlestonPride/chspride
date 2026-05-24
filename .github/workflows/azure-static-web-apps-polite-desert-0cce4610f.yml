@@ -1,0 +1,39 @@
+name: Azure Static Web Apps CI/CD (Community)
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: community-deploy
+  cancel-in-progress: true
+
+jobs:
+  build_and_deploy_job:
+    runs-on: ubuntu-latest
+    name: Build and Deploy Community
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+          lfs: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Build And Deploy
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_POLITE_DESERT_0CCE4610F }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: "upload"
+          app_location: "/community"
+          api_location: ""
+          output_location: "out"
+        env:
+          NEXT_PUBLIC_SANITY_PROJECT_ID: "jgra26o6"
+          NEXT_PUBLIC_SANITY_DATASET: "test"

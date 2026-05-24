@@ -11,6 +11,7 @@
     "build": "next build --webpack",
     "start": "next start",
     "studio": "sanity dev",
+    "studio:test": "NEXT_PUBLIC_SANITY_DATASET=test sanity dev",
     "lint": "next lint",
     "typegen": "sanity schema extract && sanity typegen generate",
     "format": "prettier --write .",

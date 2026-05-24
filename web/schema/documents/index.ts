@@ -4,5 +4,6 @@ export { default as sponsorshipType } from "./sponsorshipType";
 export { default as sponsorType } from "./sponsorType";
 export { default as eventType } from "./eventType";
 export { default as resourceType } from "./resourceType";
+export { default as organizationType } from "./organizationType";
 
 export * from "./singletons";

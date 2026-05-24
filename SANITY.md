@@ -45,10 +45,10 @@ web/
 
 Each app maintains its own Sanity client configuration and GROQ queries under `<app>/sanity/lib/`. The `/community` app consumes Sanity data via GROQ queries and does not import schema definitions directly.
 
-| App         | Client config         | GROQ queries                        | Schema         |
-|-------------|----------------------|-------------------------------------|----------------|
-| `/web`      | `web/sanity/lib/`    | `web/sanity/lib/queries.ts`         | `web/schema/`  |
-| `/community`| *(future)*           | *(future)*                          | N/A            |
+| App         | Client config              | GROQ queries                              | Schema         |
+|-------------|---------------------------|-------------------------------------------|----------------|
+| `/web`      | `web/sanity/lib/`         | `web/sanity/lib/queries.ts`               | `web/schema/`  |
+| `/community`| `community/sanity/lib/`   | `community/sanity/lib/queries.ts`         | N/A            |
 
 ## Generating Types
 
@@ -75,3 +75,21 @@ For Studio write operations:
 ```
 SANITY_API_TOKEN=
 ```
+
+`/community` defaults to the `test` dataset. Override via:
+
+```
+NEXT_PUBLIC_SANITY_DATASET=production
+```
+
+Set `NEXT_PUBLIC_SANITY_DATASET=production` in the community deployment environment to point at live data.
+
+## Seeding the Test Dataset
+
+To populate the `test` dataset with representative UIP data, from `/web`:
+
+```bash
+SANITY_API_TOKEN=<write-token> node scripts/seed-test.mjs
+```
+
+The script is idempotent — running it multiple times replaces existing seed documents safely.

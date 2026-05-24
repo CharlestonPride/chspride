@@ -267,6 +267,14 @@ export default defineType({
       initialValue: true,
     }),
     defineField({
+      name: "uipMoreInfoUrl",
+      title: "More Info URL (United in Pride)",
+      description:
+        "Override the link on the UIP event card. Leave blank to auto-link to charlestonpride.org (if Show on Charleston Pride is enabled) or the UIP event detail page.",
+      type: "url",
+      hidden: ({ parent }) => parent?.showOnCP === true,
+    }),
+    defineField({
       name: "keywords",
       title: "Keywords",
       description: "Optional tags to help categorize this event.",
