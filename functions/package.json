@@ -1,0 +1,20 @@
+{
+  "name": "chspride-functions",
+  "version": "1.0.0",
+  "description": "Azure Functions for Charleston Pride submission pipeline",
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "start": "func start",
+    "build": "echo 'No build step needed for ESM functions'"
+  },
+  "dependencies": {
+    "@azure/functions": "^4.0.0",
+    "@sanity/client": "^6.15.7",
+    "@sendgrid/mail": "^8.1.0",
+    "busboy": "^1.6.0",
+    "uuid": "^10.0.0"
+  }
+}

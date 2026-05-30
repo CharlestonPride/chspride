@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { client } from "@/sanity/lib/client";
 import { uipResourcesQuery } from "@/sanity/lib/queries";
 import type { ResourceCardData } from "@/components/ResourceCard";
@@ -29,6 +30,13 @@ export default async function ResourcesPage() {
         <p className="mt-2 text-base" style={{ color: "var(--color-muted)" }}>
           LGBTQIA+ resources across healthcare, mental health, legal services, and more.
         </p>
+        <Link
+          href="/resources/submit"
+          className="inline-flex items-center gap-2 mt-4 px-4 py-2 rounded-lg font-semibold text-base transition-opacity hover:opacity-90"
+          style={{ backgroundColor: "var(--color-primary)", color: "#fff" }}
+        >
+          + Submit a Resource
+        </Link>
       </div>
 
       <ResourceFilters resources={resources} />

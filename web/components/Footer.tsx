@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { client } from "@/sanity/lib/client";
 import { FooterQueryResult } from "@/sanity/lib/sanity.types";
 import { footerQuery } from "@/sanity/lib/queries";
@@ -85,11 +86,17 @@ export default async function Footer() {
           </Row>
           <Row>
             <Col xs="8" className="mx-auto text-center mt-1">
-              <p className="mb-0 text-secondary">
+              <p className="mb-1 text-secondary">
                 Charleston Pride Festival, Inc. is a 501(c)(3) public charity
                 under the Internal Revenue Service Code of 1986 and the State of
                 South Carolina.
               </p>
+              <Link
+                href="/privacy-policy"
+                className="text-secondary small"
+              >
+                Privacy Policy
+              </Link>
             </Col>
           </Row>
         </Container>

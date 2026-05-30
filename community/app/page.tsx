@@ -4,6 +4,7 @@ import { uipEventsQuery, uipResourcesQuery, uipFeaturedOrganizationsQuery } from
 import EventCard, { type EventCardData } from "@/components/EventCard";
 import ResourceCard, { type ResourceCardData } from "@/components/ResourceCard";
 import OrganizationCard, { type OrganizationData } from "@/components/OrganizationCard";
+import ContactForm from "@/components/ContactForm";
 import { CHARLESTON_PRIDE } from "@/lib/constants";
 
 function SectionHeader({
@@ -155,6 +156,15 @@ export default async function HomePage() {
               <OrganizationCard key={org._id} org={org} />
             ))}
           </div>
+        </section>
+
+        {/* Contact */}
+        <section id="contact">
+          <SectionHeader title="Get in Touch" />
+          <p className="text-base mb-6" style={{ color: "var(--color-muted)" }}>
+            Have a question, suggestion, or want to get involved? We&apos;d love to hear from you.
+          </p>
+          <ContactForm />
         </section>
 
       </div>

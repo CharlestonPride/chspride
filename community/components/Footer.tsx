@@ -23,7 +23,7 @@ export default function Footer() {
           >
             Charleston Pride Festival, Inc.
           </a>
-           is a 501(c)(3) public charity under the Internal Revenue Service Code of 1986 and the State of South Carolina.
+          {" "}is a 501(c)(3) public charity under the Internal Revenue Service Code of 1986 and the State of South Carolina.
         </p>
 
         <nav>
@@ -47,6 +47,11 @@ export default function Footer() {
               >
                 Charleston Pride
               </a>
+            </li>
+            <li>
+              <Link href="/privacy-policy" className="hover:text-white transition-colors">
+                Privacy Policy
+              </Link>
             </li>
           </ul>
         </nav>
