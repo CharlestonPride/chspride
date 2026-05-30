@@ -42,9 +42,6 @@ export default function EventCard({ event }: { event: EventCardData }) {
   const ageLabel = event.ageRestriction && event.ageRestriction !== "all-ages" ? event.ageRestriction : null;
   const venueLabel = event.location?.venue ?? `${event.location?.city ?? "Charleston"}, ${event.location?.state ?? "SC"}`;
 
-  const cpUrl = `https://charlestonpride.org/events/${event.slug}`;
-  const externalHref = event.showOnCP ? cpUrl : (event.uipMoreInfoUrl ?? null);
-
   const sharedClassName = "group block rounded-xl overflow-hidden transition-transform hover:-translate-y-0.5";
   const sharedStyle = {
     backgroundColor: "var(--color-card)",
@@ -72,7 +69,7 @@ export default function EventCard({ event }: { event: EventCardData }) {
 
         {event.isFeatured && (
           <div
-            className="absolute top-2 left-2 text-xs font-semibold px-2 py-1 rounded-full"
+            className="absolute top-2 left-2 text-base font-semibold px-2 py-1 rounded-full"
             style={{ backgroundColor: "var(--color-primary)", color: "#fff" }}
           >
             Featured
@@ -92,14 +89,15 @@ export default function EventCard({ event }: { event: EventCardData }) {
         {/* Meta row */}
         <div className="flex flex-wrap gap-2">
           <span
-            className="text-xs px-2 py-0.5 rounded-full"
+            className="text-base px-2 py-0.5 rounded-full"
             style={{ backgroundColor: "var(--color-surface)", color: "var(--color-muted)" }}
           >
             {formatDate(event.startDateTime)} &middot; {formatTime(event.startDateTime)}
+            {event.endDateTime && ` – ${formatTime(event.endDateTime)}`}
           </span>
 
           <span
-            className="text-xs px-2 py-0.5 rounded-full font-medium"
+            className="text-base px-2 py-0.5 rounded-full font-medium"
             style={{
               backgroundColor: event.isFree !== false ? "rgba(34,197,94,0.15)" : "rgba(245,158,11,0.15)",
               color: event.isFree !== false ? "var(--color-success)" : "var(--color-warning)",
@@ -110,7 +108,7 @@ export default function EventCard({ event }: { event: EventCardData }) {
 
           {ageLabel && (
             <span
-              className="text-xs px-2 py-0.5 rounded-full"
+              className="text-base px-2 py-0.5 rounded-full"
               style={{ backgroundColor: "rgba(239,68,68,0.15)", color: "var(--color-danger)" }}
             >
               {ageLabel}
@@ -118,18 +116,18 @@ export default function EventCard({ event }: { event: EventCardData }) {
           )}
         </div>
 
-        <p style={{ color: "var(--color-muted)" }} className="text-xs">
+        <p style={{ color: "var(--color-muted)" }} className="text-base">
           {venueLabel}
         </p>
 
         {event.description && (
-          <p style={{ color: "var(--color-muted)" }} className="text-sm line-clamp-2">
+          <p style={{ color: "var(--color-muted)" }} className="text-base line-clamp-2">
             {event.description}
           </p>
         )}
 
         <span
-          className="mt-auto self-start text-sm font-semibold"
+          className="mt-auto self-start text-base font-semibold"
           style={{ color: "var(--color-primary)" }}
         >
           {event.ctaLabel ?? "More Info"} &rarr;
@@ -137,20 +135,6 @@ export default function EventCard({ event }: { event: EventCardData }) {
       </div>
     </>
   );
-
-  if (externalHref) {
-    return (
-      <a
-        href={externalHref}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={sharedClassName}
-        style={sharedStyle}
-      >
-        {content}
-      </a>
-    );
-  }
 
   return (
     <Link href={`/events/${event.slug}`} className={sharedClassName} style={sharedStyle}>

@@ -7,6 +7,7 @@
   },
   "scripts": {
     "dev": "next dev --webpack",
+    "dev:test": "NEXT_PUBLIC_SANITY_DATASET=test next dev --webpack",
     "prebuild": "npm run typegen",
     "build": "next build --webpack",
     "start": "next start",

@@ -11,5 +11,6 @@ export { default as imageGalleryCard } from "./imageGalleryCard";
 export { default as textBlock } from "./textBlock";
 export { default as alert } from "./alert";
 export { default as upcomingEventsCard } from "./upcomingEventsCard";
+export { default as submitterInfo } from "./submitterInfo";
 
 export * from "./navigation";

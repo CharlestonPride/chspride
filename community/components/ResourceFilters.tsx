@@ -51,7 +51,7 @@ export default function ResourceFilters({ resources }: { resources: ResourceCard
           placeholder="Search resources…"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="flex-1 rounded-lg px-4 py-2 text-sm focus:outline-none"
+          className="flex-1 rounded-lg px-4 py-2 text-base focus:outline-none"
           style={{
             backgroundColor: "var(--color-card)",
             border: "1px solid var(--color-border)",
@@ -62,7 +62,7 @@ export default function ResourceFilters({ resources }: { resources: ResourceCard
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          className="rounded-lg px-4 py-2 text-sm focus:outline-none"
+          className="rounded-lg px-4 py-2 text-base focus:outline-none"
           style={{
             backgroundColor: "var(--color-card)",
             border: "1px solid var(--color-border)",
@@ -79,7 +79,7 @@ export default function ResourceFilters({ resources }: { resources: ResourceCard
       </div>
 
       {/* Results count */}
-      <p className="text-xs mb-4" style={{ color: "var(--color-muted)" }}>
+      <p className="text-base mb-4" style={{ color: "var(--color-muted)" }}>
         {filtered.length} {filtered.length === 1 ? "resource" : "resources"} found
       </p>
 
@@ -92,7 +92,7 @@ export default function ResourceFilters({ resources }: { resources: ResourceCard
       ) : (
         <div className="text-center py-16" style={{ color: "var(--color-muted)" }}>
           <p className="text-lg font-medium mb-1">No resources found</p>
-          <p className="text-sm">Try a different search or category.</p>
+          <p className="text-base">Try a different search or category.</p>
         </div>
       )}
     </div>

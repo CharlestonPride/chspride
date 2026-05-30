@@ -5,6 +5,7 @@
   "description": "Charleston Pride monorepo containing web and mobile applications",
   "scripts": {
     "web:dev": "cd web && npm run dev",
+    "web:dev:test": "cd web && npm run dev:test",
     "web:build": "cd web && npm run build",
     "web:start": "cd web && npm run start",
     "web:studio": "cd web && npm run studio",
@@ -14,6 +15,7 @@
     "web:format": "cd web && npm run format",
     "web:lint:fix": "cd web && npm run lint:fix",
     "community:dev": "cd community && npm run dev",
+    "community:dev:test" : "cd community && npm run dev:test",
     "community:build": "cd community && npm run build",
     "community:install": "cd community && npm install",
     "community:lint": "cd community && npm run lint",

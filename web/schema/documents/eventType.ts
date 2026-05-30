@@ -282,6 +282,15 @@ export default defineType({
       of: [{ type: "string" }],
       options: { layout: "tags" },
     }),
+    defineField({
+      name: "submitterInfo",
+      title: "Submitter Info",
+      description: "Read-only. Populated automatically when submitted via the community app.",
+      type: "submitterInfo",
+      readOnly: true,
+      hidden: ({ document }) => !document?.submitterInfo,
+      options: { collapsible: true, collapsed: false },
+    }),
   ],
   preview: {
     select: {

@@ -28,7 +28,7 @@ export default async function OrganizationsPage() {
         >
           LGBTQIA+ Organizations
         </h1>
-        <p className="mt-2 text-sm" style={{ color: "var(--color-muted)" }}>
+        <p className="mt-2 text-base" style={{ color: "var(--color-muted)" }}>
           Organizations serving Charleston and the Lowcountry&apos;s LGBTQIA+ community.
         </p>
       </div>

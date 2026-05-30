@@ -4,6 +4,7 @@ import { uipEventsQuery, uipResourcesQuery, uipFeaturedOrganizationsQuery } from
 import EventCard, { type EventCardData } from "@/components/EventCard";
 import ResourceCard, { type ResourceCardData } from "@/components/ResourceCard";
 import OrganizationCard, { type OrganizationData } from "@/components/OrganizationCard";
+import ContactForm from "@/components/ContactForm";
 import { CHARLESTON_PRIDE } from "@/lib/constants";
 
 function SectionHeader({
@@ -29,7 +30,7 @@ function SectionHeader({
       {href && linkLabel && (
         <Link
           href={href}
-          className="text-sm font-semibold hover:underline"
+          className="text-base font-semibold hover:underline"
           style={{ color: "var(--color-primary)" }}
         >
           {linkLabel} &rarr;
@@ -93,14 +94,14 @@ export default async function HomePage() {
           <div className="flex gap-3 justify-center flex-wrap">
             <Link
               href="/events"
-              className="px-6 py-3 rounded-lg font-semibold text-sm transition-opacity hover:opacity-90"
+              className="px-6 py-3 rounded-lg font-semibold text-base transition-opacity hover:opacity-90"
               style={{ backgroundColor: "var(--color-primary)", color: "#fff" }}
             >
               Browse Events
             </Link>
             <Link
               href="/resources"
-              className="px-6 py-3 rounded-lg font-semibold text-sm transition-colors hover:border-purple-400"
+              className="px-6 py-3 rounded-lg font-semibold text-base transition-colors hover:border-purple-400"
               style={{
                 backgroundColor: "transparent",
                 border: "1px solid var(--color-border)",
@@ -125,7 +126,7 @@ export default async function HomePage() {
               ))}
             </div>
           ) : (
-            <p className="text-sm" style={{ color: "var(--color-muted)" }}>
+            <p className="text-base" style={{ color: "var(--color-muted)" }}>
               No upcoming events right now. Check back soon!
             </p>
           )}
@@ -141,7 +142,7 @@ export default async function HomePage() {
               ))}
             </div>
           ) : (
-            <p className="text-sm" style={{ color: "var(--color-muted)" }}>
+            <p className="text-base" style={{ color: "var(--color-muted)" }}>
               Resource directory coming soon.
             </p>
           )}
@@ -155,6 +156,15 @@ export default async function HomePage() {
               <OrganizationCard key={org._id} org={org} />
             ))}
           </div>
+        </section>
+
+        {/* Contact */}
+        <section id="contact">
+          <SectionHeader title="Get in Touch" />
+          <p className="text-base mb-6" style={{ color: "var(--color-muted)" }}>
+            Have a question, suggestion, or want to get involved? We&apos;d love to hear from you.
+          </p>
+          <ContactForm />
         </section>
 
       </div>

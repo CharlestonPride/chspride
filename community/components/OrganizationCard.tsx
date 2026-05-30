@@ -30,7 +30,7 @@ function SocialLink({ href, label, children }: { href: string; label: string; ch
 
 export default function OrganizationCard({ org }: { org: OrganizationData }) {
   const logoRef = org.logo?.asset?._ref;
-  const logoUrl = logoRef ? urlFor(org.logo!).width(160).height(160).fit("crop").url() : null;
+  const logoUrl = logoRef ? urlFor(org.logo!).width(256).height(256).fit("crop").url() : null;
 
   return (
     <div
@@ -40,10 +40,10 @@ export default function OrganizationCard({ org }: { org: OrganizationData }) {
         border: "1px solid var(--color-border)",
       }}
     >
-      {/* Logo + Name */}
-      <div className="flex items-center gap-3">
+      {/* Logo + Name + Description */}
+      <div className="flex items-start gap-3">
         <div
-          className="shrink-0 w-20 h-20 rounded-xl flex items-center justify-center overflow-hidden"
+          className="shrink-0 w-32 h-32 rounded-xl flex items-center justify-center overflow-hidden"
           style={{ backgroundColor: "var(--color-surface)" }}
         >
           {logoUrl ? (
@@ -57,19 +57,20 @@ export default function OrganizationCard({ org }: { org: OrganizationData }) {
           )}
         </div>
 
-        <h3
-          style={{ color: "var(--color-text)", fontFamily: "var(--font-display)" }}
-          className="font-bold text-sm leading-snug"
-        >
-          {org.name}
-        </h3>
+        <div className="flex flex-col gap-1">
+          <h3
+            style={{ color: "var(--color-text)", fontFamily: "var(--font-display)" }}
+            className="font-bold text-lg leading-snug"
+          >
+            {org.name}
+          </h3>
+          {org.description && (
+            <p className="text-base leading-relaxed" style={{ color: "var(--color-muted)" }}>
+              {org.description}
+            </p>
+          )}
+        </div>
       </div>
-
-      {org.description && (
-        <p className="text-xs leading-relaxed" style={{ color: "var(--color-muted)" }}>
-          {org.description}
-        </p>
-      )}
 
       {/* Links */}
       <div className="flex gap-3 items-center flex-wrap">
@@ -78,7 +79,7 @@ export default function OrganizationCard({ org }: { org: OrganizationData }) {
             href={org.website}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs font-semibold hover:underline"
+            className="text-base font-semibold hover:underline"
             style={{ color: "var(--color-primary)" }}
           >
             Visit Website &rarr;

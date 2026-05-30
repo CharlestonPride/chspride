@@ -86,7 +86,7 @@ function ContactItem({
       target={href.startsWith("http") ? "_blank" : undefined}
       rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
       aria-label={label}
-      className="flex items-center gap-2 text-sm hover:underline"
+      className="flex items-center gap-2 text-base hover:underline"
       style={{ color: "var(--color-primary)" }}
     >
       {children}
@@ -105,7 +105,7 @@ export default async function ResourcePage({
   if (!resource) notFound();
 
   const logoRef = resource.logo?.asset?._ref;
-  const logoUrl = logoRef ? urlFor(resource.logo!).width(160).height(160).fit("crop").url() : null;
+  const logoUrl = logoRef ? urlFor(resource.logo!).width(256).height(256).fit("crop").url() : null;
   const categoryLabel = resource.category ? (CATEGORY_LABELS[resource.category] ?? resource.category) : null;
 
   const locationLabel = resource.location?.isVirtual
@@ -124,7 +124,7 @@ export default async function ResourcePage({
     <div className="max-w-3xl mx-auto px-4 py-10">
       <Link
         href="/resources"
-        className="inline-flex items-center gap-1 text-sm mb-6 hover:underline"
+        className="inline-flex items-center gap-1 text-base mb-6 hover:underline"
         style={{ color: "var(--color-primary)" }}
       >
         &larr; Back to Resources
@@ -134,7 +134,7 @@ export default async function ResourcePage({
       <div className="flex items-start gap-5 mb-6">
         {logoUrl && (
           <div
-            className="shrink-0 w-16 h-16 rounded-xl overflow-hidden flex items-center justify-center"
+            className="shrink-0 w-32 h-32 rounded-xl overflow-hidden flex items-center justify-center"
             style={{ backgroundColor: "var(--color-card)" }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -156,7 +156,7 @@ export default async function ResourcePage({
           <div className="flex flex-wrap gap-2 mt-2">
             {categoryLabel && (
               <span
-                className="text-xs px-2 py-0.5 rounded-full"
+                className="text-base px-2 py-0.5 rounded-full"
                 style={{ backgroundColor: "rgba(168,85,247,0.15)", color: "var(--color-primary)" }}
               >
                 {categoryLabel}
@@ -164,7 +164,7 @@ export default async function ResourcePage({
             )}
             {resource.isEmergency && (
               <span
-                className="text-xs px-2 py-0.5 rounded-full font-semibold"
+                className="text-base px-2 py-0.5 rounded-full font-semibold"
                 style={{ backgroundColor: "rgba(239,68,68,0.2)", color: "var(--color-danger)" }}
               >
                 Emergency Resource
@@ -172,7 +172,7 @@ export default async function ResourcePage({
             )}
             {resource.isVerified && (
               <span
-                className="text-xs px-2 py-0.5 rounded-full"
+                className="text-base px-2 py-0.5 rounded-full"
                 style={{ backgroundColor: "rgba(34,197,94,0.15)", color: "var(--color-success)" }}
               >
                 Verified
@@ -199,10 +199,10 @@ export default async function ResourcePage({
       >
         {locationLabel && (
           <div>
-            <p className="text-xs font-semibold mb-1" style={{ color: "var(--color-muted)" }}>
+            <p className="text-base font-semibold mb-1" style={{ color: "var(--color-muted)" }}>
               Location
             </p>
-            <p className="text-sm" style={{ color: "var(--color-text)" }}>
+            <p className="text-base" style={{ color: "var(--color-text)" }}>
               {locationLabel}
             </p>
           </div>
@@ -210,10 +210,10 @@ export default async function ResourcePage({
 
         {resource.hours && (
           <div>
-            <p className="text-xs font-semibold mb-1" style={{ color: "var(--color-muted)" }}>
+            <p className="text-base font-semibold mb-1" style={{ color: "var(--color-muted)" }}>
               Hours
             </p>
-            <p className="text-sm" style={{ color: "var(--color-text)" }}>
+            <p className="text-base" style={{ color: "var(--color-text)" }}>
               {resource.hours}
             </p>
           </div>
@@ -222,7 +222,7 @@ export default async function ResourcePage({
         {/* Contact */}
         {resource.contact && (
           <div className="sm:col-span-2">
-            <p className="text-xs font-semibold mb-2" style={{ color: "var(--color-muted)" }}>
+            <p className="text-base font-semibold mb-2" style={{ color: "var(--color-muted)" }}>
               Contact
             </p>
             <div className="flex flex-wrap gap-3">
@@ -282,7 +282,7 @@ export default async function ResourcePage({
           {resource.tags!.map((tag) => (
             <span
               key={tag}
-              className="text-xs px-2 py-0.5 rounded-full"
+              className="text-base px-2 py-0.5 rounded-full"
               style={{ backgroundColor: "var(--color-surface)", color: "var(--color-muted)" }}
             >
               {tag}
