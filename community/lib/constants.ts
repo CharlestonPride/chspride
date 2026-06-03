@@ -11,7 +11,7 @@ export const CHARLESTON_PRIDE: OrganizationData = {
   isFeatured: true,
   logo: {
     asset: {
-      _ref: "image-3e8ab2c3928357957107d12a3244e6f502d7efef-1970x1163-png"
+      _ref: "image-e787ea8fd21187c3b6ab2eea3b6afe5e81ef3d64-2048x2048-png"
     }
   }
 };
