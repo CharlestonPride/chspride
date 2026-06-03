@@ -33,9 +33,11 @@ function getStatus(registration: RegistrationData): Status {
 export default function RegistrationButton({
   registration,
   eventSlug,
+  theme = "primary",
 }: {
   registration: RegistrationData;
   eventSlug: string;
+  theme?: string;
 }) {
   const [status, setStatus] = useState<Status>(() => getStatus(registration));
   const isMobile = useIsMobile();
@@ -66,7 +68,7 @@ export default function RegistrationButton({
           href={registration.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="btn bg-gradient-secondary"
+          className={`btn bg-gradient-${theme}`}
         >
           {label}
         </a>
@@ -77,7 +79,7 @@ export default function RegistrationButton({
   return (
     <div className="mt-4">
       <Link href={`/events/${eventSlug}/registration`}>
-        <button type="button" className="btn bg-gradient-secondary">
+        <button type="button" className={`btn bg-gradient-${theme}`}>
           {label}
         </button>
       </Link>

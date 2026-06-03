@@ -160,26 +160,23 @@ export default function EventDetailView({ event }: { event: EventDetail }) {
                 />
               </div>
             )}
-
-          </Col>
-        </Row>
-
         {(event.registration?.url || event.tickets?.url) && (
-          <Row className="mt-4">
-            <Col xs={12}>
+          <div className="mt-4">
+
               {event.registration?.url && (
                 <RegistrationButton
                   registration={event.registration}
                   eventSlug={event.slug?.current ?? ""}
+                  theme={theme}
                 />
               )}
               {event.tickets?.url && (
-                <TicketSection tickets={event.tickets} />
+                <TicketSection tickets={event.tickets} theme={theme} />
               )}
-            </Col>
-          </Row>
+          </div>
         )}
-
+          </Col>
+        </Row>
         <Row className="mt-2">
           <Col xs={12}>
             <AddToCalendarButtons

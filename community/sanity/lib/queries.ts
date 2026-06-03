@@ -24,6 +24,30 @@ export const uipEventsQuery = groq`
   "hasTickets": defined(tickets.url)
 }`;
 
+// All upcoming UIP events for client-side pagination (fetched once at build time)
+export const uipAllUpcomingEventsQuery = groq`
+*[_type == "event" && showOnUIP == true && (
+  (defined(endDateTime) && endDateTime >= now()) ||
+  (!defined(endDateTime) && startDateTime >= now())
+)] | order(isFeatured desc, startDateTime asc) [0...200] {
+  _id,
+  name,
+  "slug": slug.current,
+  description,
+  "image": images[0],
+  location,
+  startDateTime,
+  endDateTime,
+  isFree,
+  price,
+  ageRestriction,
+  ctaLabel,
+  isFeatured,
+  showOnCP,
+  uipMoreInfoUrl,
+  "hasTickets": defined(tickets.url)
+}`;
+
 export const uipEventSlugsQuery = groq`
 *[_type == "event" && showOnUIP == true && defined(slug.current)] {
   "slug": slug.current

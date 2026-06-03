@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { client } from "@/sanity/lib/client";
-import { uipEventsQuery } from "@/sanity/lib/queries";
-import EventCard, { type EventCardData } from "@/components/EventCard";
+import { uipAllUpcomingEventsQuery } from "@/sanity/lib/queries";
+import { type EventCardData } from "@/components/EventCard";
+import EventsPaginated from "@/components/EventsPaginated";
 
 export const metadata: Metadata = {
   title: "Events",
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 
 export default async function EventsPage() {
   const events = await client.fetch<EventCardData[]>(
-    uipEventsQuery,
+    uipAllUpcomingEventsQuery,
     {},
     { next: { revalidate: 60 } }
   );
@@ -38,18 +39,7 @@ export default async function EventsPage() {
         </Link>
       </div>
 
-      {events.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {events.map((event) => (
-            <EventCard key={event._id} event={event} />
-          ))}
-        </div>
-      ) : (
-        <div className="text-center py-24" style={{ color: "var(--color-muted)" }}>
-          <p className="text-xl font-semibold mb-2">No upcoming events</p>
-          <p className="text-base">Check back soon — more events are on the way!</p>
-        </div>
-      )}
+      <EventsPaginated events={events} />
 
       {/* Google Calendar — embed on desktop, button on mobile */}
       <div className="mt-10">
