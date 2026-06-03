@@ -36,4 +36,4 @@ jobs:
           output_location: "out"
         env:
           NEXT_PUBLIC_SANITY_PROJECT_ID: "jgra26o6"
-          NEXT_PUBLIC_SANITY_DATASET: "test"
+          NEXT_PUBLIC_SANITY_DATASET: "public"

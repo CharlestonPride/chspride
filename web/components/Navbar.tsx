@@ -69,7 +69,7 @@ export default async function MainNavBar() {
         </NavbarToggle>
         <NavbarCollapse id="basic-navbar-nav">
           <Nav className="mx-auto">
-            {nav!.main?.map((menu: any) => {
+            {nav?.main?.map((menu: any) => {
               if (menu._type == "dropdownItem" && menu.list) {
                 return (
                   <NavDropdown title={menu.label} key={menu.label}>

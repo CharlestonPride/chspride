@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { fbUrl, instagramUrl } from "../lib/socialMedia";
+import { dataset } from "@/sanity/lib/env";
 
 type SocialProps = {
   url: string;
@@ -55,6 +56,9 @@ const Email = (footer: FooterQueryResult) => {
   );
 };
 
+const Env = () =>
+  dataset === 'production' ? <></> : <p>{dataset}</p>
+
 export default async function Footer() {
   const data = await client.fetch(footerQuery);
   const footer = data as FooterQueryResult;
@@ -78,6 +82,7 @@ export default async function Footer() {
                 Copyright © {year} Charleston Pride Festival, Inc. <br /> All
                 Rights Reserved.
               </p>
+              <Env/>
             </Col>
             <Col lg="4" className="mx-auto text-center">
               <SocialLink url={fbUrl} icon={faFacebook} />
@@ -100,6 +105,7 @@ export default async function Footer() {
             </Col>
           </Row>
         </Container>
+
       </footer>
     </>
   );

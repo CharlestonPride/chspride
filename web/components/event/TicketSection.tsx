@@ -25,7 +25,13 @@ function getStatus(tickets: TicketData): Status {
   return "available";
 }
 
-export default function TicketSection({ tickets }: { tickets: TicketData }) {
+export default function TicketSection({
+  tickets,
+  theme = "primary",
+}: {
+  tickets: TicketData;
+  theme?: string;
+}) {
   const [status, setStatus] = useState<Status>(() => getStatus(tickets));
   const isMobile = useIsMobile();
 
@@ -57,7 +63,7 @@ export default function TicketSection({ tickets }: { tickets: TicketData }) {
           href={tickets.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="btn bg-gradient-primary"
+          className={`btn bg-gradient-${theme}`}
         >
           Get Tickets
         </a>
