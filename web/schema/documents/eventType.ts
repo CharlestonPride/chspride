@@ -78,12 +78,20 @@ export default defineType({
       name: "startDateTime",
       title: "Start Date & Time",
       type: "datetime",
+      options: {
+        allowTimeZoneSwitch: false,
+        displayTimeZone: "America/New_York",
+      },
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: "endDateTime",
       title: "End Date & Time",
       type: "datetime",
+      options: {
+        allowTimeZoneSwitch: false,
+        displayTimeZone: "America/New_York",
+      },
     }),
     defineField({
       name: "isFree",
@@ -145,12 +153,20 @@ export default defineType({
           title: "Sales Open",
           type: "datetime",
           description: "When ticket sales begin. Leave blank to allow sales immediately.",
+          options: {
+            allowTimeZoneSwitch: false,
+            displayTimeZone: "America/New_York",
+          },
         }),
         defineField({
           name: "closeDateTime",
           title: "Sales Close",
           type: "datetime",
           description: "When ticket sales end. Leave blank to allow sales up to the event.",
+          options: {
+            allowTimeZoneSwitch: false,
+            displayTimeZone: "America/New_York",
+          },
         }),
         defineField({
           name: "isSoldOut",
@@ -220,12 +236,20 @@ export default defineType({
           title: "Registration Opens",
           type: "datetime",
           description: "When registration opens. Leave blank to allow registration immediately.",
+          options: {
+            allowTimeZoneSwitch: false,
+            displayTimeZone: "America/New_York",
+          },
         }),
         defineField({
           name: "closeDateTime",
           title: "Registration Closes",
           type: "datetime",
           description: "When registration closes.",
+          options: {
+            allowTimeZoneSwitch: false,
+            displayTimeZone: "America/New_York"
+          }
         }),
         defineField({
           name: "unavailableMessage",
