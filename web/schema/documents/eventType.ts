@@ -81,6 +81,8 @@ export default defineType({
       options: {
         allowTimeZoneSwitch: false,
         displayTimeZone: "America/New_York",
+        timeFormat: "LT",
+        dateFormat: "L",
       },
       validation: (rule) => rule.required(),
     }),
@@ -91,6 +93,8 @@ export default defineType({
       options: {
         allowTimeZoneSwitch: false,
         displayTimeZone: "America/New_York",
+        timeFormat: "LT",
+        dateFormat: "L",
       },
     }),
     defineField({
@@ -156,6 +160,8 @@ export default defineType({
           options: {
             allowTimeZoneSwitch: false,
             displayTimeZone: "America/New_York",
+            timeFormat: "LT",
+            dateFormat: "L",
           },
         }),
         defineField({
@@ -166,6 +172,8 @@ export default defineType({
           options: {
             allowTimeZoneSwitch: false,
             displayTimeZone: "America/New_York",
+            timeFormat: "LT",
+            dateFormat: "L",
           },
         }),
         defineField({
@@ -239,6 +247,8 @@ export default defineType({
           options: {
             allowTimeZoneSwitch: false,
             displayTimeZone: "America/New_York",
+            timeFormat: "LT",
+            dateFormat: "L"
           },
         }),
         defineField({
@@ -248,8 +258,10 @@ export default defineType({
           description: "When registration closes.",
           options: {
             allowTimeZoneSwitch: false,
-            displayTimeZone: "America/New_York"
-          }
+            displayTimeZone: "America/New_York",
+            timeFormat: "LT",
+            dateFormat: "L",
+          },
         }),
         defineField({
           name: "unavailableMessage",

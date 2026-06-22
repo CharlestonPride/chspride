@@ -16,6 +16,8 @@ export default defineType({
       options: {
         allowTimeZoneSwitch: false,
         displayTimeZone: "America/New_York",
+        timeFormat: "LT",
+        dateFormat: "L",
       },
     }),
     defineField({ name: "notes", title: "Notes", type: "text", rows: 3, readOnly: true }),
