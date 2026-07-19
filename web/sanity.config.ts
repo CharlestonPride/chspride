@@ -20,7 +20,12 @@ import navigation from "./schema/documents/singletons/navigation";
 import ourTeam from "./schema/documents/singletons/ourTeam";
 import events from "./schema/documents/singletons/events";
 import { media } from "sanity-plugin-media";
-import { pageType, sponsorshipType, sponsorType } from "./schema/documents";
+import {
+  eventType,
+  pageType,
+  sponsorshipType,
+  sponsorType,
+} from "./schema/documents";
 import { deploy } from "./tools/deploy";
 
 const singletonDocumentDefinitions: DocumentDefinition[] = [home, ourTeam, events];
@@ -63,6 +68,13 @@ const pageStructure: StructureResolver = (S) => {
         ),
     );
   const pagesListItem = S.documentTypeListItem("page").title("Pages");
+  const eventsListItem = S.documentTypeListItem("event")
+    .title("Events")
+    .child(
+      S.documentTypeList("event")
+        .title("Events")
+        .defaultOrdering([{ field: "startDateTime", direction: "desc" }]),
+    );
   const sponsorsListItem = S.listItem()
     .title("Sponsors")
     .child(
@@ -81,6 +93,7 @@ const pageStructure: StructureResolver = (S) => {
     sponsorType,
     sponsorshipType,
     pageType,
+    eventType,
     { name: "media.tag" },
   ];
   const defaultListItems = S.documentTypeListItems().filter(
@@ -96,6 +109,7 @@ const pageStructure: StructureResolver = (S) => {
       ...singletonListItems,
       S.divider(),
       pagesListItem,
+      eventsListItem,
       sponsorsListItem,
       S.divider(),
       ...defaultListItems,
