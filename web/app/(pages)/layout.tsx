@@ -1,6 +1,8 @@
 import Footer from "@/components/Footer";
 import MainNavBar from "@/components/Navbar";
+import { gaMeasurementId } from "@/lib/analytics";
 
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faCrown,
@@ -45,11 +47,14 @@ export default function Layout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const isPreview = process.env.NEXT_PUBLIC_PREVIEW_MODE === "true";
+
   return (
     <>
       <MainNavBar />
       {children}
       <Footer />
+      {!isPreview && <GoogleAnalytics gaId={gaMeasurementId} />}
     </>
   );
 }
