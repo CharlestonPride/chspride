@@ -7,6 +7,18 @@ export default defineType({
   title: "Event",
   type: "document",
   icon: CalendarIcon as any,
+  orderings: [
+    {
+      title: "Start Date, Desc",
+      name: "startDateTimeDesc",
+      by: [{ field: "startDateTime", direction: "desc" }],
+    },
+    {
+      title: "Start Date, Asc",
+      name: "startDateTimeAsc",
+      by: [{ field: "startDateTime", direction: "asc" }],
+    },
+  ],
   fields: [
     defineField({
       name: "name",
